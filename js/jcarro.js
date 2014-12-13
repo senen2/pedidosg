@@ -17,13 +17,15 @@ function inicioCarro()
 function dibujaCarro(datos)
 {
 	if (datos.carro.length) {
+		dibujaTitulos(datos.cuenta.lenguaje);
 		modo=0;
 		gdatos = datos;
+		var l = gdatos.cuenta.lenguaje;
 		var cad = "", precio = "", prop = "", tagprecio="";
 
 		$.each(datos.carro, function(i,item) {
-			precio = item.precio.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-			valor = (item.precio*item.cantidad).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+			precio = item.precio.formatMoney(gdatos.cuenta.decimales);
+			valor = (item.precio*item.cantidad).formatMoney(gdatos.cuenta.decimales);
 			
 			tagprecio = '<label class="item-price">$' + precio + '</label><br>'
 			if (modo==1)
@@ -55,12 +57,12 @@ function dibujaCarro(datos)
 					  		+ '</div>'
 					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
 					  		+ '<div class="col">'
-					  	  		+ '<label class="item-price">Cantidad: </label>'
+					  	  		+ '<label class="item-price">' + l.cantidad + ': </label>'
 					  	  		+ '<input class="item-price" id="cantidad'+ item.ID + '" value="' + item.cantidad + '"/><br><br>'
 					  		+ '</div>'
 					  		+ '<div class="col" style="padding-left:10px">'
-					  	  		+ '<a class="btn" href="#" onclick="actualizarPedido();" style="font-weight: bold">Actualizar</a>'
-					  	  		+ '<br><a class="btn" href="#" onclick="quitarDelCarro('+ item.ID + ');" style="font-weight: bold">Quitar</a>'
+					  	  		+ '<a class="btn" href="#" onclick="actualizarPedido();" style="font-weight: bold">' + l.actualizar + '</a>'
+					  	  		+ '<br><a class="btn" href="#" onclick="quitarDelCarro('+ item.ID + ');" style="font-weight: bold">' + l.quitar + '</a>'
 					  		+ '</div><br>'
 					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
 					  + '</div><hr><br>'
@@ -86,7 +88,7 @@ function dibujaCarro(datos)
 
 function dibujaTotal()
 {
-	$("#total").html("$" + total().toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));	
+	$("#total").html("$" + total().formatMoney(gdatos.cuenta.decimales));	
 }
 
 function actualizarPedido()

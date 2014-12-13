@@ -10,6 +10,7 @@ function inicioCat()
 	pagina = "pdcatalogo";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Subir_imagenes_de_los_productos";
 	leeServidor();
+	lenguaje = "en";
 	modo = getURLParameter('m');
 	if (modo==null) {
 		modo=getCookie("editando");
@@ -58,9 +59,11 @@ function dibujaCatalogo(datos)
 		document.cookie = "pagpend=" + document.URL;			
 		window.location.assign("index.html");		
 	}
+
 	gdatos=datos;
-	//gordenini = datos.productos[0].orden;
-	//gordenfin = datos.productos[datos.productos.length].orden;
+	nitems = datos.catalogo.n;
+	if (itemini>nitems)
+		itemini=0;
 	
 	// se edita si el propietario de la cuentaCat es el usuario y no esta como vendedor y está en modo de edicion
 	editando = isOwner(datos) & modo == 1;
@@ -68,6 +71,7 @@ function dibujaCatalogo(datos)
 	ajustaEncabezado(gdatos.cuenta);		
 	document.cookie = "IDcuentaCat=" + datos.cuentaCat.ID;
 	
+	dibujaTitulos(gdatos.cuenta.lenguaje)
 	dibujaLogin(gdatos.cuenta);
 	dibujaCatalogos(datos.catalogos, datos.catalogoCab.titulo, editando ? -1 : datos.carro.length);
 	dibujaCuadro(datos);
@@ -113,11 +117,11 @@ function dibujaCuadro(datos)
 		
 		precio = "";
 		if (item.precio>0)
-			precio = '<label class="item-price">$ ' + item.precio.formatMoney(0)+ '</label>'
+			precio = '<label class="item-price">$ ' + item.precio.formatMoney(gdatos.cuenta.decimales)+ '</label>'
 		
 		pvm = "";
 		if (item.pvm>0)
-			pvm = '<label class="item-price">Al Mayor $ ' + item.pvm.formatMoney(0) + '</label>'
+			pvm = '<label class="item-price">Al Mayor $ ' + item.pvm.formatMoney(gdatos.cuenta.decimales) + '</label>'
 
 		borrar = "";
 		if (editando)
@@ -135,7 +139,6 @@ function dibujaCuadro(datos)
 					  + '</div></a></div>'			
 	} );
 	$("#catalogo").html(cad);	
-	nitems = datos.catalogo.n;
 	cad = cadenaPaginado(); 
 	$("#paginadosup").html(cad);
 	$("#paginadoinf").html(cad);

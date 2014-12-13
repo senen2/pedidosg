@@ -16,6 +16,7 @@ function refrescar(cuenta)
 {
 	$("#aviso").hide();
 	$("#gracias").hide();
+	dibujaTitulos(cuenta.lenguaje);
 	dibujaLogin(cuenta);
 	if (typeof cuenta!='undefined' && cuenta!=null ) {
 		$("#nombre").val(cuenta.usuario);
@@ -25,8 +26,8 @@ function refrescar(cuenta)
 
 function enviarMensaje()
 {
-	if ($("#nombre").val()!="" & IsEmail($("#email").val()) & $("#mensaje").val()!="") {
-		RecibeContactoP($("#nombre").val(), $("#email").val(), $("#mensaje").val(), gracias);
+	if ($("#nombre").val()!="" & IsEmail($("#email").val()) & $("#mensajecontacto").val()!="") {
+		RecibeContactoP($("#nombre").val(), $("#email").val(), $("#mensajecontacto").val(), gracias);
 		$("#gracias").show();			
 		$("#aviso").hide();
 	}

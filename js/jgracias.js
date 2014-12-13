@@ -38,5 +38,8 @@ function dibujaCatalogo(datos)
 
 function seguirComprando()
 {
-	window.location = "catalogo.html?n=" + gdatos.cuentaCat.empresa;
+	if (typeof gdatos != 'undefined' && gdatos)
+		window.location = "catalogo.html?n=" + gdatos.cuentaCat.empresa;
+	else
+		window.location = "catalogo.html";
 }

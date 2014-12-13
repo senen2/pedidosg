@@ -111,6 +111,7 @@ function dibujaLogin(cuenta)
 		$("#nombreusuario").hide();
 		$("#logout").hide();
 	}	
+
 }
 
 // ---------------------------- Menu
@@ -239,12 +240,15 @@ function llenaSelectorxCampo(datos, control,campo)
 function poneSelector(val, control)
 {
 	var sel = document.getElementById(control);
+	sel.value = val;
+/*
     for(var i = 0, j = sel.options.length; i < j; ++i) {
         if(sel.options[i].innerHTML === val) {
            sel.selectedIndex = i;
            break;
         }
     }
+    */
 }
 
 function poneSelectorxID(ID, control)

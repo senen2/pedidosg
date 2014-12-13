@@ -23,6 +23,7 @@ function inicioProd()
 function dibujaProducto(IDproducto, datos)
 {
 	gdatos = datos;
+	dibujaTitulos(datos.cuenta.lenguaje);
 	dibujaLogin(datos.cuenta);
 	dibujaCatalogos(datos.catalogos, $("title").html(), datos.carro.length);
 	dibujaCatalogosAbajo(datos.catalogos, $("title").html(), datos.carro.length);
@@ -35,14 +36,14 @@ function dibujaProducto(IDproducto, datos)
 	$("#nombre").html(item.nombre);
 	
 	if (item.precio>0) {
-		$("#precio").html("$ " + item.precio.formatMoney(0));
+		$("#precio").html("$ " + item.precio.formatMoney(2));
 		$("#preciotit").show();		
 	}
 	else
 		$("#preciotit").hide();
 	
 	if (item.pvm>0) {
-		$("#pvm").html("$ " + item.pvm.formatMoney(0));
+		$("#pvm").html("$ " + item.pvm.formatMoney(2));
 		$("#pvmtit").show();		
 	}
 	else

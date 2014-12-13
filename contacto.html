@@ -20,6 +20,7 @@
 	<script type="text/javascript" src="js/japiPedidos.js"></script>
 	<script type="text/javascript" src="js/jcomunp.js"></script>
 	<script type="text/javascript" src="js/jcontacto.js"></script>
+	<script type="text/javascript" src="js/jtit.js"></script>
 	<script type="text/javascript" src="js/jgoogle.js"></script>
 	<script>
 		$( document ).ready(function() {
@@ -38,26 +39,28 @@
 				<a class="brand-gtienda normal" href="index.html">G<span>ran</span>Tienda</a>
 			</div>
 			<div class="col fila auto-width-grest" align="right">
-				<a id="login" class="col-right normal" href="registro.html">Iniciar sesion</a>
-				<a id="logout" class="col-right normal" href="#" onclick="logout();">Cerrar Sesion</a>
+				<a id="login" class="col-right normal" href="registro.html"><label id="titlogin">Iniciar sesion</label></a>
+				<a id="logout" class="col-right normal" href="#" onclick="logout();"><label id="titlogout">Cerrar Sesion</label></a>
 				<span class="col-right">|</span>
-				<a id="quierovender" class="col-right normal" href="precio.html">Quiero vender</a>
+				<a id="quierovender" class="col-right normal" href="precio.html"><label id="titquierovender">Quiero vender</label></a>
 				<span class="col-right">|</span>
-				<a id="registro" class="col-right normal" href="registro.html">Registro</a>
+				<a id="registro" class="col-right normal" href="registro.html"><label id="titregistro">Registro</label></a>
 				<span id="nombreusuario" class="col-right">Usuario | </span>
+				<span class="col-right">|</span>
+				<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com"><label id="titayuda">Ayuda</label></a>
 			</div>
 		</div>
 	</div>
 	<div class="section">
 		<div class="container">
-			<h2>Contacta a Gtienda</h2>
+			<h2><label id="titcontactanos">Contáctanos</label></h2>
 			<form style="width: 500px">
-				<h3 id="aviso" class="error" >Error faltan casillas por llenar</h3>
+				<h3 id="aviso" class="error" ><label id="titfaltaxllenar">Faltan datos por llenar</label></h3>
 				<div align="right">
 				<input id="nombre" placeholder="Nombre" class="contac-input" />
 				<input id="email" placeholder="Email" class="contac-input" />
-				<textarea id="mensaje" placeholder="En que le podemos ayudar?, tiene una sugerencia? o desea darnos un comentario? Se encuentra en el sitio correcto, solo envielo y nosotros le contestaremos" class="contac-textarea"></textarea>
-				<a class="btn" onclick="enviarMensaje();">Enviar</a>
+				<textarea id="mensajecontacto" placeholder="En que le podemos ayudar?, tiene una sugerencia? o desea darnos un comentario? Se encuentra en el sitio correcto, solo envielo y nosotros le contestaremos" class="contac-textarea"></textarea>
+				<a class="btn" onclick="enviarMensaje();"><label id="titenviar">Enviar</label></a>
 				</div>
 			</form>
 		</div>

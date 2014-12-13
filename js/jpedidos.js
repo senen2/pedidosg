@@ -34,6 +34,7 @@ function dibujaPedidos(datos)
 	gdatos = datos;
 	entregado = false;
 	eliminando = false;
+	dibujaTitulos(gdatos.cuenta.lenguaje);
 	$("#productos").html("")
 	$("#usuario").html(datos.cuenta.empresa + " / " + datos.cuenta.usuario);
 	dibujaTabla(datos, "pedidos", "pedidos", "leePedido");
@@ -59,6 +60,7 @@ function dibujaPedido(datos)
 	$("#productos").html(datos.cuadro);
 	$("#notas").val(datos.notas);
 	$("#titref").removeClass("DN");
+	actualizaTotal(datos);
 	//dibujaCuadro(datos, "productos", 300, 200);	
 }
 
@@ -91,7 +93,7 @@ function llenaTercero()
 	    $("#tercero").autocomplete({
 	      source: extraeNombre(gdatos.clientes, "nombre")
 	    });
-		$("#tercero").attr("placeholder", "cliente")
+		$("#tercero").attr("placeholder", gdatos.cuenta.lenguaje.cliente)
 	}
 	else {
 	    $("#tercero").autocomplete({
@@ -99,6 +101,20 @@ function llenaTercero()
 	    });
 		$("#tercero").attr("placeholder", "proveedor")		
 	} 	
+}
+
+function actualizaTotal(datos)
+{
+	var cab, s=0;
+	$.each(gdatos.datos, function(i,item) {
+		if (item.ID==datos.IDpedido)
+			cab = item;
+	});
+	$.each(datos.datos, function(i,item) {
+		s += item.cantidad*item.precio.replace(",","");
+	});
+	cab.valor = s.formatMoney(gdatos.cuenta.decimales);
+	$("#pedidos-" + datos.IDpedido).html(dibujaRenglon(cab, gdatos.titulos));
 }
 
 // ----------------------------- edicion
@@ -118,7 +134,20 @@ function verVariedad(url)
 	var a = url.split("/");
 	var b = a[a.length-1];
 	var IDproductobase = b.split(".")[0]
+	gdatoseditar = null;
 	LeeVariedadesxBaseP(IDproductobase, seleccionarVariedad)
+}
+
+function editaVariedad(IDpeddet)
+{
+	gdatoseditar = null;
+	$.each(gdatosdet.datos, function(i,item) {
+		if (item.ID==IDpeddet) {
+			gdatoseditar = item
+			return;
+		}
+	});
+	LeeVariedadesxBaseP(gdatoseditar.IDproductobase, seleccionarVariedad)	
 }
 
 function seleccionarVariedad(datos)
@@ -139,7 +168,6 @@ function mostrarVariedad()
 	$("#selVariedad").removeClass("DN");
 
 	$("#imagen").attr("src", gurl);
-	$("#precio").val(gdatosvar.producto.precio)
 
 	cad = "";
 	if (gdatosvar.tallas.length>0) {
@@ -163,6 +191,18 @@ function mostrarVariedad()
 			$("#divColor").hide();
 
 	}	
+
+	if (gdatoseditar) {
+		$("#precio").val(gdatoseditar.precio.replace(",",""));
+		$("#cantidad").val(gdatoseditar.cantidad);
+		$("#talla").val(gdatoseditar.talla);
+		$("#color").val(gdatoseditar.color);
+	}
+	else {
+		$("#precio").val(gdatosvar.producto.precio);
+		$("#cantidad").val(1);
+	}
+
 }
 
 function llenaColoresxTalla()
@@ -224,13 +264,17 @@ function agregar()
 
 function aceptar()
 {
-	if (gdatosvar.variedades.length==1)
-		AgregaAlPedidoP(gIDpedido, gdatosvar.variedades[0].ID, $("#cantidad").val(), $("#precio").val(), gmodo, dibujaPedido);
-	else 
-		$.each(gdatosvar.variedades, function(i,item) {
-			if (item.talla==$("#talla").val() & item.color==$("#color").val())
-				AgregaAlPedidoP(gIDpedido, item.ID, $("#cantidad").val(), $("#precio").val(), gmodo, dibujaPedido);	  
-		});
+	if (gdatoseditar)
+		ModificaRenglonPedidoP(gIDpedido, gdatoseditar.ID, $("#cantidad").val(), $("#precio").val(), $("#talla").val(), $("#color").val(), gmodo, dibujaPedido);	
+	else
+		if (gdatosvar.variedades.length==1)
+			AgregaAlPedidoP(gIDpedido, gdatosvar.variedades[0].ID, $("#cantidad").val(), $("#precio").val(), gmodo, dibujaPedido);
+		else 
+			$.each(gdatosvar.variedades, function(i,item) {
+				if (item.talla==$("#talla").val() & item.color==$("#color").val())
+					AgregaAlPedidoP(gIDpedido, item.ID, $("#cantidad").val(), $("#precio").val(), gmodo, dibujaPedido);	  
+			});
+
 	cancelar();
 }
 

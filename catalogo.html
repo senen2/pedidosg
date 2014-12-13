@@ -34,14 +34,13 @@
 	<script type="text/javascript" src="js/jcatalogo.js"></script>
 	<script type="text/javascript" src="js/japiPedidos.js"></script>
 	<script type="text/javascript" src="js/jcomunp.js"></script>
+	<script type="text/javascript" src="js/jtit.js"></script>
 	<script type="text/javascript" src="js/jpag.js"></script>
 	<script type="text/javascript" src="js/jgoogle.js"></script>
 	<script>
 		$( document ).ready(function() {
 			inicioCat();
-
-		});
-		
+		});		
 	</script>
 </head>
 <body >
@@ -52,15 +51,15 @@
 					<a class="brand-gtienda normal" href="index.html">G<span>ran</span>Tienda</a>
 				</div>
 				<div class="col fila auto-width-grest" align="right">
-					<a id="login" class="col-right normal" href="registro.html">Iniciar sesion</a>
-					<a id="logout" class="col-right normal" href="#" onclick="logout();">Cerrar Sesion</a>
+					<a id="login" class="col-right normal" href="registro.html"><label id="titlogin">Iniciar sesion</label></a>
+					<a id="logout" class="col-right normal" href="#" onclick="logout();"><label id="titlogout">Cerrar Sesion</label></a>
 					<span class="col-right">|</span>
-					<a id="quierovender" class="col-right normal" href="precio.html">Quiero vender</a>
+					<a id="quierovender" class="col-right normal" href="precio.html"><label id="titquierovender">Quiero vender</label></a>
 					<span class="col-right">|</span>
-					<a id="registro" class="col-right normal" href="registro.html">Registro</a>
+					<a id="registro" class="col-right normal" href="registro.html"><label id="titregistro">Registro</label></a>
 					<span id="nombreusuario" class="col-right">Usuario | </span>
 					<span class="col-right">|</span>
-					<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com">Ayuda</a>
+					<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com"><label id="titayuda">Ayuda</label></a>
 				</div>
 			</div>
 		</div>
@@ -72,7 +71,7 @@
 				</div>
 				<div class="search-bar col auto-width" align="right">
 					<input id="buscar" placeholder="Busqueda rapida" onkeydown="if (event.keyCode == 13) buscaTag(verBusca);"/>
-					<a class="btn v2" onclick="buscaTag(verBusca);"><span class="icon-search"> </span><i>Buscar</i></a>
+					<a class="btn v2" onclick="buscaTag(verBusca);"><span class="icon-search"> </span><i id="titbuscar">Buscar</i></a>
 				</div>
 			</div>
 		</header>
@@ -93,11 +92,11 @@
 								<div id="paginadosup" style="font-size: 24px">
 								</div>
 								<td><b>|</b></td>
-								<td><a href="#" onclick="cambiaItemsxpag(24);">Ver 24</a></td>
+								<td><a href="#" onclick="cambiaItemsxpag(24);"><label name="ver">Ver</label> 24</a></td>
 								<td><b>|</b></td>
-								<td><a href="#" onclick="cambiaItemsxpag(40);">Ver 40</a></td>
+								<td><a href="#" onclick="cambiaItemsxpag(40);"><label name="ver">Ver</label> 40</a></td>
 								<td><b>|</b></td>
-								<td><a href="#" onclick="cambiaItemsxpag(100);">Ver 100</a></td>
+								<td><a href="#" onclick="cambiaItemsxpag(100);"><label name="ver">Ver</label> 100</a></td>
 								<td><b>|</b></td>
 							</tr>
 						</tbody>
@@ -109,7 +108,7 @@
 			<div class="container fila-tipo2" >
 				<div class="col auto-width-menu tag-menu border-right" align="left">
 					<dl>
-						<dt id="titfiltro">Filtrar por</dt>
+						<dt id="titfiltros">Filtrar por</dt>
 						<div id="filtros">
 							<dd><input type="checkbox" /> Mujer</dd>
 							<dd><input type="checkbox" /> Hombre</dd>
@@ -122,25 +121,24 @@
 		</div>
 		<div class="section" align="center">
 			<div class="container min-width fila">
-				<div id="titulocatalogo" class="col auto-width" align="left"> </div>
-		<div class="col pager-container-table auto-width" align="right">
-			<table>
-				<tbody>
-					<tr>
-						<div id="paginadoinf" style="font-size: 24px">
-						</div>
-						<td><b>|</b></td>
-						<td><a href="#" onclick="cambiaItemsxpag(24);">Ver 24</a></td>
-						<td><b>|</b></td>
-						<td><a href="#" onclick="cambiaItemsxpag(40);">Ver 40</a></td>
-						<td><b>|</b></td>
-						<td><a href="#" onclick="cambiaItemsxpag(100);">Ver 100</a></td>
-						<td><b>|</b></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		</div>
+				<div class="col pager-container-table auto-width" align="right">
+					<table>
+						<tbody>
+							<tr>
+								<div id="paginadoinf" style="font-size: 24px">
+								</div>
+								<td><b>|</b></td>
+								<td><a href="#" onclick="cambiaItemsxpag(24);"><label name="ver">Ver</label> 24</a></td>
+								<td><b>|</b></td>
+								<td><a href="#" onclick="cambiaItemsxpag(40);"><label name="ver">Ver</label> 40</a></td>
+								<td><b>|</b></td>
+								<td><a href="#" onclick="cambiaItemsxpag(100);"><label name="ver">Ver</label> 100</a></td>
+								<td><b>|</b></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 		<div class="config-menu fila" id="zonaMenu">
 			<div class="col menu-left" id="menu">

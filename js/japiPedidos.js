@@ -210,7 +210,7 @@ function ListaProductosxPaginaP(IDcatalogo, desde, nitems, filtros, funcion)
 {
 	$.ajax({
 		url: "http://" + servidor + "/function/ListaProductosxPaginaP(" 
-			+ encabezado + "," + IDcatalogo  + "," + desde  + "," + nitems + ",'" + filtros + "')?pagina=" + pagina,
+			+ encabezado + "," + IDcatalogo  + "," + desde  + "," + itemsxpag + ",'" + filtros + "')?pagina=" + pagina,
 		jsonp: "callback",
 		dataType: "jsonp",
 		success: function(response ) {	
@@ -452,6 +452,23 @@ function AgregaAlPedidoP(IDpedido, IDvariedad, cantidad, precio, modo, funcion)
 	 			LeePedidoDetP(IDpedido, modo, funcion)
 	 	});
 	
+}
+
+function ModificaRenglonPedidoP(IDpedido, IDdetped, cantidad, precio, talla, color, modo, funcion)
+{
+	datos = {};
+	datos.IDpedido = IDpedido;
+	datos.IDdetped = IDdetped;
+	datos.cantidad = cantidad;
+	datos.precio = precio;
+	datos.talla = talla;
+	datos.color = color;
+	datos.modo = modo;
+	$.post( 'http://' + servidor + '/functiond/ModificaRenglonPedidoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
+	 	.always(function(){
+	 		if (funcion)
+	 			LeePedidoDetP(IDpedido, modo, funcion)
+	 	});	
 }
 
 function EliminaVariedadPedidoP(IDdetped, modo, funcion)

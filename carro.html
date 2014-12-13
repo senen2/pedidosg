@@ -36,6 +36,7 @@
 		<script type="text/javascript" src="js/jcarro.js"></script>
 		<script type="text/javascript" src="js/japiPedidos.js"></script>
 		<script type="text/javascript" src="js/jcomunp.js"></script>
+		<script type="text/javascript" src="js/jtit.js"></script>
 		<script type="text/javascript" src="js/jgoogle.js"></script>
 		<script>
 			$( document ).ready(function() {
@@ -52,13 +53,15 @@
 						<a class="brand-gtienda normal" href="index.html">G<span>ran</span>Tienda</a>
 					</div>
 					<div class="col fila auto-width-grest" align="right">
-						<a id="login" class="col-right normal" href="registro.html">Iniciar sesion</a>
-						<a id="logout" class="col-right normal" href="#" onclick="logout();">Cerrar Sesion</a>
+						<a id="login" class="col-right normal" href="registro.html"><label id="titlogin">Iniciar sesion</label></a>
+						<a id="logout" class="col-right normal" href="#" onclick="logout();"><label id="titlogout">Cerrar Sesion</label></a>
 						<span class="col-right">|</span>
-						<a id="quierovender" class="col-right normal" href="precio.html">Quiero vender</a>
+						<a id="quierovender" class="col-right normal" href="precio.html"><label id="titquierovender">Quiero vender</label></a>
 						<span class="col-right">|</span>
-						<a id="registro" class="col-right normal" href="registro.html">Registro</a>
+						<a id="registro" class="col-right normal" href="registro.html"><label id="titregistro">Registro</label></a>
 						<span id="nombreusuario" class="col-right">Usuario | </span>
+						<span class="col-right">|</span>
+						<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com"><label id="titayuda">Ayuda</label></a>
 					</div>
 				</div>
 			</div>
@@ -70,7 +73,7 @@
 					</div>
 					<div class="search-bar col auto-width" align="right">
 						<input id="buscar" placeholder="Busqueda rapida" onkeydown="if (event.keyCode == 13) buscaTag(verBusca);"/>
-						<a class="btn v2" onclick="buscaTag(verBusca);"><span class="icon-search"> </span><i>Buscar</i></a>
+						<a class="btn v2" onclick="buscaTag(verBusca);"><span class="icon-search"> </span><i id="titbuscar">Buscar</i></a>
 					</div>
 				</div>
 			</header>
@@ -86,14 +89,14 @@
 				<div id="carro" class="col" align="left"> </div>
 				<div id="totalcuadro" class="col pay-block" align="center">
 					<br>
-					<label>Total del Pedido</label><br><br>
+					<label id="tittotaldelpedido">Total del Pedido</label><br><br>
 					<label id="total" style="font-weight: bold"> </label><br><br>
-					<a id="realizar" class="btn" href="#" onclick="realizarPedido();" style="font-weight: bold">Realizar Pedido</a><br><br>
-					<a id="autenticar" class="btn" href="#" onclick="login();" style="font-weight: bold">Autenticarse para Realizar Pedido</a><br><br>
+					<a id="realizar" class="btn" href="#" onclick="realizarPedido();" style="font-weight: bold"><label id="titrealizarpedido">Realizar Pedido</label></a><br><br>
+					<a id="autenticar" class="btn" href="#" onclick="login();" style="font-weight: bold"><label id="titautenticarseparapedido">Autenticarse para Realizar el Pedido</label></a><br><br>
 				</div>
 		</div>
 			<div>
-				<div class="col btn-padding"><a class="btn" onclick="seguirComprando();">Continuar Comprando</a></div>
+				<div class="col btn-padding"><a class="btn" onclick="seguirComprando();"><label id="titcontinuarcomprando">Seguir Comprando</label></a></div>
 			</div>
 
 		</div>
@@ -104,13 +107,6 @@
 				<img src="images/menu-configura-2-1.png" height="230px" onclick="ocultaMenu();" />
 			</div>
 		</div>
-		<footer class="section">
-			<div class="container min-width">
-			<p>
-				&copy; Copyright  by GTienda
-			</p>
-			</div>
-		</footer>
 	</div>
 </body>
 </html>
