@@ -1,0 +1,193 @@
+/**
+ * @author botpi
+ */
+
+function inicioCarro()
+{
+	encabezado = getCookie("encabezado");
+	IDcuentaCat = getCookie("IDcuentaCat");
+	pagina = "pdcarro";
+	leeServidor();
+	if (IDcuentaCat==null)
+		window.location.assign("registro.html")
+	else
+		LeerCarroP(IDcuentaCat, dibujaCarro)
+}
+
+function dibujaCarro(datos)
+{
+	if (datos.carro.length) {
+		modo=0;
+		gdatos = datos;
+		var cad = "", precio = "", prop = "", tagprecio="";
+
+		$.each(datos.carro, function(i,item) {
+			precio = item.precio.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+			valor = (item.precio*item.cantidad).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+			
+			tagprecio = '<label class="item-price">$' + precio + '</label><br>'
+			if (modo==1)
+				tagprecio = '<label class="item-price">$ </label><input class="item-price" id="precio-' + item.ID + '" value="' + item.precio + '"/><br><br>'
+							
+			prop=""
+			if (item.talla!="")
+				prop = prop + '<label class="item-ref">Talla: ' + item.talla + '</label>'
+			
+			if (item.color!="") {
+				if (prop != "")
+					prop = prop + ', ';
+				prop = prop + '<label class="item-ref">Color: ' + item.color+ '</label>'				
+			}
+
+			cad = cad + '<div class="hor-item">'
+					  		+ '<a href="producto.html?ID='+ item.IDproducto + '">'
+					  			+ '<img src="' + item.imagen + '" height="70" class="col" />'
+					  		+ '</a>'
+					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
+				  			+ '<div class="col" style="width:100px">'
+						  		+ '<label class="item-name">' + item.nombre + '</label><br>'
+						  		+ '<label class="item-ref">' + item.referencia + '</label><br>'
+						  		+ prop + '<br>'
+					  		+ '</div>'
+					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
+					  		+ '<div class="col">'
+						  		+ tagprecio
+					  		+ '</div>'
+					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
+					  		+ '<div class="col">'
+					  	  		+ '<label class="item-price">Cantidad: </label>'
+					  	  		+ '<input class="item-price" id="cantidad'+ item.ID + '" value="' + item.cantidad + '"/><br><br>'
+					  		+ '</div>'
+					  		+ '<div class="col" style="padding-left:10px">'
+					  	  		+ '<a class="btn" href="#" onclick="actualizarPedido();" style="font-weight: bold">Actualizar</a>'
+					  	  		+ '<br><a class="btn" href="#" onclick="quitarDelCarro('+ item.ID + ');" style="font-weight: bold">Quitar</a>'
+					  		+ '</div><br>'
+					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
+					  + '</div><hr><br>'
+		} );
+		$("#totalcuadro").show();
+		$("#carro").html(cad);
+		dibujaTotal();		
+	}
+	else {
+		$("#totalcuadro").hide();
+		$("#carro").html("<h1>El carro está vacío</h1>");
+	}
+	if (datos) {
+		dibujaTitulo(datos.cuentaCat.titulo, datos.cuentaCat.ID + ".jpg");
+		dibujaBotonPedir();
+		dibujaCatalogos(datos.catalogos);
+		dibujaLogin(datos.cuenta);		
+	}
+
+	//if (datos.cuenta!=null)
+	//	dibujaMenu();
+}
+
+function dibujaTotal()
+{
+	$("#total").html("$" + total().toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));	
+}
+
+function actualizarPedido()
+{
+	$.each(gdatos.carro, function(i,item) {
+		item.cantidad=$("#cantidad" + item.ID).val();
+		if (modo==1)
+			item.precio=$("#precio-" + item.ID).val();
+	} );
+ 	dibujaTotal();	
+	
+}
+
+function total()
+{
+	var s = 0;
+	$.each(gdatos.carro, function(i,item) {
+		s = s + item.precio*item.cantidad
+	} );
+	return s;
+}
+
+function realizarPedido()
+{
+	actualizarPedido();
+	var datos = [];
+	$.each(gdatos.carro, function(i,item) {
+		d = {}
+		d.ID = item.ID;
+		d.cantidad = item.cantidad;
+		d.precio = item.precio;
+		datos.push(d);
+	} );
+	if (gdatos.cuenta.tipo=="P" | gdatos.cuenta.tipo=="V")
+		AgregarPedidoP(datos, 0, salir);
+	else
+		AgregarPedidoP(datos, 0, salir);
+}
+
+function salir()
+{
+	IDcuentacli = getCookie("IDcuentacli");
+	if (IDcuentacli>0) {
+		document.cookie = "IDcuentacli=0";
+		window.location = "catalogo.html?n=" + gdatos.cuentaCat.empresa;					
+	}
+	else
+		window.location = "gracias.html?n=" + gdatos.cuentaCat.empresa;			
+}
+
+function seguirComprando()
+{
+	window.location = "catalogo.html?n=" + gdatos.cuentaCat.empresa;
+}
+
+function login()
+{
+	document.cookie = "pagpend=carro.html";
+	window.location.assign("registro.html");
+}
+
+function dibujaBotonPedir()
+{
+	var email = encabezado.split(",")[0];
+	if (email=="''") {
+		$("#realizar").hide();
+		$("#autenticar").show();
+	}
+	else {
+		$("#autenticar").hide();
+		$("#realizar").show();		
+	} 
+	
+}
+
+function quitarDelCarro(ID)
+{
+	var indice=-1;
+	$.each(gdatos.carro, function(i,item) {
+		if (item.ID==ID)
+			indice = i;
+	} );
+	if (indice>=0)
+	{
+		gdatos.carro.splice(indice, 1);
+		BorraDelCarroP(ID, refresca())
+	}
+}
+
+function refresca()
+{
+	dibujaCarro(gdatos);			
+}
+
+function verBusca(datos)
+{
+	if (datos)
+	{
+		if (datos.tipo=="catalogo")
+			window.location.assign("producto.html");
+		else
+			ListaProductoP(datos.datos, dibujaProducto); 
+	}
+}

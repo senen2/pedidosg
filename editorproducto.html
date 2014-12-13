@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>Editor de Productos</title>
+		<meta name="description" content="Venta de ropa, zapatos, accesorios al por mayor y detal con los mejores precios y variedades" />
+		<meta name="author" content="Andres Botello" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="stylesheet" type="text/css" href="css/catalogo.css">
+		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+		<script>
+	    	WebFont.load({
+	    	  google: {
+	    	    families: ["Montserrat:400,700", "Bitter:400,700"]
+	    	  }
+	    	});
+		</script>
+	
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/jeditorproducto.js"></script>
+		<script type="text/javascript" src="js/japiPedidos.js"></script>
+		<script type="text/javascript" src="js/jtabla.js"></script>
+		<script type="text/javascript" src="js/jcomunp.js"></script>
+		<script type="text/javascript" src="js/jcomun.js"></script>
+		<script type="text/javascript" src="js/jgoogle.js"></script>
+		<script>
+			$( document ).ready(function() {
+				inicioEditorProd();
+	
+			});
+			$(document).on('dragover', function(e) {
+				e.preventDefault();return false;
+			});
+			$(document).on('drop', function(e) {
+				e.preventDefault();
+			    var h = e.originalEvent.dataTransfer.getData('text/html');
+			    var p = h.indexOf("src");
+			    if (p>-1) {
+			    	var pp = h.substr(p);
+			    	var i = pp.split('"');
+			    	gdatos.producto.imagen = i[1];
+			    	$("#imgprod").attr("src", gdatos.producto.imagen);
+			    	CambiaUrlFotoP(gdatos.producto.IDproductobase, gdatos.producto.imagen, TomaImagenesxUrlP);
+			    }
+			});	
+	
+		</script>
+</head>
+<body>
+<div align="center">
+	    <div id="mask" class="DN"> </div>
+		<div class="section header">
+			<div class="container max-width fila black-back">
+				<div class="col auto-width-gtienda" align="left">
+					<a class="brand-gtienda" href="index.html">G<span>ran</span>Tienda</a>
+				</div>
+				<div class="col fila auto-width-grest" align="right">
+					<a id="logout" class="col-right" href="#" onclick="logout();">Cerrar Sesion</a>
+					<span class="col-right">|</span>
+					<a id="usuario" href="#"> </a>
+					<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com">Ayuda</a>
+					<span class="col-right">|</span>
+				</div>
+			</div>
+		</div>
+		<header class="section">
+			<div class="container min-width fila">
+				<h2 class="col auto-width v3" style="text-align: center;">Editor de Productos</h2>
+			</div>
+		</header>
+	<div class="section">
+	<div class="container">
+		<div id="producto" class="fila">
+			
+			<div class="col2 fileinputs" align="center">
+				<div class="change-photo">
+				<a class="btn v2" onclick="activaCambioFoto();">Cambiar foto</a>
+				<div id="cambiarFoto" class="DN" style="border: solid 1px gray;border-radius: 10px;width: 265px;background-color: white;">
+					<img id="busy" src="images/busy.gif" />
+					<label>Cambio de Foto:</label>
+					<iframe id="hiddenFrame" name="hiddenFrame" class="DN"> </iframe>
+					<form id="formaImagen" onsubmit="iframeFinal();" action="http://192.168.1.112:8080/uploadped" method="post" 
+						enctype="multipart/form-data" target="hiddenFrame" style="width: 260px">
+					  <input class="file btn v2" type="file" name="upload" accept="image/*" value="Subir imagen"/>
+						<div class="fakefile">
+							<input class="btn" value="Selecionar o tomar foto" />
+						</div>
+					  <input type="hidden" id="IDimagen" name="id" value="155" />
+					  <input type="hidden" name="tipo" value="imgbig" />
+					  <input class="btn" type="submit" value="Aceptar" />
+					  <input class="btn" type="button" onclick="cancelaSubidaImagen();" value="Cancelar"/>
+					</form>		
+				</div>
+				</div>
+				<div class="fila">
+				<div class="col adv-pag-prod">
+					<a id="prevProd" href="#"><img src="images/retrocede.JPG"> </a>
+				</div>
+				<img class="col" src="" id="imgprod"/>
+				<div class="col adv-pag-prod">
+					<a id="sigProd" href="#"><img src="images/avanza.JPG"> </a>				
+				</div>
+				</div>
+			</div>
+			<div class="col2 item-info" align="left">
+				<label class="text-blod">Nombre</label>
+				<input class="edit-input" id="nombre" onclick="this.select();" oninput="cambia(this);" onchange="actualizaCampo('nombre')"/><br>
+				<label class="text-blod">Referencia</label>
+				<input class="edit-input" id="referencia" onclick="this.select();" oninput="cambia(this);" onchange="actualizaCampo('referencia')"/><br>
+				<label class="text-blod">Codigo de Barras</label>
+				<input class="edit-input" id="barcode" onclick="this.select();" oninput="cambia(this);" onchange="actualizaCampo('barcode')"/><br>
+				<div>
+				  	<label class="text-blod">Precio Publico</label>
+				  	<input class="edit-input" id="precio" onclick="this.select();" oninput="cambia(this);" onchange="actualizaCampo('precio')"/><br>					
+				  	<label class="text-blod">Precio Mayor</label>
+				  	<input class="edit-input" id="pvm" onclick="this.select();" oninput="cambia(this);" onchange="actualizaCampo('pvm')"/><br>					
+				</div>
+			  	<label class="text-blod">Descripcion</label><br>
+			  	<textarea id="descripcion" class="item-description2" oninput="cambia(this);" onchange="actualizaCampo('descripcion')"> </textarea><br>
+		  		<label class="text-blod">Tamaño (ejemplo 7, 9, 11, X, XL)</label>
+				<input class="edit-input" id="tallas" oninput="cambia(this);" onchange="actualizaCampo('tallas')"/>
+				<label class="text-blod">Colores (ejemplo azul, rojo)</label>
+				<input class="edit-input" id="colores" oninput="cambia(this);" onchange="actualizaCampo('colores')"/><br />
+			  	<label class="text-blod">Etiquetas (tags)</label>
+			  	<div style="border: dotted 1px gray; border-radius: 3px; width: 100%; text-align: left;">
+					<div id="tags">
+					</div>
+					<input id="nuevotag" style="border-style: none;width: 100%;height: 35px;" 
+						 oninput="cambia(this);" onchange="agregaTag();" onclick="agregaTag();" onkeydown="if (event.keyCode == 13) agregaTag();"/>
+				</div><br />
+				<div id= "divproveedor">
+					<label class="text-blod">Proveedor </label>
+					<select id="proveedor" onchange="actualizaCampo('proveedor')"> </select>
+				</div>					
+				<div>
+					<!---<div class="col btn-padding"><a class="btn" href="#existencia" onclick="dibujarExistencia();">Chequear Existencia</a></div>-->
+					<div class="col btn-padding"><a class="btn" onclick="salir();">Finalizar</a></div>
+				</div>
+		    </div>			
+			
+		</div>
+	</div>
+	</div>
+	<br><hr>
+	<div class="section">
+		<div class="container">
+			<div id="divkardex" class="mo v2 sector min-width">
+				<table id="kardex"> </table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="config-menu fila">
+		<div class="col menu-left" id="menu">
+		</div>
+		<div class="col">
+			<img src="images/menu-configura-2-1.png" height="230px" />
+		</div>
+	</div>
+</div>
+</body>
+</html>

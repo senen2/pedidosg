@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Planes y precios</title>
+	<meta name="description" content="Venta de ropa, zapatos, accesorios al pormayor y detal con los mejores precios y variedades" />
+	<meta name="author" content="Andres Botello" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+	<script>
+    	WebFont.load({
+    	  google: {
+    	    families: ["Montserrat:400,700"]
+    	  }
+    	});
+	</script>
+
+	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	<link rel="stylesheet" type="text/css" href="css/catalogo.css">
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jcatalogo.js"></script>
+	<script type="text/javascript" src="js/japiPedidos.js"></script>
+	<script type="text/javascript" src="js/jcomunp.js"></script>
+	<script type="text/javascript" src="js/jcomun.js"></script>
+	<script type="text/javascript" src="js/jgoogle.js"></script>
+	<script>
+		$( document ).ready(function() {
+			//inicioCat();
+		});
+	</script>
+</head>
+<body >
+<div align="center">
+	<div class="section header">
+		<div class="container max-width fila black-back">
+			<div class="col auto-width" align="left">
+				<a href="index.html">G<span style="font-size: 10px;padding: 0px;margin: 0px;">ran</span>Tienda</a>
+			</div>
+			<div class="col fila auto-width" align="right">
+				<a class="col-right" href="#">Quiero vender</a>
+				<span class="col-right">|</span>
+				<a class="col-right" href="registro.html">Registro</a>
+				<span class="col-right">|</span>
+				<a class="col-right" href="registro.html">Iniciar sesion</a>
+			</div>
+		</div>
+	</div>
+	<header class="section">
+		<div class="container min-width fila">
+			<h1>Planes y precios</h1>
+		</div>
+	</header>
+	<div class="section">
+	<div class="container min-width">
+		<div class="fila gray-bk row-width">
+			<div class="col col-1 btc">
+				 
+			</div>
+			<div class="col col-1 btc">
+				Basico
+			</div>
+			<div class="col col-1 btc blue-bk">
+				Personal
+			</div>
+			<div class="col col-1 btc ">
+				Tienda
+			</div>
+			<div class="col col-1 btc blue-bk">
+				Empresarial
+			</div>
+		</div>
+		<div class="fila gray-bk row-width">
+			<div class="col col-1 rtl">
+			</div>
+			<div class="col col-1 rtl">
+				<a href="#" class="btn">GRATIS</a>
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				<a href="#" class="btn">Comprar</a>
+			</div>
+			<div class="col col-1 rtl">
+				<a href="#" class="btn">Comprar</a>
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				<a href="#" class="btn">Comprar</a>
+			</div>
+		</div>
+		<div class="fila gray-bk row-width">
+			<div class="col col-1 rtl">
+				Productos:
+			</div>
+			<div class="col col-1 rtl">
+				20
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				50
+			</div>
+			<div class="col col-1 rtl">
+				150
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				ilimitado
+			</div>
+		</div>
+		<div class="fila gray-bk row-width">
+			<div class="col col-1 rtl">
+				Distribuidores:
+			</div>
+			<div class="col col-1 rtl">
+				-
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				-
+			</div>
+			<div class="col col-1 rtl">
+				10
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				50*
+			</div>
+		</div>
+		<div class="fila gray-bk row-width">
+			<div class="col col-1 rtl">
+				Vendedores:
+			</div>
+			<div class="col col-1 rtl">
+				-
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				-
+			</div>
+			<div class="col col-1 rtl">
+				5
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				25*
+			</div>
+		</div>
+		<div class="fila gray-bk row-width">
+			<div class="col col-1 rtl">
+				Proveedores:
+			</div>
+			<div class="col col-1 rtl">
+				-
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				ilimitado
+			</div>
+			<div class="col col-1 rtl">
+				ilimitado
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				ilimitado
+			</div>
+		</div>
+		<div class="fila gray-bk row-width">
+			<div class="col col-1 rtl">
+				Precio (US):
+			</div>
+			<div class="col col-1 rtl">
+				Gratis
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				$ 14.50 <span>0.29/producto.</span>
+			</div>
+			<div class="col col-1 rtl">
+				$ 34.50 <span>0.23/producto.</span>
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				$ 184.50 <span>0.00/producto.</span>
+			</div>
+		</div>
+		<div class="fila gray-bk row-width">
+			<div class="col col-1 rtl">
+			</div>
+			<div class="col col-1 rtl">
+				<a href="registro.html" class="btn">GRATIS</a>
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				<a href="#" class="btn">Comprar</a>
+			</div>
+			<div class="col col-1 rtl">
+				<a href="#" class="btn">Comprar</a>
+			</div>
+			<div class="col col-1 rtl blue-bk">
+				<a href="#" class="btn">Comprar</a>
+			</div>
+		</div>
+		<div style="font-size: 14px;"><br>* Si necesita más contáctenos</div>
+	</div>
+	</div>
+	<div class="section sec-gray">
+	<div class="container fila">
+		<h1 class="FAQ">Preguntas frecuentes</h1>
+		<div class="col faq-ask">
+			<h4>¿Que significan distribuidores, proveedores y vendedores?</h4>
+			GTienda te permite crear tu propia red de distribucion para tus productos.
+			Fácilmente puedes vincular <b>distribuidores</b> que utilizarán tu catalogo para vender.<br><br>
+			
+			También tu puedes pertencer a otras redes de distribución creadas por otras empresas
+			que serían tus <b>proveedores</b>. Puedes utilizar sus catálogos para armar el tuyo.<br><br>
+			
+			Si tienes una tienda física, seguramente tendrás <b>vendedores</b> que te ayudan con la venta.
+			GTienda les permite utilizar tu catálogo para realizar los pedidos de tu tienda.
+		</div>
+		<div class="col faq-ask">
+			<h4>¿Que es un producto?</h4>
+			Es una referencia o código de barras. Un producto puede tener varios colores y tallas.
+		</div>
+		<div class="col faq-ask">
+			<h4>¿Existe algún cargo por instalación?</h4>
+			No. No hay cargos de instalación en ninguno de nuestros planes, no son necesarios
+		</div>
+		<div class="col faq-ask">
+			<h4>¿Puedo cancelar mi cuenta en cualquier momento?</h4>
+			Si. En cualquier momento puedes cancelar o suspender tu cuenta desde tu panel de control.
+		</div>
+		<div class="col faq-ask">
+			<h4>¿Por cuanto tiempo son sus contratos?</h4>
+			Todos los planes de GTienda son mes a mes, a menos que contrates un plan anual o bienal.
+		</div>		<div class="col faq-ask">
+			<h4>¿Necesito introducir los detalles de mi tarjeta de crédito para registrarme?</h4>
+			No. Puedes registrarte en la version GRATIS sin introducir los detalles de tu tarjeta de crédito. 
+			Para los planes pagos debes tener una cuenta PayPal.<br><br> 
+			Si quieres recibir dinero de cualquier parte del mundo, PayPal es una buena solución.<br><br>
+			Para Colombia tenemos la opción de consignación en cuenta bancaria. Muy pronto ampliaremos esta opción 
+			a otros países. 
+		</div>
+		<div class="col faq-ask">
+			<h4>¿Que es PayPal y como funciona?</h4>
+			PayPal es el sistema de pagos más conocido a nivel mundial. Crear una cuenta es muy fácil y seguro.
+			Con esta cuenta podrás pagar y cobrar a nivel mundial.<br><br>
+			Cuando elijas un plan pago el botón "Comprar Ahora" te llevará a PayPal.
+			Si no tienes una cuenta, puedes crearla en ese momento.
+			Si ya tienes una cuenta, ingresas al sitio y apruebas el pago.<br><br>
+			Cuando regreses a GTienda deberás iniciar sesión con tu email y tu clave
+			y podrás empezar a ingresar tus productos. 
+		</div>
+
+		<div class="col faq-ask">
+			<h4>¿Ofrecen algunos descuentos en sus planes?</h4>
+			Si, ofrecemos un 10% de descuento en planes anuales y 20% de descuento en planes bienales.
+		</div>
+		<div class="col faq-ask">
+			<h4>¿Puedo cambiar mi plan más tarde?</h4>
+			Totalmente, puedes ascender o descender de plan en cualquier momento.
+		</div>
+		<div class="col faq-ask">
+			<h4>¿Cuales son sus tarifas por ancho de banda?</h4>
+			Ninguna. Todos los planes de GTienda incluyen ancho de banda ilimitado gratis.
+		</div>
+		<div class="col faq-ask">
+			<h4>¿Necesito alojamiento web?</h4>
+			No. Todos los planes de GTienda incluyen alojamiento para comercio electrónico seguro e 
+			ilimitado para tu tienda. GTienda usa los mejores servidores, redes y una CDN global para
+			 asegurar la disponibilidad y velocidad de tu sitio de comercio electrónico.
+		</div>
+	</div>
+	</div>
+	<footer>
+		<p>
+			&copy; Copyright  by GTienda
+		</p>
+	</footer>
+</div>
+</body>
+</html>

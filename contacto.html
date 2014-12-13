@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Contacto | Sugerencias | Opiniones</title>
+	<meta name="description" content="Quieres comunicarte con nosotros o tienes alguna sugerencia este es el sitio" />
+	<meta name="author" content="Andres Botello" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<link rel="stylesheet" type="text/css" href="css/catalogo.css">
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	
+	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/japiPedidos.js"></script>
+	<script type="text/javascript" src="js/jcomunp.js"></script>
+	<script type="text/javascript" src="js/jcontacto.js"></script>
+	<script type="text/javascript" src="js/jgoogle.js"></script>
+	<script>
+		$( document ).ready(function() {
+			inicioContacto();
+
+		});
+
+	</script>
+
+</head>
+<body>
+<div align="center">
+	<div class="section header">
+		<div class="container max-width fila black-back">
+			<div class="col auto-width-gtienda" align="left">
+				<a class="brand-gtienda normal" href="index.html">G<span>ran</span>Tienda</a>
+			</div>
+			<div class="col fila auto-width-grest" align="right">
+				<a id="login" class="col-right normal" href="registro.html">Iniciar sesion</a>
+				<a id="logout" class="col-right normal" href="#" onclick="logout();">Cerrar Sesion</a>
+				<span class="col-right">|</span>
+				<a id="quierovender" class="col-right normal" href="precio.html">Quiero vender</a>
+				<span class="col-right">|</span>
+				<a id="registro" class="col-right normal" href="registro.html">Registro</a>
+				<span id="nombreusuario" class="col-right">Usuario | </span>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<h2>Contacta a Gtienda</h2>
+			<form style="width: 500px">
+				<h3 id="aviso" class="error" >Error faltan casillas por llenar</h3>
+				<div align="right">
+				<input id="nombre" placeholder="Nombre" class="contac-input" />
+				<input id="email" placeholder="Email" class="contac-input" />
+				<textarea id="mensaje" placeholder="En que le podemos ayudar?, tiene una sugerencia? o desea darnos un comentario? Se encuentra en el sitio correcto, solo envielo y nosotros le contestaremos" class="contac-textarea"></textarea>
+				<a class="btn" onclick="enviarMensaje();">Enviar</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="gracias">
+		<hr>
+		<br>
+		<h3>Gracias! En breve le contestaremos</h3>
+		<a class="btn" onclick="salir();">Regresar</a>
+	</div>
+</div>
+</body>
+</html>

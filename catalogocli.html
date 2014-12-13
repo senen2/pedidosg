@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+
+	<title>Catalogo</title>
+	<meta name="description" content="Venta de ropa, zapatos, accesorios al pormayor y detal con los mejores precios y variedades" />
+	<meta name="author" content="Andres Botello" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+	<script>
+    	WebFont.load({
+    	  google: {
+    	    families: ["Montserrat:400,700"]
+    	  }
+    	});
+	</script>
+
+	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	<link rel="stylesheet" type="text/css" href="css/catalogo.css">
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jcatalogocli.js"></script>
+	<script type="text/javascript" src="js/japiPedidos.js"></script>
+	<script type="text/javascript" src="js/jcomunp.js"></script>
+	<script type="text/javascript" src="js/jgoogle.js"></script>
+	<script>
+		$( document ).ready(function() {
+			inicioCatCli();
+
+		});
+	</script>
+</head>
+<body >
+	<div align="center">
+		<div class="section header">
+			<div class="container max-width fila black-back">
+				<div class="col auto-width-gtienda" align="left">
+					<a class="brand-gtienda normal" href="index.html">G<span>ran</span>Tienda</a>
+				</div>
+				<div class="col fila auto-width-grest" align="right">
+					<a id="login" class="col-right normal" href="registro.html">Iniciar sesion</a>
+					<a id="logout" class="col-right normal" href="#" onclick="logout();">Cerrar Sesion</a>
+					<span class="col-right">|</span>
+					<a id="quierovender" class="col-right normal" href="precio.html">Quiero vender</a>
+					<span class="col-right">|</span>
+					<a id="registro" class="col-right normal" href="registro.html">Registro</a>
+					<span id="nombreusuario" class="col-right">Usuario | </span>
+				</div>
+			</div>
+		</div>
+		<header class="section">
+			<div class="container min-width fila">
+				<div class="col fila auto-width" align="left">
+					<img class="brand-logo col" id="logo" src="" style="height: 60px" />
+					<div class="brand-name col" id="titulocuenta"> </div>	
+				</div>
+				<div class="search-bar col auto-width" align="right">
+					<input id="buscar" placeholder="Busqueda rapida" onkeydown="if (event.keyCode == 13) buscaTag();"/>
+					<a class="btn v2" onclick="buscaTag(dibujaCatalogo);"><span class="icon-search"> </span><i>Buscar</i></a>
+				</div>
+			</div>
+		</header>
+		<div class="section">
+		<div class="container">
+			<nav id ="catalogosh" class="nav-column fila">
+			</nav>
+			<hr />
+		</div>
+		</div>
+		<div class="section" align="center">
+			<div class="container min-width fila">
+					<div id="titulocatalogo" class="col auto-width" align="left"> </div>
+					<div class="col pager-container-table auto-width" align="right">
+						<table>
+							<tbody>
+								<tr>
+									<td><a href="#"><img src="images/flecha-izquierda.gif" /></a></td>
+									<td><strong>1</strong></td>
+									<td><a href="#">2</a></td>
+									<td><a href="#">3</a></td>
+									<td>...</td>
+									<td><a href="#">20</a></td>
+									<td><a href="#"><img src="images/flecha-derecha.gif" /></a></td>
+									<td><b>|</b></td>
+									<td><a href="#">Ver 20</a></td>
+									<td><b>|</b></td>
+									<td><a href="#">Ver 40</a></td>
+									<td><b>|</b></td>
+									<td><a href="#">Ver 50</a></td>
+									<td><b>|</b></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+			</div>
+		</div>
+		<div class="section" align="left">
+			<div class="container fila-tipo2" >
+				<div class="col auto-width-menu tag-menu border-right" align="left">
+					<dl>
+						<dt>Sexo</dt>
+							<dd><input type="checkbox" /> Mujer</dd>
+							<dd><input type="checkbox" /> Hombre</dd>
+							<br />
+						<dt>Categoria</dt>
+							<dd><input type="checkbox" /> Saco</dd>
+							<dd><input type="checkbox" /> Chaqueta</dd>
+							<dd><input type="checkbox" /> Camisa</dd>
+							<dd><input type="checkbox" /> Blusa</dd>
+					</dl>
+				</div>
+				<div id="catalogo" class="col fila auto-width-catag"> </div>
+			</div>
+			<br><br>
+		</div>
+		<div class="config-menu fila" id="zonaMenu">
+			<div class="col menu-left" id="menu">
+			</div>
+			<div class="col">
+				<img src="images/menu-configura-2-1.png" height="230px" onclick="ocultaMenu();" />
+			</div>
+		</div>
+	</div>
+</body>
+</html>

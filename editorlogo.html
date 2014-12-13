@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+
+	<title>Catalogo</title>
+	<meta name="description" content="Venta de ropa, zapatos, accesorios al pormayor y detal con los mejores precios y variedades" />
+	<meta name="author" content="Andres Botello" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+	<script>
+    	WebFont.load({
+    	  google: {
+    	    families: ["Montserrat:400,700"]
+    	  }
+    	});
+	</script>
+
+	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	<link rel="stylesheet" type="text/css" href="css/catalogo.css">
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jeditorlogo.js"></script>
+	<script type="text/javascript" src="js/japiPedidos.js"></script>
+	<script type="text/javascript" src="js/jcomunp.js"></script>
+	<script type="text/javascript" src="js/jcomun.js"></script>
+	<script type="text/javascript" src="js/jgoogle.js"></script>
+	<script>
+		$( document ).ready(function() {
+			inicioEditLogo();
+		});
+	</script>
+</head>
+<body >
+<div align="center">
+	<div class="section header">
+		<div class="container max-width fila black-back">
+			<div class="col auto-width-gtienda" align="left">
+				<a class="brand-gtienda normal" href="index.html">G<span>ran</span>Tienda</a>
+			</div>
+			<div class="col fila auto-width-grest" align="right">
+				<a id="login" class="col-right normal" href="registro.html">Iniciar sesion</a>
+				<a id="logout" class="col-right normal" href="#" onclick="logout();">Cerrar Sesion</a>
+				<span class="col-right">|</span>
+				<a id="quierovender" class="col-right normal" href="precio.html">Quiero vender</a>
+				<span class="col-right">|</span>
+				<a id="registro" class="col-right normal" href="registro.html">Registro</a>
+				<span id="nombreusuario" class="col-right">Usuario | </span>
+			</div>
+		</div>
+	</div>
+	<header class="section">
+		<div class="container min-width fila">
+			<div class="col fila auto-width" align="left">
+				<h3>Su Cuenta</h3>
+			</div>
+			<div class="search-bar col auto-width" align="right">
+				<input id="buscar" placeholder="Busqueda rapida" onkeydown="if (event.keyCode == 13) buscaTag();"/>
+				<a class="btn v2" onclick="buscaTag(dibujaCatalogo);"><span class="icon-search"> </span><i>Buscar</i></a>
+			</div>
+		</div>
+	</header>
+	<hr />
+	<div class="section">
+		<div class="container min-width fila">
+			<div class="col2 sector-tipo2" id="cambioLogo">
+				<div class="box-padding-10">
+					<h3>Cambio de Logo</h3>
+					<img id="logo" style="height:60px" src="logos/1.jpg" /><br><br><br><br>
+					<img id="busy" src="images/busy.gif" />
+					<iframe id="hiddenFrame" name="hiddenFrame" class="DN"> </iframe>
+					<form id="formaLogo" onsubmit="iframeFinal();" action="http://192.168.1.110:8080/uploadlogo" method="post" enctype="multipart/form-data" target="hiddenFrame">
+					  <input class="btn" type="file" name="upload" accept="image/*" value="Subir imagen"/>
+					  <input type="hidden" id="IDimagen" name="id" value="155" />
+					  <input type="hidden" name="tipo" value="logo" />
+					  <input class="btn" type="submit" value="Cambiar Logo" />
+					  <br><br>
+					</form>		
+				</div>
+			</div>
+			<br />
+			<div class="col2 sector-tipo2">
+				<div class="box-margin-10">
+					<h3>Cambio de Clave</h3>
+		            <input class="cat-input" id="claveactual" type="password" placeholder="Contraseña actual" required="required">
+		            <input class="cat-input" id="clave1nuevo" type="password" placeholder="Nueva contraseña" required="required">
+		            <input class="cat-input" id="clave2nuevo" type="password" placeholder="Repetir nueva contraseña" required="required">
+					<div align="right"><a class="btn" onclick="cambiarClave();">Cambiar Contraseña</a></div>
+					<div id="aviso" style="color: red"> </div>
+				</div>
+			</div>
+			<br />
+			<div class="col2 sector-tipo2">
+				<div class="box-margin-10">
+					<h3>Información de Contacto</h3>
+		            <input class="cat-input" id="direccion" placeholder="Direccion" required="required">
+		            <input class="cat-input" id="telefono" placeholder="Telefono" required="required">
+					<div align="right"><a class="btn" onclick="guardarInfoContacto();">Guardar</a></div>
+				</div>
+			</div>
+			<br />
+			<div class="col2 sector-tipo2">
+				<div class="box-margin-10">
+					<h3>Forma de Pago y de Envío</h3>
+					<textarea id="formapago" style="width: 430px; height: 100px;" placeholder="Como pagará el cliente y como recibirá la mercancía"></textarea>
+					<div align="right"><a class="btn" onclick="guardarFormaPago();">Guardar</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="config-menu fila" id="zonaMenu">
+		<div class="col menu-left" id="menu">
+		</div>
+		<div class="col">
+			<img src="images/menu-configura-2-1.png" height="230px" onclick="ocultaMenu();" />
+		</div>
+	</div>
+	<footer class="section">
+		<div class="container">
+		<p>
+			&copy; Copyright  by GTienda
+		</p>
+		</div>
+	</footer>
+</div>
+</body>
+</html>

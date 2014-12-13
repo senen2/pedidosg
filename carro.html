@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>Carro de compras</title>
+		<meta name="description" content="Todos los articulos escojidos para comprar" />
+		<meta name="author" content="Andres Botello" />
+
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="stylesheet" type="text/css" href="css/catalogo.css">
+		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+		<script>
+	    	WebFont.load({
+	    	  google: {
+	    	    families: ["Montserrat:400,700"]
+	    	  }
+	    	});
+		</script>
+	
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/jcarro.js"></script>
+		<script type="text/javascript" src="js/japiPedidos.js"></script>
+		<script type="text/javascript" src="js/jcomunp.js"></script>
+		<script type="text/javascript" src="js/jgoogle.js"></script>
+		<script>
+			$( document ).ready(function() {
+				inicioCarro();
+	
+			});
+		</script>
+	</head>
+	<body>
+		<div align="center">
+		<div class="section header">
+				<div class="container max-width fila black-back">
+					<div class="col auto-width-gtienda" align="left">
+						<a class="brand-gtienda normal" href="index.html">G<span>ran</span>Tienda</a>
+					</div>
+					<div class="col fila auto-width-grest" align="right">
+						<a id="login" class="col-right normal" href="registro.html">Iniciar sesion</a>
+						<a id="logout" class="col-right normal" href="#" onclick="logout();">Cerrar Sesion</a>
+						<span class="col-right">|</span>
+						<a id="quierovender" class="col-right normal" href="precio.html">Quiero vender</a>
+						<span class="col-right">|</span>
+						<a id="registro" class="col-right normal" href="registro.html">Registro</a>
+						<span id="nombreusuario" class="col-right">Usuario | </span>
+					</div>
+				</div>
+			</div>
+			<header class="section">
+				<div class="container min-width fila">
+					<div class="col fila auto-width" align="left">
+						<img class="brand-logo col" id="logo" src="" />
+						<div class="brand-name col" id="titulocuenta"> </div>	
+					</div>
+					<div class="search-bar col auto-width" align="right">
+						<input id="buscar" placeholder="Busqueda rapida" onkeydown="if (event.keyCode == 13) buscaTag(verBusca);"/>
+						<a class="btn v2" onclick="buscaTag(verBusca);"><span class="icon-search"> </span><i>Buscar</i></a>
+					</div>
+				</div>
+			</header>
+		<div class="section solo-prodt">
+		<div class="container min-width">
+			<nav id ="catalogosh" class="nav-column fila">
+			</nav>
+			<hr />
+		</div>
+		</div>
+		<div class="section">
+		<div class="container min-width fila">
+				<div id="carro" class="col" align="left"> </div>
+				<div id="totalcuadro" class="col pay-block" align="center">
+					<br>
+					<label>Total del Pedido</label><br><br>
+					<label id="total" style="font-weight: bold"> </label><br><br>
+					<a id="realizar" class="btn" href="#" onclick="realizarPedido();" style="font-weight: bold">Realizar Pedido</a><br><br>
+					<a id="autenticar" class="btn" href="#" onclick="login();" style="font-weight: bold">Autenticarse para Realizar Pedido</a><br><br>
+				</div>
+		</div>
+			<div>
+				<div class="col btn-padding"><a class="btn" onclick="seguirComprando();">Continuar Comprando</a></div>
+			</div>
+
+		</div>
+		<div class="config-menu fila" id="zonaMenu">
+			<div class="col menu-left" id="menu">
+			</div>
+			<div class="col">
+				<img src="images/menu-configura-2-1.png" height="230px" onclick="ocultaMenu();" />
+			</div>
+		</div>
+		<footer class="section">
+			<div class="container min-width">
+			<p>
+				&copy; Copyright  by GTienda
+			</p>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

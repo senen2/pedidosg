@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>Subir Imagenes de Productos</title>
+		<meta name="description" content="Venta de ropa, zapatos, accesorios al por mayor y detal con los mejores precios y variedades" />
+		<meta name="author" content="Andres Botello" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="stylesheet" type="text/css" href="css/catalogo.css">
+		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+		<script>
+	    	WebFont.load({
+	    	  google: {
+	    	    families: ["Montserrat:400,700", "Bitter:400,700"]
+	    	  }
+	    	});
+		</script>
+	
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/jsubeprod.js"></script>
+		<script type="text/javascript" src="js/japiPedidos.js"></script>
+		<script type="text/javascript" src="js/jcomunp.js"></script>
+		<script type="text/javascript" src="js/jgoogle.js"></script>
+		<script type="text/javascript" src="js/canvastoblob.js"></script>
+		<script type="text/javascript" src="js/exif.js"></script>
+		<script type="text/javascript" src="js/jimage.js"></script>
+		<script>
+			$( document ).ready(function() {
+				inicioSubeProd();
+	
+			});
+			$(document).on('dragover', function(e) {
+				e.preventDefault();return false;
+			});
+			$(document).on('drop', function(e) {
+				e.preventDefault();
+			    var h = e.originalEvent.dataTransfer.getData('text/html');
+			    var p = h.indexOf("src");
+			    if (p>-1) {
+			    	var pp = h.substr(p);
+			    	var i = pp.split('"');
+			    	$("#dropbox").html(i[1]);
+			    	datos={}
+			    	AgregaReferenciaP(gdatos.ID, itemdefault.referencia, itemdefault.barcode, itemdefault.nombre
+			    		, itemdefault.precio, itemdefault.pvm, itemdefault.descripcion, i[1]
+			    		, itemdefault.tallas, itemdefault.colores, itemdefault.tags, TomaImagenesxUrlP)
+			    }
+			});	
+		</script>
+</head>
+<body>
+<div align="center">
+	<div class="section header">
+		<div class="container max-width fila black-back">
+			<div class="col auto-width-gtienda" align="left">
+				<a class="brand-gtienda normal" href="index.html">G<span>ran</span>Tienda</a>
+			</div>
+			<div class="col fila auto-width-grest" align="right">
+				<a id="logout" class="col-right normal" href="#" onclick="logout();">Cerrar Sesion</a>
+				<span class="col-right">|</span>
+				<a id="usuario" class="col-right normal" href="#"> </a>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<h2>Subir Productos</h2>
+			<div id="busy">
+				<img src="images/busy.gif" /><br>
+				Subiendo imagenes...<br><br>
+				El proceso puede tardar dependiendo de la conexion a Internet y de la cantidad de imagenes
+			</div>
+			<div id="parasubir" class="fila">
+			    <div class="col2" style="margin: 10PX;">
+			    	<h4>Imágenes</h4>
+				    <div style="border: dotted 1px gray;border-radius: 3px; width: 320px; height: 200px; padding: 5px">
+						<br>Para agregar productos seleccione imagenes de su equipo o tome una foto<br><br>
+					    <input class="btn box-margin-10" type="file" id="uploadfile" name="uploadfile" accept="image/*" multiple />	
+						<br>
+						<input class="btn box-margin-10" placeholder="subir" type="button" value="Subir imágenes" onclick="upload()" />
+					</div>
+					<br><br><br>
+					<div style="border: dotted 1px gray;border-radius: 3px; width: 320px; height: 140px;">
+						<br>O puede arrastrar imágenes de otras páginas aquí<br>
+						<div id="dropbox"> </div>
+					</div>
+					<br><br><br>
+					<a class="btn v4" href="catalogo.html">Volver al Catalogo</a>
+					<!--input class="btn box-margin-10" placeholder="subir" type="button" value="Subir imágenes + datos" onclick="upload()" /-->
+				</div>
+				<div class="col2">
+					<h4>Datos</h4>
+					<div class="item-info" align="left">
+						<label class="text-blod">Nombre</label>
+						<input class="edit-input" id="nombre" onclick="this.select();" onchange="tomaDatos()"/><br>
+						<label class="text-blod">Referencia</label>
+						<input class="edit-input" id="referencia" onclick="this.select();" onchange="tomaDatos()"/><br>
+						<label class="text-blod">Codigo de Barras</label>
+						<input class="edit-input" id="barcode" onclick="this.select();" onchange="tomaDatos()"/><br>
+						<div>
+						  	<label class="text-blod">Precio Publico</label>
+						  	<input class="edit-input" id="precio" onclick="this.select();" onchange="tomaDatos()"/><br>					
+						  	<label class="text-blod">Precio Mayor</label>
+						  	<input class="edit-input" id="pvm" onclick="this.select();" onchange="tomaDatos()"/><br>					
+						</div>
+					  	<label class="text-blod">Descripcion</label><br>
+					  	<textarea id="descripcion" class="item-description2" onchange="tomaDatos()"> </textarea><br>
+				  		<label class="text-blod">Tallas (ejemplo 7, 9, 11, X, XL)</label>
+						<input class="edit-input" id="tallas"  onchange="tomaDatos()"/>
+						<label class="text-blod">Colores (ejemplo azul, rojo)</label>
+						<input class="edit-input" id="colores" onchange="tomaDatos()"/><br />
+					  	<label class="text-blod">Etiquetas (tags)</label>
+					  	<div style="border: dotted 1px gray; border-radius: 3px; width: 100%; text-align: left;">
+							<div id="tags"> </div>
+							<input id="nuevotag" style="border-style: none;width: 100%;height: 35px;" 
+								onchange="agregaTag();" onclick="agregaTag();" onkeydown="if (event.keyCode == 13) agregaTag();"/>
+						</div><br />
+				    </div>
+				    <div class="">
+			<!--			<a class="btn v4" href="catalogo.html">Volver al Catalogo</a>
+						<input class="btn box-margin-10" placeholder="subir" type="button" value="Subir imágenes + datos" onclick="upload()" /> -->
+					</div>		
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="config-menu fila">
+		<div class="col menu-left" id="menu">
+		</div>
+		<div class="col">
+			<img src="images/menu-configura-2-1.png" height="230px" />
+
+		</div>
+	</div>
+</div>
+</body>
+</html>
+
