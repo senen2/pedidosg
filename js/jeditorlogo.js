@@ -19,7 +19,7 @@ function refrescar(datos)
 {
 	gdatos=datos;
 	//dibujaMenu();
-	dibujaLogin(gdatos); // comentario del tipo 2 o del tipo 4
+	dibujaLogin(gdatos); // comentario del tipo 2 o del tipo 5
 	dibujaTitulos(gdatos.cuenta.lenguaje);
 	$("#formaLogo").attr("action", "http://" + servidor + "/uploadlogo");
 	$("#direccion").val(gdatos.direccion);
