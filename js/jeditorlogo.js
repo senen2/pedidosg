@@ -20,7 +20,7 @@ function refrescar(datos)
 	gdatos=datos;
 	//dibujaMenu();
 	dibujaLogin(gdatos)
-
+	dibujaTitulos(gdatos.cuenta.lenguaje);
 	$("#formaLogo").attr("action", "http://" + servidor + "/uploadlogo");
 	$("#direccion").val(gdatos.direccion);
 	$("#telefono").val(gdatos.telefono);
