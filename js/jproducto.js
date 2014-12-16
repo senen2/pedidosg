@@ -36,14 +36,14 @@ function dibujaProducto(IDproducto, datos)
 	$("#nombre").html(item.nombre);
 	
 	if (item.precio>0) {
-		$("#precio").html("$ " + item.precio.formatMoney(2));
+		$("#precio").html("$ " + item.precio.formatMoney(datos.cuentaCat.decimales));
 		$("#preciotit").show();		
 	}
 	else
 		$("#preciotit").hide();
 	
 	if (item.pvm>0) {
-		$("#pvm").html("$ " + item.pvm.formatMoney(2));
+		$("#pvm").html("$ " + item.pvm.formatMoney(datos.cuentaCat.decimales));
 		$("#pvmtit").show();		
 	}
 	else

@@ -30,10 +30,9 @@ function dibujaCatalogo(datos)
 	var ncarro = datos.carro.length;
 	dibujaCatalogos(datos.catalogos, datos.catalogo.titulo, ncarro);
 	dibujaTitulo(datos.cuentaCat.titulo, datos.cuentaCat.ID + ".jpg");
-	dibujaBuscar(datos.tags);
+	//dibujaBuscar(datos.tags);
 	dibujaLogin(datos.cuenta);
-	//if (datos.cuenta!=null)
-	//	dibujaMenu();
+	dibujaTitulos(datos.cuenta.lenguaje);
 }
 
 function seguirComprando()

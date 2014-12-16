@@ -45,12 +45,12 @@
 					<a class="brand-gtienda" href="index.html">G<span>ran</span>Tienda</a>
 				</div>
 				<div class="col fila auto-width-grest" align="right">
-					<a id="login" class="col-right normal" href="registro.html">Iniciar sesion</a>
-					<a id="logout" class="col-right normal" href="#" onclick="logout();">Cerrar Sesion</a>
+					<a id="login" class="col-right normal" href="registro.html"><label id="titlogin">Iniciar sesion</label></a>
+					<a id="logout" class="col-right normal" href="#" onclick="logout();"><label id="titlogout">Cerrar Sesion</label></a>
 					<span class="col-right">|</span>
-					<a id="quierovender" class="col-right normal" href="precio.html">Quiero vender</a>
+					<a id="quierovender" class="col-right normal" href="precio.html"><label id="titquierovender">Quiero vender</label></a>
 					<span class="col-right">|</span>
-					<a id="registro" class="col-right normal" href="registro.html">Registro</a>
+					<a id="registro" class="col-right normal" href="registro.html"><label id="titregistro">Registro</label></a>
 				</div>
 			</div>
 		</div>
@@ -75,9 +75,9 @@
 		</div>
 		<div class="section">
 		<div class="container">
-			<h1 style="text-align: center;">Gracias por su pedido</h1>
-			<h2>Se ha enviado una confirmación a su correo</h2>
-			<div class="btn-padding"><a class="btn" onclick="seguirComprando();">Continuar Comprando</a></div>
+			<h1 id="titgraciasporsupedido" style="text-align: center;">Gracias por su pedido</h1>
+			<h2 id="titconfirmacionasucorreo">Se ha enviado una confirmación a su correo</h2>
+			<div class="btn-padding"><a id="titcontinuarcomprando" class="btn" onclick="seguirComprando();">Continuar Comprando</a></div>
 		</div>
 		</div>
 		<div class="config-menu fila" id="zonaMenu">

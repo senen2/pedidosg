@@ -68,6 +68,7 @@ function dibujaProducto(IDproducto, datos)
 	dibujaTags();
 	llenaNuevoTag();
 	llenaVariedades();
+	dibujaTitulos(datos.cuenta.lenguaje);
 	
 	if (datos.kardex.datos.length>0) {
 		dibujaTabla(datos.kardex, "kardex", "kardex","");

@@ -16,10 +16,10 @@ function inicioCarro()
 
 function dibujaCarro(datos)
 {
+	gdatos = datos;
 	if (datos.carro.length) {
 		dibujaTitulos(datos.cuenta.lenguaje);
 		modo=0;
-		gdatos = datos;
 		var l = gdatos.cuenta.lenguaje;
 		var cad = "", precio = "", prop = "", tagprecio="";
 
@@ -73,7 +73,8 @@ function dibujaCarro(datos)
 	}
 	else {
 		$("#totalcuadro").hide();
-		$("#carro").html("<h1>El carro está vacío</h1>");
+		$("#carro").html("<h1>" + gdatos.cuenta.lenguaje.elcarroestavacio + "</h1>");
+		dibujaTitulos(gdatos.cuenta.lenguaje);
 	}
 	if (datos) {
 		dibujaTitulo(datos.cuentaCat.titulo, datos.cuentaCat.ID + ".jpg");
