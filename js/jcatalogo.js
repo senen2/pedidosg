@@ -10,7 +10,7 @@ function inicioCat()
 	pagina = "pdcatalogo";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Subir_imagenes_de_los_productos";
 	leeServidor();
-	lenguaje = "en";
+
 	modo = getURLParameter('m');
 	if (modo==null) {
 		modo=getCookie("editando");

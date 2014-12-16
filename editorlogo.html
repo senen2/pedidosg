@@ -24,7 +24,7 @@
 
 	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 	<link rel="stylesheet" type="text/css" href="css/catalogo.css">
-	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	<!--link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"-->
 	<link rel="shortcut icon" href="/favicon.ico" />
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		
@@ -50,24 +50,26 @@
 				<a class="brand-gtienda normal" href="index.html">G<span>ran</span>Tienda</a>
 			</div>
 			<div class="col fila auto-width-grest" align="right">
-				<a id="login" class="col-right normal" href="registro.html">Iniciar sesion</a>
-				<a id="logout" class="col-right normal" href="#" onclick="logout();">Cerrar Sesion</a>
+				<a id="login" class="col-right normal" href="registro.html"><label id="titlogin">Iniciar sesion</label></a>
+				<a id="logout" class="col-right normal" href="#" onclick="logout();"><label id="titlogout">Cerrar Sesion</label></a>
 				<span class="col-right">|</span>
-				<a id="quierovender" class="col-right normal" href="precio.html">Quiero vender</a>
+				<a id="quierovender" class="col-right normal" href="precio.html"><label id="titquierovender">Quiero vender</label></a>
 				<span class="col-right">|</span>
-				<a id="registro" class="col-right normal" href="registro.html">Registro</a>
+				<a id="registro" class="col-right normal" href="registro.html"><label id="titregistro">Registro</label></a>
 				<span id="nombreusuario" class="col-right">Usuario | </span>
+				<span class="col-right">|</span>
+				<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com"><label id="titayuda">Ayuda</label></a>
 			</div>
 		</div>
 	</div>
 	<header class="section">
 		<div class="container min-width fila">
 			<div class="col fila auto-width" align="left">
-				<h3>Su Cuenta</h3>
+				<h3 id="titsucuenta">Su Cuenta</h3>
 			</div>
 			<div class="search-bar col auto-width" align="right">
 				<input id="buscar" placeholder="Busqueda rapida" onkeydown="if (event.keyCode == 13) buscaTag();"/>
-				<a class="btn v2" onclick="buscaTag(dibujaCatalogo);"><span class="icon-search"> </span><i>Buscar</i></a>
+				<a class="btn v2" onclick="buscaTag(dibujaCatalogo);"><span class="icon-search"> </span><i id="titbuscar">Buscar</i></a>
 			</div>
 		</div>
 	</header>
@@ -76,15 +78,15 @@
 		<div class="container min-width fila">
 			<div class="col2 sector-tipo2" id="cambioLogo">
 				<div class="box-padding-10">
-					<h3>Cambio de Logo</h3>
-					<img id="logo" style="height:60px" src="logos/1.jpg" /><br><br><br><br>
+					<h3 id="titcambiodelogo">Cambio de Logo</h3>
+					<img id="logo" style="height:60px" /><br><br><br><br>
 					<img id="busy" src="images/busy.gif" />
 					<iframe id="hiddenFrame" name="hiddenFrame" class="DN"> </iframe>
 					<form id="formaLogo" onsubmit="iframeFinal();" action="http://192.168.1.110:8080/uploadlogo" method="post" enctype="multipart/form-data" target="hiddenFrame">
-					  <input class="btn" type="file" name="upload" accept="image/*" value="Subir imagen"/>
+					  <input id="botsubirimagen" class="btn" type="file" name="upload" accept="image/*" value="Subir imagen"/>
 					  <input type="hidden" id="IDimagen" name="id" value="155" />
 					  <input type="hidden" name="tipo" value="logo" />
-					  <input class="btn" type="submit" value="Cambiar Logo" />
+					  <input id="botguardarcambiodelogo" class="btn" type="submit" value="Cambiar Logo" />
 					  <br><br>
 					</form>		
 				</div>
@@ -92,29 +94,29 @@
 			<br />
 			<div class="col2 sector-tipo2">
 				<div class="box-margin-10">
-					<h3>Cambio de Clave</h3>
+					<h3 id="titcambiodeclave">Cambio de Clave</h3>
 		            <input class="cat-input" id="claveactual" type="password" placeholder="Contraseña actual" required="required">
 		            <input class="cat-input" id="clave1nuevo" type="password" placeholder="Nueva contraseña" required="required">
 		            <input class="cat-input" id="clave2nuevo" type="password" placeholder="Repetir nueva contraseña" required="required">
-					<div align="right"><a class="btn" onclick="cambiarClave();">Cambiar Contraseña</a></div>
+					<div align="right"><a id="botguardarcambiodeclave" class="btn" onclick="cambiarClave();">Cambiar Contraseña</a></div>
 					<div id="aviso" style="color: red"> </div>
 				</div>
 			</div>
 			<br />
 			<div class="col2 sector-tipo2">
 				<div class="box-margin-10">
-					<h3>Información de Contacto</h3>
+					<h3 id="titinformaciondecontacto">Información de Contacto</h3>
 		            <input class="cat-input" id="direccion" placeholder="Direccion" required="required">
 		            <input class="cat-input" id="telefono" placeholder="Telefono" required="required">
-					<div align="right"><a class="btn" onclick="guardarInfoContacto();">Guardar</a></div>
+					<div align="right"><a id="botguardarinformaciondecontacto" class="btn" onclick="guardarInfoContacto();">Guardar</a></div>
 				</div>
 			</div>
 			<br />
 			<div class="col2 sector-tipo2">
 				<div class="box-margin-10">
-					<h3>Forma de Pago y de Envío</h3>
+					<h3 id="titformadepagoyenvio">Forma de Pago y de Envío</h3>
 					<textarea id="formapago" style="width: 430px; height: 100px;" placeholder="Como pagará el cliente y como recibirá la mercancía"></textarea>
-					<div align="right"><a class="btn" onclick="guardarFormaPago();">Guardar</a></div>
+					<div align="right"><a id="botguardarformadepagoyenvio" class="btn" onclick="guardarFormaPago();">Guardar</a></div>
 				</div>
 			</div>
 		</div>
@@ -126,13 +128,6 @@
 			<img src="images/menu-configura-2-1.png" height="230px" onclick="ocultaMenu();" />
 		</div>
 	</div>
-	<footer class="section">
-		<div class="container">
-		<p>
-			&copy; Copyright  by GTienda
-		</p>
-		</div>
-	</footer>
 </div>
 </body>
 </html>

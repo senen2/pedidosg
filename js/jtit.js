@@ -67,5 +67,36 @@ function dibujaTitulos(l)
 		$("#titgraciasporsupedido").html(l.graciasporsupedido);
 		$("#titconfirmacionasucorreo").html(l.confirmacionasucorreo);
 
+		// editorcuenta.html
+		$("#titsucuenta").html(l.sucuenta);
+
+		$("#titcambiodelogo").html(l.cambiodelogo);
+		$("#botsubirimagen").attr("value", l.subirimagen);
+		$("#botguardarcambiodelogo").attr("value", l.guardarcambiodelogo);
+
+		$("#titcambiodeclave").html(l.cambiodeclave);
+		$("#botguardarcambiodeclave").html(l.guardarcambiodeclave);
+		$("#claveactual").attr("placeholder", l.claveactual);
+		$("#clave1nuevo").attr("placeholder", l.clavenueva);
+		$("#clave2nuevo").attr("placeholder", l.repetirnuevaclave);
+
+		$("#titinformaciodencontacto").html(l.informaciondecontacto);
+		$("#botguardarinformaciondecontacto").html(l.guardar);
+		$("#direccion").attr("placeholder", l.direccion);
+		$("#telefono").attr("placeholder", l.telefono);
+
+		$("#titformadepagoyenvio").html(l.formadepagoyenvio);
+		$("#botguardarformadepagoyenvio").html(l.guardar);
+		$("#formapago").attr("placeholder", l.notaformadepagoyenvio);
+
+		// editorcuenta.html
+		$("#titsecciones").html(l.secciones);
+		$("#titeditarseccion").html(l.editarseccion);
+		$("#titnombre").html(l.nombre);
+		$("#tittitulo").html(l.titulo);
+		$("#tittags").html(l.tags);
+		$("#botmodificar").html(l.modificar);
+		$("#botagregar").html(l.agregar);
+
 	}
 }

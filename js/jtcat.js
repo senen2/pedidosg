@@ -31,6 +31,7 @@ function dibujaPagina(datos)
 		verCatalogo(datos.datos[0].ID);	
 	//dibujaMenu();
 	dibujaLogin(gdatos.cuenta);
+	dibujaTitulos(gdatos.cuenta.lenguaje);
 }
 
 function verCatalogo(ID)

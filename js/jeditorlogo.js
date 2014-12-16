@@ -20,13 +20,13 @@ function refrescar(datos)
 	gdatos=datos;
 	dibujaMenu();
 	dibujaLogin(gdatos);
-	dibujaTitulos(gdatos.cuenta.lenguaje);
+	dibujaTitulos(gdatos.lenguaje);
 	$("#formaLogo").attr("action", "http://" + servidor + "/uploadlogo");
 	$("#direccion").val(gdatos.direccion);
 	$("#telefono").val(gdatos.telefono);
 	$("#formapago").val(gdatos.formapago);
 	$("#busy").hide();
-	$("#logo").attr("src", 'logos/' + datos.ID + '.jpg');
+	$("#logo").attr("src", imagedir + 'logos/' + datos.ID + '.jpg');
 	$("#IDimagen").val(datos.ID);
 }
 
