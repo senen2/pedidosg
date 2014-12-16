@@ -89,12 +89,21 @@ function dibujaTitulos(l)
 		$("#botguardarformadepagoyenvio").html(l.guardar);
 		$("#formapago").attr("placeholder", l.notaformadepagoyenvio);
 
-		// editorcuenta.html
+		// tcat.html secciones
 		$("#titsecciones").html(l.secciones);
 		$("#titeditarseccion").html(l.editarseccion);
 		$("#titnombre").html(l.nombre);
 		$("#tittitulo").html(l.titulo);
 		$("#tittags").html(l.tags);
+		$("#botmodificar").html(l.modificar);
+		$("#botagregar").html(l.agregar);
+
+		// tasoc.html
+		$("#titasociados").html(l.asociados);
+		$("#titclientes").html(l.clientes);
+		$("#titproveedores").html(l.proveedores);
+		$("#titdistribuidores").html(l.distribuidores);
+		$("#titvendedores").html(l.vendedores);
 		$("#botmodificar").html(l.modificar);
 		$("#botagregar").html(l.agregar);
 

@@ -13,11 +13,13 @@ function inicioAsociados()
 	pagina = "pdasociados";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Subir_imagenes_de_los_productos";
 	leeServidor();
-	verClientes();
+	iniciando=true;
+	refrescar("clientes");
 }
 
-function refrescar()
+function refrescar(modop)
 {
+	modo = modop;
 	LeeAsociadosP(modo, dibujaAsociados);
 	desactivaTodo();
 	$("#tap-" + modo).addClass("active");
@@ -30,15 +32,33 @@ function dibujaAsociados(datos)
 	gdatos = datos;
 	dibujaTabla(datos, "asociados", "asociados","");
 	if (modo=="distribuidores") {
-		$("#tituloNombre").hide();
+		$("#titnombre").hide();
 		$("#nombre").hide();
 	}
 	else {
-		$("#tituloNombre").show();
+		$("#titnombre").show();
 		$("#nombre").show();
 	}		
 		
 	dibujaLogin(gdatos.cuenta);
+	dibujaTitulos(gdatos.cuenta.lenguaje);
+	var tercero="";
+	switch (modo)
+	{
+		case "clientes":
+			tercero = gdatos.cuenta.lenguaje.cliente;
+			break;
+		case "proveedores":
+			tercero = gdatos.cuenta.lenguaje.proveedor;
+			break;
+		case "distribuidores":
+			tercero = gdatos.cuenta.lenguaje.distribuidor;
+			break;
+		case "vendedores":
+			tercero = gdatos.cuenta.lenguaje.vendedor;
+			break;
+	}
+	$("#tituloAgregar").html(gdatos.cuenta.lenguaje.nuevo + " " + tercero);
 }
 
 function desactivaTodo()
@@ -51,34 +71,6 @@ function desactivaTodo()
 	$("#texto-distribuidores").hide();
 	$("#texto-vendedores").hide();
 	$("#texto-clientes").hide();
-}
-
-function verProveedores()
-{
-	modo="proveedores";
-	$("#tituloAgregar").html("Nuevo Proveedor");
-	refrescar();
-}
-
-function verDistribuidores()
-{
-	modo="distribuidores";
-	$("#tituloAgregar").html("Nuevo Distribuidor");
-	refrescar();
-}
-
-function verVendedores()
-{
-	modo="vendedores";
-	$("#tituloAgregar").html("Nuevo Vendedor");
-	refrescar();
-}
-
-function verClientes()
-{
-	modo="clientes";
-	$("#tituloAgregar").html("Nuevo Cliente");
-	refrescar();
 }
 
 function activaAsociado(ID)
