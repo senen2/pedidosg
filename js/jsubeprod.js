@@ -55,7 +55,9 @@ function dibujaPagina(datos)
 
 	$("#busy").hide();
 	$("#parasubir").show();
+	$("#botsubirimagenes").hide();
 	dibujaLogin(datos);
+	dibujaTitulos(gdatos.lenguaje);
 
 }
 
@@ -75,6 +77,7 @@ function tomaDatos()
 function upload() {
 	$("#busy").show();
 	$("#parasubir").hide();
+	
     var file = document.getElementById("uploadfile");
 
 	var theQueue = $({});

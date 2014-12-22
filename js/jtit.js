@@ -107,5 +107,27 @@ function dibujaTitulos(l)
 		$("#botmodificar").html(l.modificar);
 		$("#botagregar").html(l.agregar);
 
+		// tsubeprod.html
+		$("#titagregarproductos").html(l.agregarproductos);
+		$("#titsubeprod1").html(l.subeprod1);
+		$("#titsubeprod2").html(l.subeprod2);
+		$("#titsubeprod3").html(l.subeprod3);
+		$("#titsubeprod4").html(l.subeprod4);
+
+		// tsubeprod.html
+		$("#titactivarproductos").html(l.activarproductos);
+        
+        // registro.html
+        $("#titiniciasesion").html(l.iniciasesion);
+        $("#titiniciarsesion").html(l.iniciarsesion);
+        $("#titcreacuenta").html(l.creacuenta);
+        $("#titregistrarse").html(l.registrarse);
+        $("#titproblemacreandocuenta").html(l.problemacreandocuenta);
+        
+        $("#emaillogin").attr("placeholder", l.email);
+        $("#passwdlogin").attr("placeholder", l.clave);
+        $("#nombrenuevo").attr("placeholder", l.nombre);
+        $("#empresanuevo").attr("placeholder", l.nombretienda);
+
 	}
 }

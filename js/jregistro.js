@@ -16,7 +16,10 @@ function inicioReg() {
 	//encabezado = "'','',''";
 	//chequeaToken();
 	$("#aviso").hide();
-	dibujaLogin();
+	l = navigator.languages? navigator.languages[0] : (navigator.language || navigator.userLanguage)
+	//l = navigator.language;
+	l = "en";
+	LeeLenguajeP(l, dibujaLogin);
 }
 
 function login()

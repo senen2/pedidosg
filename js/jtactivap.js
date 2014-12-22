@@ -27,6 +27,7 @@ function dibujaPagina(datos)
 	gdatos = datos;
 	dibujaCuadro(datos, "productos", 260, 200);
 	dibujaLogin(gdatos.cuenta);
+	dibujaTitulos(gdatos.cuenta.lenguaje);
 }
 
 function activaProducto(ID)

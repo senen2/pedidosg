@@ -2,6 +2,18 @@
  * @author botpi
  */
     
+function LeeLenguajeP(lenguaje, funcion)
+{
+	$.ajax({
+		url: "http://" + servidor + "/function/LeeLenguajeP(" + encabezado + ",'" + lenguaje + "')?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			funcion(response);
+		}
+	});	
+}
+    
 function loginP(comovendedor, funcion)
 {
 	var ven = comovendedor ? 1 : 0;

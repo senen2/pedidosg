@@ -44,33 +44,33 @@
 					<a class="brand-gtienda normal" href="index.html">G<span>ran</span>Tienda</a>
 				</div>
 				<div class="col fila auto-width" align="right">
-					<a class="col-right normal" href="precio.html">Quiero vender</a>
+					<a id="quierovender" class="col-right normal" href="precio.html"><label id="titquierovender">Quiero vender</label></a>
 					<span class="col-right">|</span>
-					<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com">Ayuda</a>
+					<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com"><label id="titayuda">Ayuda</label></a>
 
 				</div>
 			</div>
 		</div>
 		<div class="section" align="center">
 			<div class="container min-width fila">
-				<div id="titulocatalogo1" class="col auto-width v3 titulocatalogo1"><h1>Acceso a miembros</h1></div>
+				<!--div id="titulocatalogo1" class="col auto-width v3 titulocatalogo1"><h1>Acceso a miembros</h1></div-->
 			</div>
 		</div>
 		<div class="section">
 			<div class="container fila">
 				<div class="col2 auto-width v3" align="center">
-					<h3>Inicia sesión</h3>
+					<h2 id="titiniciasesion">Inicia sesión</h2>
 					<form class="login-from">
 			              <label id="aviso" class="DN error">Usuario o clave incorretos</label>            
 			              <input class="cat-input" id="emaillogin" type="email" placeholder="Dirección de email" name="email" required="required" autofocus="autofocus">
 			              <input class="cat-input" id="passwdlogin" type="password" placeholder="Contraseña" name="pass" required="required" onkeydown="if (event.keyCode == 13) login();">
 <!--			              <br><input id="comovendedor" type="checkbox"/>Ingresar como vendedor -->
-			            <div class="login-btn"><a class="btn v3" href="#" onclick="login();">Iniciar sesión</a>
+			            <div class="login-btn"><a id="titiniciarsesion" class="btn v3" href="#" onclick="login();">Iniciar sesión</a>
 			            </div>
 			       </form>
 				</div>
 				<div class="col2 auto-width v3 border-left" align="center">
-					 <a style="text-decoration: none;color: black;" href="#nombrenuevo"><h3>Crea tu cuenta</h3></a>
+					 <a style="text-decoration: none;color: black;" href="#nombrenuevo"><h2 id="titcreacuenta">Crea tu cuenta</h2></a>
 					<form class="login-from">
 						<label id="error" class="DN error">Usuario o clave incorretos</label>
 			            <input class="cat-input" id="nombrenuevo" type="text" placeholder="Su nombre" name="nombre" required="required" />
@@ -79,7 +79,7 @@
 			            <input class="cat-input" id="clave1nuevo" type="password" placeholder="Contraseña" name="pass" required="required">
 			            <input class="cat-input" id="clave2nuevo" type="password" placeholder="Repetir contraseña" name="pass2"  required="required"
 			            	onkeydown="if (event.keyCode == 13) registro();">
-			            <div class="login-btn"><a class="btn v3" href="#" onclick="registro();">Registrarse</a>
+			            <div class="login-btn"><a id="titregistrarse" class="btn v3" href="#" onclick="registro();">Registrarse</a>
 			            </div>
 			        </form>
 				</div>
@@ -87,14 +87,10 @@
 		</div>
 		<div class="section">
 			<div class="container" style="margin-top: 40px;margin-bottom: 40px;">
-				Tienes algun problema iniciando sesion o creando tu cuenta <a class="normal" href="contacto.html">Contactanos</a>
+				<label id="titproblemacreandocuenta">Tienes algun problema iniciando sesion o creando tu cuenta</label> 
+				<a id="titcontactanos" class="normal" href="contacto.html">Contactanos</a>
 			</div>
 		</div>
-		<footer>
-			<p>
-				&copy; Copyright  by GTienda
-			</p>
-		</footer>
 	</div>
 </body>
 </html>

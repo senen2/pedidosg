@@ -29,6 +29,7 @@
 	
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<!--script type="text/javascript" src="js/jquery-1.10.2.min.js"></script-->
 		<script type="text/javascript" src="js/jsubeprod.js"></script>
 		<script type="text/javascript" src="js/japiPedidos.js"></script>
 		<script type="text/javascript" src="js/jcomunp.js"></script>
@@ -69,60 +70,56 @@
 				<a class="brand-gtienda normal" href="index.html">G<span>ran</span>Tienda</a>
 			</div>
 			<div class="col fila auto-width-grest" align="right">
-				<a id="logout" class="col-right normal" href="#" onclick="logout();">Cerrar Sesion</a>
+				<a id="logout" class="col-right normal" href="#" onclick="logout();"><label id="titlogout">Cerrar Sesion</label></a>
 				<span class="col-right">|</span>
-				<a id="usuario" class="col-right normal" href="#"> </a>
+				<span id="nombreusuario" class="col-right">Usuario | </span>
 			</div>
 		</div>
 	</div>
 	<div class="section">
 		<div class="container">
-			<h2>Subir Productos</h2>
+			<h2 id="titagregarproductos">Agregar Productos</h2>
 			<div id="busy">
 				<img src="images/busy.gif" /><br>
 				Subiendo imagenes...<br><br>
 				El proceso puede tardar dependiendo de la conexion a Internet y de la cantidad de imagenes
 			</div>
 			<div id="parasubir" class="fila">
-			    <div class="col2" style="margin: 10PX;">
-			    	<h4>Imágenes</h4>
-				    <div style="border: dotted 1px gray;border-radius: 3px; width: 320px; height: 200px; padding: 5px">
-						<br>Para agregar productos seleccione imagenes de su equipo o tome una foto<br><br>
-					    <input class="btn box-margin-10" type="file" id="uploadfile" name="uploadfile" accept="image/*" multiple />	
-						<br>
-						<input class="btn box-margin-10" placeholder="subir" type="button" value="Subir imágenes" onclick="upload()" />
+			    <div id="dropbox" class="col2" style="margin: 10PX;">
+			    	<h4> </h4>
+				    <div style="border: dotted 1px gray;border-radius: 3px; width: 320px; height: 240px; padding: 5px">
+				    	<br><label id="titsubeprod1">Arrastre las imagenes hasta aqui o</label> 
+					    <br><input class="btn box-margin-10" type="file" id="uploadfile" name="uploadfile" accept="image/*" multiple onchange="upload()" />
+						<label id="titsubeprod3">de una carpeta local</label>
+						<!--br><input id="botsubirimagenes" class="btn box-margin-10" placeholder="subir" type="button" value="Subir imágenes" onclick="upload()" /-->
+						<br><br><label id="titsubeprod4">Con las imágenes y los datos que escriba se crearán productos que luego podrá borrar o modificar</label>
 					</div>
 					<br><br><br>
-					<div style="border: dotted 1px gray;border-radius: 3px; width: 320px; height: 140px;">
-						<br>O puede arrastrar imágenes de otras páginas aquí<br>
-						<div id="dropbox"> </div>
-					</div>
-					<br><br><br>
-					<a class="btn v4" href="catalogo.html">Volver al Catalogo</a>
+					<a id="titfinalizar" class="btn v4" href="catalogo.html">Volver al Catalogo</a>
 					<!--input class="btn box-margin-10" placeholder="subir" type="button" value="Subir imágenes + datos" onclick="upload()" /-->
 				</div>
 				<div class="col2">
-					<h4>Datos</h4>
+					<h4> </h4>
 					<div class="item-info" align="left">
-						<label class="text-blod">Nombre</label>
+						<label id="titnombre" class="text-blod">Nombre</label>
 						<input class="edit-input" id="nombre" onclick="this.select();" onchange="tomaDatos()"/><br>
-						<label class="text-blod">Referencia</label>
+						<label id="titreferencia" class="text-blod">Referencia</label>
 						<input class="edit-input" id="referencia" onclick="this.select();" onchange="tomaDatos()"/><br>
-						<label class="text-blod">Codigo de Barras</label>
+						<label id="titbarcode" class="text-blod">Codigo de Barras</label>
 						<input class="edit-input" id="barcode" onclick="this.select();" onchange="tomaDatos()"/><br>
 						<div>
-						  	<label class="text-blod">Precio Publico</label>
+						  	<label id="titprecio" class="text-blod">Precio Publico</label>
 						  	<input class="edit-input" id="precio" onclick="this.select();" onchange="tomaDatos()"/><br>					
-						  	<label class="text-blod">Precio Mayor</label>
+						  	<label id="titpvm" class="text-blod">Precio Mayor</label>
 						  	<input class="edit-input" id="pvm" onclick="this.select();" onchange="tomaDatos()"/><br>					
 						</div>
-					  	<label class="text-blod">Descripcion</label><br>
+					  	<label id="titdescripcion" class="text-blod">Descripcion</label><br>
 					  	<textarea id="descripcion" class="item-description2" onchange="tomaDatos()"> </textarea><br>
-				  		<label class="text-blod">Tallas (ejemplo 7, 9, 11, X, XL)</label>
+				  		<label id="tittamano" class="text-blod">Tallas (ejemplo 7, 9, 11, X, XL)</label>
 						<input class="edit-input" id="tallas"  onchange="tomaDatos()"/>
-						<label class="text-blod">Colores (ejemplo azul, rojo)</label>
+						<label id="titcolores" class="text-blod">Colores (ejemplo azul, rojo)</label>
 						<input class="edit-input" id="colores" onchange="tomaDatos()"/><br />
-					  	<label class="text-blod">Etiquetas (tags)</label>
+					  	<label id="tittags" class="text-blod">Etiquetas (tags)</label>
 					  	<div style="border: dotted 1px gray; border-radius: 3px; width: 100%; text-align: left;">
 							<div id="tags"> </div>
 							<input id="nuevotag" style="border-style: none;width: 100%;height: 35px;" 

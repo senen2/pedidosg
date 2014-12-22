@@ -111,7 +111,8 @@ function dibujaLogin(cuenta)
 		$("#nombreusuario").hide();
 		$("#logout").hide();
 	}	
-
+	if (cuenta.eslenguaje)
+		dibujaTitulos(cuenta);
 }
 
 // ---------------------------- Menu
