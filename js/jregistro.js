@@ -5,21 +5,8 @@
 function inicioReg() {
 	pagina = "loginP";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Crear_una_cuenta";
-	leeServidor();	
-	encabezado = getCookie("encabezado");
-	if (encabezado==null | encabezado=="" | encabezado=="'',''")
-		encabezado="'','',''";
-	token = encabezado.split(",")[2]
-	token = token.trim().substr(1,token.length-2);
-	if (token=="''")
-		token = "";
-	//encabezado = "'','',''";
-	//chequeaToken();
 	$("#aviso").hide();
-	l = navigator.languages? navigator.languages[0] : (navigator.language || navigator.userLanguage)
-	//l = navigator.language;
-	l = "en";
-	LeeLenguajeP(l, dibujaLogin);
+	inicioSinLogin();
 }
 
 function login()

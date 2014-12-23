@@ -4,6 +4,7 @@ function dibujaTitulos(l)
 	if (typeof l!='undefined' && l) {
 		// encabezado
 		$("#titquierovender").html(l.quierovender);
+		$("#quierovender").attr("href", l.pagprecio);
 		$("#titregistro").html(l.registro);
 		$("#titlogin").html(l.login);
 		$("#titlogout").html(l.logout);
@@ -128,6 +129,28 @@ function dibujaTitulos(l)
         $("#passwdlogin").attr("placeholder", l.clave);
         $("#nombrenuevo").attr("placeholder", l.nombre);
         $("#empresanuevo").attr("placeholder", l.nombretienda);
+
+		// index.html
+		$("#titprueba").html(l.prueba);
+		$("#pagprecio").attr("href", l.pagprecio);
+		$("#titplanesyprecios").html(l.planesyprecios);
+		$("#titsincomisiones1").html(l.sincomisiones1);
+		$("#titsincomisiones2").html(l.sincomisiones2);
+		$("#titsincomisiones3").html(l.sincomisiones3);
+		$("#titmejoresprecios1").html(l.mejoresprecios1);
+		$("#titmejoresprecios2").html(l.mejoresprecios2);
+		$("#titmejoresprecios3").html(l.mejoresprecios3);
+
+		$("#titfacilmanejo").html(l.facilmanejo);
+		$("#titllenadatos").html(l.llenadatos);
+		$("#tittomafotos").html(l.tomafotos);
+		$("#titcomienzavender").html(l.comienzavender);
+		$("#titprocesapedidos").html(l.procesapedidos);
+
+		$("#titcontrolaventas1").html(l.controlaventas1);
+		$("#titcontrolaventas2").html(l.controlaventas2);
+		$("#titaumentaganacias1").html(l.aumentaganacias1);
+		$("#titaumentaganacias2").html(l.aumentaganacias2);
 
 	}
 }

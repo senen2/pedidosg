@@ -33,9 +33,9 @@
 		
 	<script>
 		$( document ).ready(function() {
-			//inicio();
+			pagina = "indexP";
 			ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=GTienda:Acerca_de";
-			dibujaLogin();
+			inicioSinLogin();
 		});
 	</script>
 </head>
@@ -47,28 +47,30 @@
 			<a class="brand-gtienda normal" href="#">G<span>ran</span>Tienda</a>
 		</div>
 		<div class="col fila auto-width-grest" align="right">
-			<a class="col-right normal" href="precio.html">Quiero vender</a>
+			<a id="login" class="col-right normal" href="registro.html"><label id="titlogin">Iniciar sesion</label></a>
+			<a id="logout" class="col-right normal" href="#" onclick="logout();"><label id="titlogout">Cerrar Sesion</label></a>
 			<span class="col-right">|</span>
-			<a class="col-right normal" href="registro.html">Registro</a>
+			<a id="quierovender" class="col-right normal" href="precio.html"><label id="titquierovender">Quiero vender</label></a>
 			<span class="col-right">|</span>
-			<a class="col-right normal" href="registro.html">Iniciar sesion</a>
+			<a id="registro" class="col-right normal" href="registro.html"><label id="titregistro">Registro</label></a>
+			<span id="nombreusuario" class="col-right">Usuario | </span>
 			<span class="col-right">|</span>
-			<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com">Ayuda</a>
+			<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com"><label id="titayuda">Ayuda</label></a>
 		</div>
 	</div>
 	</div>
 	<div class="section">
 	<div class="container" align="right">
 		<nav class="nav-column fila">
-			<a class="nav-link" href="registro.html"><div class="nav-col col"><span>Prueba</span></div></a>
-			<a class="nav-link" href="precio.html"><div class="nav-col col"><span>Planes y precios</span></div></a>
+			<a class="nav-link" href="registro.html"><div class="nav-col col"><span id="titprueba">Prueba</span></div></a>
+			<a id="pagprecio" class="nav-link" href="precio.html"><div class="nav-col col"><span id="titplanesyprecios">Planes y precios</span></div></a>
 		</nav>
 	</div>
 	</div>
 	<div class="section DN">
 		<div class="container">
 			<input class="bus-input" placeholder="Busca entre miles de proveedores"/>
-			<a class="btn" onclick="buscaTag(dibujaCatalogo);"><span class="icon-search"> </span><i>Buscar</i></a>
+			<a class="btn" onclick="buscaTag(dibujaCatalogo);"><span class="icon-search"> </span><i id="titbuscar">Buscar</i></a>
 		</div>
 	</div>
 	<div class="section bk-image">
@@ -78,14 +80,16 @@
 				<img class="img-no-commision" src="images/no-comision3.png" />
 			</div>
 			<div class="col c3 auto-width v4 text-align-left text-white-index right">
-				<h2>Sin comisiones</h2>
-				<p>Asi es, todo lo que vendas sera 100% tuyo GTienda solo cobra <a class="normal" href="precio.html">una pequeña mensualidad</a></p>
+				<h2 id="titsincomisiones1">Sin comisiones</h2>
+				<p><label id="titsincomisiones2">Asi es, todo lo que vendas sera 100% tuyo, GTienda solo cobra </label>
+					<a id="titsincomisiones3" class="normal" href="precio.html">una pequeña mensualidad</a></p>
 			</div>
 		</div>
 		<div class="container fila">
 			<div class="col c3 auto-width v4 text-align-left text-white-index left">
-				<h2>Los mejores precios</h2>
-				<p>Tenemos desde un plan gratis para que comiences a vender de inmediato <a class="normal" href="registro.html">Registrate</a></p>
+				<h2 id="titmejoresprecios1">Los mejores precios</h2>
+				<p><label id="titmejoresprecios2">Tenemos desde un plan gratis para que comiences a vender de inmediato </label>
+					<a id="titmejoresprecios3" class="normal" href="registro.html">Registrate</a></p>
 			</div>
 			<div class="col c3 auto-width-img">
 				<img class="img-no-commision" src="images/0-dinero-blue2.png" />
@@ -94,22 +98,26 @@
 	</div>
 	<div class="section bk-image-blank">
 		<div class="container fila">
-			<h2 class="title-img-solo">Facil manejo</h2>
-			<div class="col c3 col-4" align="center">
+			<h2 id="titfacilmanejo" class="title-img-solo">Facil manejo</h2>
+			<!--div class="col c3 col-4" align="center">
 				<img class="img-solo" src="images/agregar-producto2.jpg" /><br />
 				<label class="img-solo-text">Ingresa tus articulos</label>
+			</div-->
+			<div class="col c3 col-4" align="center">
+				<img class="img-solo" src="images/Photos-Every-Day.jpg" /><br />
+				<label id="tittomafotos" class="img-solo-text">Toma la foto</label>
 			</div>
 			<div class="col c3 col-4" align="center">
 				<img class="img-solo" src="images/detalle-product2.jpg" /><br />
-				<label class="img-solo-text">Llena los datos</label>
-			</div>
-			<div class="col c3 col-4" align="center">
-				<img class="img-solo" src="images/Photos-Every-Day.jpg" /><br />
-				<label class="img-solo-text">Toma la foto</label>
+				<label id="titllenadatos" class="img-solo-text">Llena los datos</label>
 			</div>
 			<div class="col c3 col-4" align="center">
 				<img class="img-solo" src="images/publica.jpg" /><br />
-				<label class="img-solo-text">Y comienza a vender</label>
+				<label id="titcomienzavender" class="img-solo-text">Y comienza a vender</label>
+			</div>
+			<div class="col c3 col-4" align="center">
+				<img class="img-solo" src="images/publica.jpg" /><br />
+				<label id="titprocesapedidos" class="img-solo-text">Procesa los pedidos</label>
 			</div>
 		</div>
 	</div>
@@ -119,14 +127,14 @@
 				<img class="img-no-commision" src="images/ganchos.jpg" />
 			</div>
 			<div class="col c3 auto-width v4 text-align-left text-white-index right">
-				<h2>Controla tus ventas</h2>
-				<p>GTienda tiene herramientas para controlar los pedidos, tiempos de entrega, inventario y muchas cosas mas</p>
+				<h2 id="titcontrolaventas1">Controla tus ventas</h2>
+				<p><label id="titcontrolaventas2">GTienda tiene herramientas para controlar los pedidos, tiempos de entrega, inventario y muchas cosas mas</label></p>
 			</div>
 		</div>
 		<div class="container fila">
 			<div class="col c3 auto-width v4 text-align-left text-white-index left">
-				<h2>Aumenta tus ganacias</h2>
-				<p>Al alcance de tu mano podras tener herramientas para analisis de ventas, analisis de precios, analisis del cliente, mercadeo por internet y mucho mas </p>
+				<h2 id="titaumentaganacias1">Aumenta tus ganacias</h2>
+				<p><label id="titaumentaganacias2">Al alcance de tu mano podras tener herramientas para analisis de ventas, analisis de precios, analisis del cliente, mercadeo por internet y mucho mas</label></p>
 			</div>
 			<div class="col c3 auto-width-img">
 				<img class="img-no-commision" src="images/cliente.jpg"/>

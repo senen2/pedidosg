@@ -115,6 +115,20 @@ function dibujaLogin(cuenta)
 		dibujaTitulos(cuenta);
 }
 
+function inicioSinLogin()
+{
+	leeServidor();	
+	encabezado = getCookie("encabezado");
+	if (encabezado==null | encabezado=="" | encabezado=="'',''")
+		encabezado="'','',''";
+	token = encabezado.split(",")[2]
+	token = token.trim().substr(1,token.length-2);
+	if (token=="''")
+		token = "";
+	l = navigator.languages? navigator.languages[0] : (navigator.language || navigator.userLanguage)
+	l = "en";	
+	LeeLenguajeP(l, dibujaLogin);
+}
 // ---------------------------- Menu
 
 function dibujaMenu()
