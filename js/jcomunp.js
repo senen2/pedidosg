@@ -129,19 +129,20 @@ function inicioSinLogin()
 	l = "en";	
 	LeeLenguajeP(l, dibujaLogin);
 }
+
 // ---------------------------- Menu
 
 function dibujaMenu()
 { 
 	$("#menu").html(
-		  '<h2>Maneje su Tienda &nbsp;</h2>'
-		+ '<a class="nav-link v2" href="catalogo.html?m=1"><div class="nav-col v2"><span>Catalogo</span></div></a>'
+		  '<h2 id="titmanejesutienda">Maneje su Tienda &nbsp;</h2>'
+		+ '<a class="nav-link v2" href="catalogo.html?m=1"><div class="nav-col v2"><span id="titcatalogo">Catalogo</span></div></a>'
 		//+ '<a class="nav-link v2" href="subeprod.html"><div class="nav-col v2"><span>Subir Productos</span></div></a>'
-		+ '<a class="nav-link v2" href="pedidos.html"><div class="nav-col v2"><span>Pedidos</span></div></a>'
-		+ '<a class="nav-link v2" href="tasoc.html"><div class="nav-col v2"><span>Asociados</span></div></a>'
-		+ '<a class="nav-link v2" href="tcat.html"><div class="nav-col v2"><span>Secciones</span></div></a>'
-		+ '<a class="nav-link v2" href="editorlogo.html"><div class="nav-col v2"><span>Mi Cuenta</span></div></a>'
-		+ '<a class="nav-link v2" href="tactivap.html"><div class="nav-col v2"><span>Papelera</span></div></a>'
+		+ '<a class="nav-link v2" href="pedidos.html"><div class="nav-col v2"><span id="titpedidos">Pedidos</span></div></a>'
+		+ '<a class="nav-link v2" href="tasoc.html"><div class="nav-col v2"><span id="titasociados">Asociados</span></div></a>'
+		+ '<a class="nav-link v2" href="tcat.html"><div class="nav-col v2"><span id="titsecciones">Secciones</span></div></a>'
+		+ '<a class="nav-link v2" href="editorlogo.html"><div class="nav-col v2"><span id="titmicuenta">Mi Cuenta</span></div></a>'
+		+ '<a class="nav-link v2" href="tactivap.html"><div class="nav-col v2"><span id="titpapelera">Papelera</span></div></a>'
 	)
 }
 /*

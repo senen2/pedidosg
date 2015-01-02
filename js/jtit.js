@@ -81,7 +81,7 @@ function dibujaTitulos(l)
 		$("#clave1nuevo").attr("placeholder", l.clavenueva);
 		$("#clave2nuevo").attr("placeholder", l.repetirnuevaclave);
 
-		$("#titinformaciodencontacto").html(l.informaciondecontacto);
+		$("#titinformaciondecontacto").html(l.informaciondecontacto);
 		$("#botguardarinformaciondecontacto").html(l.guardar);
 		$("#direccion").attr("placeholder", l.direccion);
 		$("#telefono").attr("placeholder", l.telefono);
@@ -116,9 +116,11 @@ function dibujaTitulos(l)
 		$("#titsubeprod4").html(l.subeprod4);
 
 		// tsubeprod.html
-		$("#titactivarproductos").html(l.activarproductos);
+        $("#titpapelera1").html(l.papelera);
+		//$("#titactivarproductos").html(l.activarproductos);
         
         // registro.html
+        $("#titaccesoamiembros").html(l.accesoamiembros);
         $("#titiniciasesion").html(l.iniciasesion);
         $("#titiniciarsesion").html(l.iniciarsesion);
         $("#titcreacuenta").html(l.creacuenta);
@@ -151,6 +153,15 @@ function dibujaTitulos(l)
 		$("#titcontrolaventas2").html(l.controlaventas2);
 		$("#titaumentaganacias1").html(l.aumentaganacias1);
 		$("#titaumentaganacias2").html(l.aumentaganacias2);
+        
+        // Menu
+        $("#titmanejesutienda").html(l.manejesutienda);
+        $("#titcatalogo").html(l.catalogo);
+        $("#titpedidos").html(l.pedidos);
+        $("#titasociados").html(l.iniciarsesion);
+        $("#titsecciones").html(l.asociados);
+        $("#titmicuenta").html(l.micuenta);
+        $("#titpapelera").html(l.papelera);
 
 	}
 }

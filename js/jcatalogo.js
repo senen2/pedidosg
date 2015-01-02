@@ -71,8 +71,8 @@ function dibujaCatalogo(datos)
 	ajustaEncabezado(gdatos.cuenta);		
 	document.cookie = "IDcuentaCat=" + datos.cuentaCat.ID;
 	
-	dibujaTitulos(gdatos.cuenta.lenguaje)
 	dibujaLogin(gdatos.cuenta);
+	dibujaTitulos(gdatos.cuenta.lenguaje)
 	dibujaCatalogos(datos.catalogos, datos.catalogoCab.titulo, editando ? -1 : datos.carro.length);
 	dibujaCuadro(datos);
 	dibujaTitulo(datos.cuentaCat.titulo, datos.cuentaCat.ID + ".jpg");
