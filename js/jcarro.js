@@ -115,13 +115,15 @@ function total()
 function realizarPedido()
 {
 	actualizarPedido();
-	var datos = [];
+	var datos = {};
+	datos.detalle = [];
+	datos.notas = $("#notas").val();
 	$.each(gdatos.carro, function(i,item) {
 		d = {}
 		d.ID = item.ID;
 		d.cantidad = item.cantidad;
 		d.precio = item.precio;
-		datos.push(d);
+		datos.detalle.push(d);
 	} );
 	if (gdatos.cuenta.tipo=="P" | gdatos.cuenta.tipo=="V")
 		AgregarPedidoP(datos, 0, salir);

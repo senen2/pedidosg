@@ -228,6 +228,8 @@ function llenaColoresxTalla()
 
 function agregarxReferencia()
 {
+	gdatoseditar = null;
+	gurl = "";
 	LeeVariedadesxReferenciaP($("#ref").val(), seleccionarVariedad);
 }
 

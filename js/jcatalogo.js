@@ -92,7 +92,7 @@ function dibujaCuadro(datos)
 	pag = "producto.html";
 	if (editando) {
 		cad = '<div class="col item"><a href="subeprod.html">'
-				  + '<img src="'+ imagedir + 'imgcat/AgregarProducto.jpg" height="199" />'
+				  + '<img src="'+ imagedir + 'imgcat/' + gdatos.cuenta.lenguaje.agregarProductos + '.jpg" height="199" />'
 				  + '</a></div>';
 		pag="editorproducto.html";
 
@@ -125,7 +125,7 @@ function dibujaCuadro(datos)
 
 		borrar = "";
 		if (editando)
-			borrar = '<a href="#" onclick="eliminaProducto(' + item.ID +')">Desactivar</a>';
+			borrar = '<a href="#" onclick="eliminaProducto(' + item.ID +')">' + gdatos.cuenta.lenguaje.desactivar + '</a>';
 		
 		if (pag=="producto.html" || pag=="editorproducto.html" & datos.cuentaCat.ID==item.IDcuenta)
 			cad = cad + '<div id="producto-'+ item.ID +'" class="col item" style="width:200px;"><a href="' + pag + '?ID='+ item.ID + '">'
