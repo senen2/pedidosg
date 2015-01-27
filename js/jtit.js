@@ -39,7 +39,7 @@ function dibujaTitulos(l)
 		$("#mensajecontacto").attr("placeholder", l.mensajecontacto);		
 
 		// pedidos.html
-		$("#titpedidos").html(l.pedidos);		
+		$("#pagpedidos").html(l.pedidos);		
 		$("#titxdespachar").html(l.xdespachar);		
 		$("#titdespachados").html(l.despachados);		
 		$("#titxrecibir").html(l.xrecibir);		
@@ -69,7 +69,7 @@ function dibujaTitulos(l)
 		$("#titconfirmacionasucorreo").html(l.confirmacionasucorreo);
 
 		// editorcuenta.html
-		$("#titsucuenta").html(l.sucuenta);
+		$("#pagmicuenta").html(l.micuenta);
 
 		$("#titcambiodelogo").html(l.cambiodelogo);
 		$("#botsubirimagen").attr("value", l.subirimagen);
@@ -91,7 +91,7 @@ function dibujaTitulos(l)
 		$("#formapago").attr("placeholder", l.notaformadepagoyenvio);
 
 		// tcat.html secciones
-		$("#titsecciones").html(l.secciones);
+		$("#pagsecciones").html(l.secciones);
 		$("#titeditarseccion").html(l.editarseccion);
 		$("#titnombre").html(l.nombre);
 		$("#tittitulo").html(l.titulo);
@@ -100,7 +100,7 @@ function dibujaTitulos(l)
 		$("#botagregar").html(l.agregar);
 
 		// tasoc.html
-		$("#titasociados").html(l.asociados);
+		$("#pagasociados").html(l.asociados);
 		$("#titclientes").html(l.clientes);
 		$("#titproveedores").html(l.proveedores);
 		$("#titdistribuidores").html(l.distribuidores);
@@ -116,7 +116,7 @@ function dibujaTitulos(l)
 		$("#titsubeprod4").html(l.subeprod4);
 
 		// tsubeprod.html
-        $("#titpapelera1").html(l.papelera);
+        $("#pagpapelera").html(l.papelera);
 		//$("#titactivarproductos").html(l.activarproductos);
         
         // registro.html
@@ -158,8 +158,8 @@ function dibujaTitulos(l)
         $("#titmanejesutienda").html(l.manejesutienda);
         $("#titcatalogo").html(l.catalogo);
         $("#titpedidos").html(l.pedidos);
-        $("#titasociados").html(l.iniciarsesion);
-        $("#titsecciones").html(l.asociados);
+        $("#titasociados").html(l.asociados);
+        $("#titsecciones").html(l.secciones);
         $("#titmicuenta").html(l.micuenta);
         $("#titpapelera").html(l.papelera);
 

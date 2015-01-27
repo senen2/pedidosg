@@ -34,12 +34,12 @@ function dibujaPedidos(datos)
 	gdatos = datos;
 	entregado = false;
 	eliminando = false;
-	dibujaTitulos(gdatos.cuenta.lenguaje);
-	$("#productos").html("")
+	$("#productos").html("");
 	$("#usuario").html(datos.cuenta.empresa + " / " + datos.cuenta.usuario);
-	dibujaTabla(datos, "pedidos", "pedidos", "leePedido");
 	dibujaLogin(datos.cuenta);
+	dibujaTabla(datos, "pedidos", "pedidos", "leePedido");
 	llenaTercero();
+	dibujaTitulos(gdatos.cuenta.lenguaje);
 }
 
 function leePedido(IDpedido)
