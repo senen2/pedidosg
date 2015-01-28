@@ -27,7 +27,7 @@ function ingreso(response)
 		token = response.token;
 		var pagpend = getCookie("pagpend");
 		if (pagpend==null || pagpend=="")
-			window.location.assign("catalogo.html");
+			window.location.assign("subeprod.html");
 		else {
 			document.cookie = "pagpend="
 			window.location.assign(pagpend);			

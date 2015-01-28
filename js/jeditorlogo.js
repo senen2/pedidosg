@@ -63,13 +63,20 @@ function cambiarClave()
 		$("#error").show();				
 		return;
 	}
-	CambiarClaveP($("#claveactual").val(), $("#clave1nuevo").val(), $("#clave2nuevo").val(), verifica);	
+	CambiarClaveP($("#claveactual").val(), $("#clave1nuevo").val(), verifica);	
 }
 
 function verifica(response)
 {
 	if (response!="ok")
-		$("#aviso").html("La contraseña no se pudo cambiar");
+		//$("#aviso").html("La contraseña no se pudo cambiar");
+		alert("La contraseña no se pudo cambiar");
+	else {
+		alert("la clave fue cambiada con exito")
+		$("#claveactual").val("");
+		$("#clave1nuevo").val("");
+		$("#clave2nuevo").val("");
+	}
 }
 
 function guardarInfoContacto()

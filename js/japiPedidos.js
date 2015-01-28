@@ -473,8 +473,8 @@ function ModificaRenglonPedidoP(IDpedido, IDdetped, cantidad, precio, talla, col
 	datos.IDdetped = IDdetped;
 	datos.cantidad = cantidad;
 	datos.precio = precio;
-	datos.talla = talla;
-	datos.color = color;
+	datos.talla = talla ? talla : "";
+	datos.color = color ? color : "";
 	datos.modo = modo;
 	$.post( 'http://' + servidor + '/functiond/ModificaRenglonPedidoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){

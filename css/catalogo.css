@@ -431,6 +431,9 @@ input.file {
 	position: relative;
 	float: right;
 }
+.col-3 {
+	width: 33%;
+}
 .col-4 {
 	width: 25%;
 }
