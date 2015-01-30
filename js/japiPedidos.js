@@ -40,7 +40,7 @@ function AgregaClienteP(datos) //falta
 function CreaCuentaP(nombre, email, empresa, clave, funcion)
 {
 	$.ajax({
-		url: 'http://' + servidor + "/function/CreaCuentaP('botpi@botpi.com','123','','P','" +  empresa + "','" + nombre + "','" + email + "','" +  clave + "')?pagina=" + pagina,
+		url: 'http://' + servidor + "/function/CreaCuentaP('botpi@botpi.com','123','','P','" +  empresa + "','" + nombre + "','" + email + "','" +  clave + "','" +  idioma + "')?pagina=" + pagina,
 		jsonp: "callback",
 		dataType: "jsonp",
 		success: function( response ) {

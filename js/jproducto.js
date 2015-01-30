@@ -44,10 +44,10 @@ function dibujaProducto(IDproducto, datos)
 	
 	if (item.pvm>0) {
 		$("#pvm").html("$ " + item.pvm.formatMoney(datos.cuentaCat.decimales));
-		$("#pvmtit").show();		
+		$("#divpvm").show();		
 	}
 	else
-		$("#pvmtit").hide();
+		$("#divpvm").hide();
 		
 	$("#referencia").html(item.referencia);
 	$("#descripcion").html(item.descripcion);

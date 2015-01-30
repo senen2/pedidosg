@@ -8,6 +8,10 @@ function inicioCarro()
 	IDcuentaCat = getCookie("IDcuentaCat");
 	pagina = "pdcarro";
 	leeServidor();
+	nota = getCookie("nota");
+	if (nota)
+		$("#notas").val(nota);
+			
 	if (IDcuentaCat==null)
 		window.location.assign("registro.html")
 	else
@@ -114,6 +118,7 @@ function total()
 
 function realizarPedido()
 {
+	document.cookie = "nota=''";
 	actualizarPedido();
 	var datos = {};
 	datos.detalle = [];
@@ -150,6 +155,7 @@ function seguirComprando()
 function login()
 {
 	document.cookie = "pagpend=carro.html";
+	document.cookie = "nota=" + $("#notas").val();
 	window.location.assign("registro.html");
 }
 
