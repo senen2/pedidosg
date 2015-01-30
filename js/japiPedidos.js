@@ -9,7 +9,7 @@ function LeeLenguajeP(lenguaje, funcion)
 		jsonp: "callback",
 		dataType: "jsonp",
 		success: function( response ) {
-			funcion(response);
+			funcion(funcion(response));
 		}
 	});	
 }
@@ -18,7 +18,7 @@ function loginP(comovendedor, funcion)
 {
 	var ven = comovendedor ? 1 : 0;
 	$.ajax({
-		url: "http://" + servidor + "/function/LoginP(" + encabezado + "," + ven + ")?pagina=" + pagina,
+		url: "http://" + servidor + "/function/LoginP(" + encabezado + "," + ven + ",'" + idioma + "')?pagina=" + pagina,
 		jsonp: "callback",
 		dataType: "jsonp",
 		success: function( response ) {
@@ -231,11 +231,11 @@ function ListaProductosxPaginaP(IDcatalogo, desde, nitems, filtros, funcion)
 	});	
 }
 
-function ListaProductosxEmpresaP(empresa, desde, nitems, filtros, funcion)
+function ListaProductosxEmpresaP(empresa, desde, nitems, filtros, idioma, funcion)
 {
 	$.ajax({
 		url: "http://" + servidor + "/function/ListaProductosxEmpresaP(" + encabezado + ",'" + empresa  
-			+ "'," + desde  + "," + nitems + ",'" + filtros + "')?pagina=" + pagina,
+			+ "'," + desde  + "," + nitems + ",'" + filtros + "','" + idioma + "')?pagina=" + pagina,
 		jsonp: "callback",
 		dataType: "jsonp",
 		success: function(response ) {	

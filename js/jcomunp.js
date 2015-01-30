@@ -93,7 +93,7 @@ function dibujaLogin(cuenta)
 				usuario = cuenta.usuario;
 			else	
 				usuario = cuenta.usuario + " / " + cuenta.empresa;
-	$("#ayuda").attr("href",ayuda);			
+	$("#ayuda").attr("href", ayuda);			
 	if (usuario!="") {
 		$("#quierovender").hide();
 		$("#registro").hide();
@@ -125,9 +125,41 @@ function inicioSinLogin()
 	token = token.trim().substr(1,token.length-2);
 	if (token=="''")
 		token = "";
-	l = navigator.languages? navigator.languages[0] : (navigator.language || navigator.userLanguage)
-	l = "en";	
-	LeeLenguajeP(l, dibujaLogin);
+	
+	leeIdioma();
+	LeeLenguajeP(idioma, dibujaLogin);
+}
+
+function leeIdioma()
+{	
+	idioma = getCookie("idioma");
+	if (idioma==null) {
+		idioma = navigator.languages? navigator.languages[0] : (navigator.language || navigator.userLanguage)
+		//idioma = "en";
+		document.cookie = "idioma=" + idioma;		
+	}		
+
+	if (idioma=="es")
+		$("#idioma").val("Español");
+	else	
+		$("#idioma").val("English");
+
+	LeeLenguajeP(idioma, dibujaTitulos);
+}
+
+function cambiarIdioma(funcion)
+{
+	if ($("#idioma").val()=="English")
+		idioma="en";
+	else
+		idioma="es";
+	document.cookie = "idioma=" + idioma;		
+
+	if (pagina=="indexP")
+		LeeLenguajeP(idioma, dibujaTitulos);
+	else
+		LeeLenguajeP(idioma, funcion); 
+				
 }
 
 // ---------------------------- Menu

@@ -10,6 +10,7 @@ function inicioCat()
 	pagina = "pdcatalogo";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Subir_imagenes_de_los_productos";
 	leeServidor();
+	leeIdioma();
 
 	modo = getURLParameter('m');
 	if (modo==null) {
@@ -37,7 +38,7 @@ function inicioCat()
 			window.location.assign("http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=P%C3%A1gina_principal");		
 			return;			
 		}
-		ListaProductosxEmpresaP(empresa, itemini, itemsxpag, filtrosact, dibujaCatalogo)
+		ListaProductosxEmpresaP(empresa, itemini, itemsxpag, filtrosact, idioma, dibujaCatalogo)
 	} 
 	else {
 		IDcatalogo = getURLParameter('ID');
@@ -50,6 +51,11 @@ function inicioCat()
 			window.location.assign("index.html");
 		}
 	}
+}
+
+function refrescar()
+{
+	ListaProductosxPaginaP(gdatos.catalogoCab.ID, itemini, itemsxpag, filtrosact, dibujaCatalogo);
 }
 
 function dibujaCatalogo(datos)
