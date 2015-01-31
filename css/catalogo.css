@@ -12,6 +12,10 @@ a {
 a.normal:hover {
 	text-decoration: underline;
 }
+a:hover label {
+	cursor: pointer;
+	text-decoration: underline;
+}
 hr {
 	margin: 0px;
 	padding: 0px;
