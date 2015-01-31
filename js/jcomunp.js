@@ -127,7 +127,7 @@ function inicioSinLogin()
 		token = "";
 	
 	leeIdioma();
-	LeeLenguajeP(idioma, dibujaLogin);
+	//LeeLenguajeP(idioma, dibujaLogin);
 }
 
 function leeIdioma()

@@ -9,7 +9,7 @@ function inicioCarro()
 	pagina = "pdcarro";
 	leeServidor();
 	nota = getCookie("nota");
-	if (nota)
+	if (nota && nota!="''")
 		$("#notas").val(nota);
 			
 	if (IDcuentaCat==null)

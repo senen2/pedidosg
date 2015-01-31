@@ -105,15 +105,17 @@ function llenaTercero()
 
 function actualizaTotal(datos)
 {
-	var cab, s=0;
+	var cab, s=0, c=0;
 	$.each(gdatos.datos, function(i,item) {
 		if (item.ID==datos.IDpedido)
 			cab = item;
 	});
 	$.each(datos.datos, function(i,item) {
-		s += item.cantidad*item.precio.replace(",","");
+		s += parseFloat(item.cantidad.replace(/\,/g,''))*parseFloat(item.precio.replace(/\,/g,''));
+		c += parseFloat(item.cantidad.replace(/\,/g,''));
 	});
 	cab.valor = s.formatMoney(gdatos.cuenta.decimales);
+	cab.cantidad = c.formatMoney(gdatos.cuenta.decimales);
 	$("#pedidos-" + datos.IDpedido).html(dibujaRenglon(cab, gdatos.titulos));
 }
 
