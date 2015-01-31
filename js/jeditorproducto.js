@@ -68,8 +68,9 @@ function dibujaProducto(IDproducto, datos)
 	dibujaTags();
 	llenaNuevoTag();
 	llenaVariedades();
+	dibujaProduccion();
 	dibujaTitulos(datos.cuenta.lenguaje);
-	
+		
 	if (datos.kardex.datos.length>0) {
 		dibujaTabla(datos.kardex, "kardex", "kardex","");
 		$("#divkardex").show();		
@@ -87,6 +88,15 @@ function dibujaProducto(IDproducto, datos)
 				
 	
 	//dibujaMenu();
+}
+
+function dibujaProduccion()
+{
+	var cad = "";
+	$.each(gdatos.procesos, function(i,item) {
+		cad = cad + "<div>" + item.proceso + "</div>"; 
+	} );
+	$("#produccion").val(cad);	
 }
 
 function llenaVariedades()
