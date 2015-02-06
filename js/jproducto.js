@@ -100,6 +100,21 @@ function dibujaProducto(IDproducto, datos)
 		$("#agregarAlCatalogo").show();
 	else
 		$("#agregarAlCatalogo").hide();
+		
+	if (item.tipo==1 | item.tipo==2)
+		dibujaProduccion();
+	else
+		$("#divproduccion").hide();	
+}
+
+function dibujaProduccion()
+{
+	var cad = "", cadmp;
+	$.each(gdatos.produccion.procesos, function(i,item) {
+		cad += '<div><input id="proceso-' + i + '" type="checkbox">' + item.nombre + '</input></div>';
+	} );
+	$("#divproduccion").html(cad + '<br>');		
+	$("#divproduccion").show();		
 }
 
 function llenaColoresxTalla()

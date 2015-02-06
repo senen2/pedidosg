@@ -175,6 +175,8 @@ function dibujaMenu()
 		+ '<a class="nav-link v2" href="tcat.html"><div class="nav-col v2"><span id="titsecciones">Secciones</span></div></a>'
 		+ '<a class="nav-link v2" href="editorlogo.html"><div class="nav-col v2"><span id="titmicuenta">Mi Cuenta</span></div></a>'
 		+ '<a class="nav-link v2" href="tactivap.html"><div class="nav-col v2"><span id="titpapelera">Papelera</span></div></a>'
+		+ '<a class="nav-link v2" href="tareas.html"><div class="nav-col v2"><span id="tittareas">Tareas</span></div></a>'
+		+ '<a class="nav-link v2" href="equipos.html"><div class="nav-col v2"><span id="titequipos">Equipos</span></div></a>'
 	)
 }
 /*

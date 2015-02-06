@@ -56,12 +56,46 @@ function leePedido(IDpedido)
 
 function dibujaPedido(datos)
 {
-	gdatosdet=datos;
-	$("#productos").html(datos.cuadro);
+	gdatosped=datos;
+	//$("#productos").html(datos.cuadro);
+	dibujaProductos();
 	$("#notas").val(datos.notas);
 	$("#titref").removeClass("DN");
 	actualizaTotal(datos);
 	//dibujaCuadro(datos, "productos", 300, 200);	
+}
+
+function dibujaProductos()
+{
+	var cad="";
+	$.each(gdatosped.datos, function(i,item) {
+		 cad += '<div class="col item" style="height: 320px;width: 200px">'
+		 		+ '<a href="#" onclick="editaVariedad(' + item.ID + ')">'
+		 			+ '<img src="' + item.imagen + '">' 
+		 		+ '</a>'
+		 		+ '<label class="item-name">' + item.producto+ '</label>'
+		 		+ '<label class="item-ref">Ref ' + item.referencia + '</label>'
+		 		+ '<label class="item-name">' + 'Cantidad ' + item.cantidad + '</label>' 
+		 		+ '<label class="item-price">' + 'Precio ' + item.precio + '</label>' 
+		 		+ dibujaProduccion(item.ID)
+		 		+ '<label><a href="#" onclick="eliminaVariedad(' + item.ID + ');">quitar</a></label>'
+		 		+ '<div>' 
+			 		+ '<label class="item-price col">Despachado</label>' 
+			 		+ '<input class="col" id="entregado-' + item.ID + '" type="checkbox" onclick="actualizaRenglonDespacho(' + item.ID + ');">' 
+		 		+ '</div>'
+		 		 + '</div>';	
+	});
+	$("#productos").html(cad);
+}
+
+function dibujaProduccion(IDdetped)
+{
+	var cad="";
+	$.each(gdatosped.produccion.procesos, function(i,item) {
+		if (item.IDdetped==IDdetped)
+			cad += '<label class="item-ref">' + item.proceso + '</label>';
+	});
+	return cad;
 }
 
 function actualizaDespacho(ID)
@@ -75,7 +109,7 @@ function actualizaDespacho(ID)
 function actualizaRenglonDespacho(ID)
 {
 	var entregado=0;
-	$.each(gdatosdet.datos, function(i,item) {
+	$.each(gdatosped.datos, function(i,item) {
 		if (item.ID==ID) {
 			if (item.entregado>0)
 				entregado=0;
@@ -140,11 +174,12 @@ function verVariedad(url)
 	LeeVariedadesxBaseP(IDproductobase, seleccionarVariedad)
 }
 
-function editaVariedad(IDpeddet)
+function editaVariedad(IDdetped)
 {
 	gdatoseditar = null;
-	$.each(gdatosdet.datos, function(i,item) {
-		if (item.ID==IDpeddet) {
+	gIDdetped=IDdetped;
+	$.each(gdatosped.datos, function(i,item) {
+		if (item.ID==IDdetped) {
 			gdatoseditar = item
 			return;
 		}
@@ -204,7 +239,34 @@ function mostrarVariedad()
 		$("#precio").val(gdatosvar.producto.precio);
 		$("#cantidad").val(1);
 	}
+	$("#procesos").html(dibujaEditarProduccion(gIDdetped));
+}
 
+function dibujaEditarProduccion(IDdetped)
+{
+	var cad="", checked;
+	$.each(gdatosvar.produccion.procesos, function(i,item) {
+		checked=""
+		if (buscaProceso(item.ID)!=null)
+			checked = "checked";
+		
+	 	cad	+= '<div>' 
+		 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + checked+ '>' 
+		 		+ '<label class="item-name col">' + item.nombre + '</label>' 
+	 		+ '</div><br>'
+			
+	});
+	return cad;
+}
+
+function buscaProceso(IDproceso)
+{
+	var proceso=null;
+	$.each(gdatosped.produccion.procesos, function(i,item) {
+		if (item.IDproductosproceso==IDproceso)
+			proceso=item;
+	});	
+	return proceso
 }
 
 function llenaColoresxTalla()

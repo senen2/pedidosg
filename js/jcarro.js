@@ -45,6 +45,7 @@ function dibujaCarro(datos)
 				prop = prop + '<label class="item-ref">Color: ' + item.color+ '</label>'				
 			}
 
+
 			cad = cad + '<div class="hor-item">'
 					  		+ '<a href="producto.html?ID='+ item.IDproducto + '">'
 					  			+ '<img src="' + item.imagen + '" height="70" class="col" />'
@@ -66,6 +67,7 @@ function dibujaCarro(datos)
 					  		+ '</div>'
 					  		+ '<div class="col" style="padding-left:10px">'
 					  	  		+ '<a class="btn" href="#" onclick="actualizarPedido();" style="font-weight: bold">' + l.actualizar + '</a>'
+					  	  		+ dibujaProcesos()
 					  	  		+ '<br><a class="btn" href="#" onclick="quitarDelCarro('+ item.ID + ');" style="font-weight: bold">' + l.quitar + '</a>'
 					  		+ '</div><br>'
 					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
@@ -89,6 +91,15 @@ function dibujaCarro(datos)
 
 	//if (datos.cuenta!=null)
 	//	dibujaMenu();
+}
+
+function dibujaProcesos()
+{
+	var cad="";
+	$.each(gdatos.produccion, function(i,item) {
+		cad += '<div><input id="proceso-' + i + '" type="checkbox">' + item.nombre + '</input></div>';
+	} );	
+	return cad;
 }
 
 function dibujaTotal()

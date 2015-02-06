@@ -25,6 +25,7 @@ function dibujaTitulos(l)
 		$("#titcantidad").html(l.cantidad);
 		$("#tittamano").html(l.tamano);
 		$("#titcolor").html(l.color);		
+		$("#titregresar").html(l.regresar);		
 
 		// carro.html
 		$("#titrealizarpedido").html(l.realizarpedido);		

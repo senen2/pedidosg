@@ -19,33 +19,24 @@ function inicioEditorProd()
 		window.location.assign("registro.html");		
 	}
 
+	modo="produccion";
 	var IDproducto = getURLParameter('ID');
 	if (IDproducto!=null & IDproducto!=0)
-		ListaProductoP(IDproducto, dibujaProducto)		
+		ListaProductoP(IDproducto, dibuja)		
 	else {
 		document.cookie = "pagpend=" + document.URL;					
 		window.location.assign("registro.html");		
-	}
-	
+	}	
 }
 
-function dibujaProducto(IDproducto, datos)
+function dibuja(IDproducto, datos)
 {
-	gdatos = datos;
-	$("#usuario").html(datos.cuenta.empresa + " / " + datos.cuenta.usuario);
-	var cad = "", tallas = "", colores = "";
-	var item = datos.producto;
-	
+	gdatos=datos;
+	$("#usuario").html(gdatos.cuenta.empresa + " / " + gdatos.cuenta.usuario);
 	$("#busy").hide();	
+
+	var item = gdatos.producto;
 	$("#imgprod").attr("src", item.imagen + "?" + gdatos.time);
-	$("#nombre").val(item.nombre);
-	$("#precio").val(item.precio);
-	$("#pvm").val(item.pvm);
-	$("#referencia").val(item.referencia);
-	$("#barcode").val(item.barcode);
-	$("#descripcion").val(item.descripcion);
-	$("#IDimagen").val(item.IDproductobase);
-	$("#dir").val(datos.cuenta.dir);
 	$("#formaImagen").attr("action", "http://" + servidor + "/upload");
 
 	if (gdatos.prevProducto>0) {
@@ -62,41 +53,104 @@ function dibujaProducto(IDproducto, datos)
 	else
 		$("#sigProd").hide();
 	
+	dibujaTitulo(gdatos.cuenta.titulo, gdatos.cuenta.ID + ".jpg");
+	dibujaLogin(gdatos.cuenta);
 
-	dibujaTitulo(datos.cuenta.titulo, datos.cuenta.ID + ".jpg");
-	dibujaLogin(datos.cuenta);
+	switch (modo) {
+		case "producto":
+			dibujaDatos();
+			break;
+		case "kardex":
+			dibujaKardex();
+			break;
+		case "produccion":
+			dibujaProduccion();
+			break;
+	}
+}
+
+function dibujaDatos()
+{
+	modo = "producto";
+	$("#divdatos").show();
+	$("#divkardex").hide()
+	$("#divproduccion").hide()
+	$("#tab-datos").addClass("active");
+	$("#tab-kardex").removeClass("active")
+	$("#tab-produccion").removeClass("active");
+	
+	var item = gdatos.producto;
+	$("#nombre").val(item.nombre);
+	$("#precio").val(item.precio);
+	$("#pvm").val(item.pvm);
+	$("#referencia").val(item.referencia);
+	$("#barcode").val(item.barcode);
+	$("#descripcion").val(item.descripcion);
+	$("#IDimagen").val(item.IDproductobase);
+	$("#dir").val(gdatos.cuenta.dir);
 	dibujaTags();
 	llenaNuevoTag();
 	llenaVariedades();
-	dibujaProduccion();
-	dibujaTitulos(datos.cuenta.lenguaje);
-		
-	if (datos.kardex.datos.length>0) {
-		dibujaTabla(datos.kardex, "kardex", "kardex","");
+	dibujaTitulos(gdatos.cuenta.lenguaje);				
+}
+
+function dibujaKardex()
+{
+	modo = "kardex";		
+	$("#divdatos").hide();
+	$("#divkardex").show()
+	$("#divproduccion").hide()
+	$("#tab-datos").removeClass("active");
+	$("#tab-kardex").addClass("active")
+	$("#tab-produccion").removeClass("active");
+
+	if (gdatos.kardex.datos.length>0) {
+		dibujaTabla(gdatos.kardex, "kardex", "kardex","");
 		$("#divkardex").show();		
 	}
 	else
 		$("#divkardex").hide();
 		
-	if (datos.proveedor && datos.proveedores.length>0) {
-		llenaSelector(datos.proveedores, "proveedor")
-		poneSelectorxID(datos.proveedor.ID, "proveedor");
+	if (gdatos.proveedor && gdatos.proveedores.length>0) {
+		llenaSelector(gdatos.proveedores, "proveedor")
+		poneSelectorxID(gdatos.proveedor.ID, "proveedor");
 		$("#divproveedor").show();
 	}
 	else
 		$("#divproveedor").hide();
-				
-	
-	//dibujaMenu();
+
+	dibujaTitulos(gdatos.cuenta.lenguaje);				
 }
 
 function dibujaProduccion()
 {
-	var cad = "";
-	$.each(gdatos.procesos, function(i,item) {
-		cad = cad + "<div>" + item.proceso + "</div>"; 
+	modo = "produccion"
+	$("#divdatos").hide();
+	$("#divkardex").hide()
+	$("#divproduccion").show()
+	$("#tab-datos").removeClass("active");
+	$("#tab-kardex").removeClass("active")
+	$("#tab-produccion").addClass("active");
+
+	var cad = "", cadmp;
+	$.each(gdatos.produccion.procesos, function(i,item) {
+		cadmp=""; 
+		$.each(gdatos.produccion.mp, function(j, mp) {
+			if (mp.IDproceso==item.ID)
+				cadmp += '<div style="font-size:8px">' + mp.nombremp + '</div>'; 
+		} );
+		cad += '<div class="col" style="border-style:solid; border-width:1px;width: 120px; height: 160px;margin-right:5px;padding:5px"'
+					+ 'onclick="editarProceso(' + i + ');">'
+			   + item.nombre + cadmp
+			   + '<div style="font-size:9px"><br>Ficha Tecnica' 
+			   		+ '<textarea style="border-style:solid; border-width:1px;width: 100px; height: 80px;font-size:8px">' 
+			   		+ item.ficha + '</textarea></div>' 
+			   + '</div>';
+
 	} );
-	$("#produccion").val(cad);	
+	$("#produccion").html(cad);	
+
+	dibujaTitulos(gdatos.cuenta.lenguaje);				
 }
 
 function llenaVariedades()
@@ -234,11 +288,60 @@ function llenaNuevoTag()
 function verProducto(IDproducto)
 {
 	verPendiente();
-	ListaProductoP(IDproducto, dibujaProducto);
+	ListaProductoP(IDproducto, dibuja);
 }
 
 function verPendiente()
 {
 	if (ultcambio)
 		actualizaCampo(ultcambio);
+}
+
+// ----------------------------- editor procesos
+
+function tapar()
+{
+	$("#editorproceso").show();
+	//$('#editorproceso').css({'width':$(window).width()/2,'height':$(document).height()/4});	
+	$("#mask2").removeClass("DN");
+	$('#mask2').css({'width':$(window).width(),'height':$(document).height()});	
+}
+
+function destapar()
+{
+	$("#editorproceso").hide();
+	$("#mask2").addClass("DN");
+	$('#mask2').css({'width':0,'height':0});	
+	
+}
+
+function editarProceso(i)
+{
+	var item = gdatos.produccion.procesos[i], cadmp=""; 
+	$.each(gdatos.produccion.mp, function(i, mp) {
+		if (mp.IDproceso==item.ID)
+			cadmp += '<div>' + mp.nombremp + '</div>'; 
+	} );
+	cad = '<div class="sector v2" style=" z-index:9010;position: fixed;top:20%;left:30%">'
+		   +  '<h3>' + item.nombre + '</h3>' + '<div>' + cadmp + '</div>'
+		   + '<br><div>Ficha Tecnica<br>' 
+		   		+ '<textarea id="fichatecnica" style="border-style:solid; border-width:1px;width: 200px; height:300px">' 
+		   		+ item.ficha + '</textarea></div>' 
+		   + '<div><a id="titcerrar" class="btn" onclick="destapar();">Cerrar</a></div>'
+		   + '</div>';
+
+	$("#editorproceso").html(cad);
+	//$("#fichatecnica").attr("top");
+	tapar();	
+	
+}
+
+function aceptarEdicionProceso()
+{
+	
+}
+
+function cancelarEdicionProceso()
+{
+	
 }
