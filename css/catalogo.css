@@ -24,6 +24,22 @@ hr {
 footer {
 	display: block;
 }
+.node {
+  	border: solid 1px white;
+  	font: 12px sans-serif;
+  	font-weight: bold;
+  	line-height: 20px;
+  	vertical-align: middle;
+  	overflow: hidden;
+  	text-align: center;
+  	background-color: #DDD;
+  	margin-bottom: 1px;
+  	margin-right: 1px;
+}
+.node:hover {
+	box-shadow: gray 0px 0px 0px 1px;
+
+}
 .mask {
     position: absolute;
     z-index: 9000;
