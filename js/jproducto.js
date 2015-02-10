@@ -140,13 +140,20 @@ function llenaColoresxTalla()
 
 function agregarAlCarro()
 {
-	var talla=$("#talla").val(), color=$("#color").val();
+	var talla=$("#talla").val(), color=$("#color").val(), procesos=[], p;
 	if (gdatos.tallas.length==0)
 		talla="";
 	if (gdatos.colores.length==0)
 		color="";
 	
-	AgregarAlCarroP(gdatos.producto.ID, IDcuentacli, 0, talla, color, $("#cantidad").val(), -1, salir);
+	$.each(gdatos.produccion.procesos, function(i,item) {
+		p = {};
+		p.ID=item.ID;
+		p.activo = $("#proceso-"+i).prop("checked") ? 1 : 0;		
+		procesos.push(p);
+	} );	
+	
+	AgregarAlCarroP(gdatos.producto.ID, IDcuentacli, 0, talla, color, $("#cantidad").val(), -1, procesos, salir);
 }
 
 function salir()

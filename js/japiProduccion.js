@@ -52,3 +52,13 @@ function LeeEquiposP(funcion)
 		}
 	});	
 }
+
+function ActivaProcesoCarroP(IDproceso, activo)
+{
+	datos={}
+	datos.IDproceso=IDproceso;
+	datos.activo=activo;
+	$.post( 'http://' + servidor + '/functiond/ActivaProcesoCarroP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
+	 	.always(function(){
+	 	});
+}

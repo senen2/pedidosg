@@ -45,7 +45,6 @@ function dibujaCarro(datos)
 				prop = prop + '<label class="item-ref">Color: ' + item.color+ '</label>'				
 			}
 
-
 			cad = cad + '<div class="hor-item">'
 					  		+ '<a href="producto.html?ID='+ item.IDproducto + '">'
 					  			+ '<img src="' + item.imagen + '" height="70" class="col" />'
@@ -67,7 +66,7 @@ function dibujaCarro(datos)
 					  		+ '</div>'
 					  		+ '<div class="col" style="padding-left:10px">'
 					  	  		+ '<a class="btn" href="#" onclick="actualizarPedido();" style="font-weight: bold">' + l.actualizar + '</a>'
-					  	  		+ dibujaProcesos()
+					  	  		+ dibujaProcesos(item.ID)
 					  	  		+ '<br><a class="btn" href="#" onclick="quitarDelCarro('+ item.ID + ');" style="font-weight: bold">' + l.quitar + '</a>'
 					  		+ '</div><br>'
 					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
@@ -93,14 +92,23 @@ function dibujaCarro(datos)
 	//	dibujaMenu();
 }
 
-function dibujaProcesos()
+function dibujaProcesos(IDcarro)
 {
 	var cad="";
 	$.each(gdatos.produccion, function(i,item) {
-		cad += '<div><input id="proceso-' + i + '" type="checkbox">' + item.nombre + '</input></div>';
+		if (item.IDcarro==IDcarro)
+			cad += '<div><input id="proceso-' + i + '" type="checkbox"' + (item.activo=="1" ? " checked": "") 
+					+ ' onclick="activaProceso(' + i + ')">' 
+					+ item.nombre + '</input></div>';
 	} );	
 	return cad;
 }
+
+function activaProceso(i)
+{
+	ActivaProcesoCarroP(gdatos.produccion[i].ID, $("#proceso-" + i).prop("checked") ? 1:0)
+}
+
 
 function dibujaTotal()
 {

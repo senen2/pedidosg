@@ -519,7 +519,7 @@ function LeerCarroP(IDcuentaCat, dibujaCarro)
 	});		
 }
     
-function AgregarAlCarroP(IDproducto, IDcuentacli, IDcuentaven, talla, color, cantidad, precio, funcion)
+function AgregarAlCarroP(IDproducto, IDcuentacli, IDcuentaven, talla, color, cantidad, precio, procesos, funcion)
 {
 	var datos={};
 	datos.IDproducto = IDproducto;
@@ -529,6 +529,7 @@ function AgregarAlCarroP(IDproducto, IDcuentacli, IDcuentaven, talla, color, can
 	datos.color = color;
 	datos.cantidad = cantidad;
 	datos.precio = precio;
+	datos.procesos = procesos;
 	$.post( 'http://' + servidor + '/functiond/AgregarAlCarroP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
 	 		funcion();
