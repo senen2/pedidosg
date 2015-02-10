@@ -53,7 +53,6 @@ function dibujaProcesos(IDequipo)
 	$.each(gdatos.procesos, function(i, item) {
 		if (item.IDequipo==IDequipo)
 			cad += '<div style"padding: 5px">' 
-			 		+ '<input class="col" type="checkbox" onclick="actualizaListo(' + item.ID + ');">' 
 			 		+ '<label class="item-price col">' + item.nombre + ' - ' + item.producto + ' - ' + item.cliente + '</label>' 
 		 		+ '</div><br>'
 	});		

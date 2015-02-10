@@ -92,8 +92,8 @@ function dibujaProduccion(IDdetped)
 {
 	var cad="";
 	$.each(gdatosped.produccion.procesos, function(i,item) {
-		if (item.IDdetped==IDdetped)
-			cad += '<label class="item-ref">' + item.proceso + '</label>';
+		if (item.IDdetped==IDdetped & item.activo=="1")
+			cad += '<label class="item-ref">' + item.nombre + '</label>';
 	});
 	return cad;
 }
@@ -244,29 +244,15 @@ function mostrarVariedad()
 
 function dibujaEditarProduccion(IDdetped)
 {
-	var cad="", checked;
-	$.each(gdatosvar.produccion.procesos, function(i,item) {
-		checked=""
-		if (buscaProceso(item.ID)!=null)
-			checked = "checked";
-		
-	 	cad	+= '<div>' 
-		 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + checked+ '>' 
-		 		+ '<label class="item-name col">' + item.nombre + '</label>' 
-	 		+ '</div><br>'
-			
-	});
-	return cad;
-}
-
-function buscaProceso(IDproceso)
-{
-	var proceso=null;
+	var cad="";
 	$.each(gdatosped.produccion.procesos, function(i,item) {
-		if (item.IDproductosproceso==IDproceso)
-			proceso=item;
+		if (item.IDdetped==IDdetped)
+		 	cad	+= '<div>' 
+			 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + '>' 
+			 		+ '<label class="item-name col">' + item.nombre + '</label>' 
+		 		+ '</div><br>'
 	});	
-	return proceso
+	return cad;
 }
 
 function llenaColoresxTalla()
@@ -330,15 +316,25 @@ function agregar()
 
 function aceptar()
 {
+	var procesos = [];
+	$.each(gdatosped.produccion.procesos, function(i,item) {
+		if (item.IDdetped==gIDdetped) {
+			p = {};
+			p.ID = item.ID;
+			p.activo = $("#proceso-"+item.ID).prop("checked") ? 1 : 0;
+			procesos.push(p);						
+		}
+	});		
+		
 	if (gdatoseditar)
-		ModificaRenglonPedidoP(gIDpedido, gdatoseditar.ID, $("#cantidad").val(), $("#precio").val(), $("#talla").val(), $("#color").val(), gmodo, dibujaPedido);	
+		ModificaRenglonPedidoP(gIDpedido, gdatoseditar.ID, $("#cantidad").val(), $("#precio").val(), $("#talla").val(), $("#color").val(), gmodo, procesos, dibujaPedido);	
 	else
 		if (gdatosvar.variedades.length==1)
-			AgregaAlPedidoP(gIDpedido, gdatosvar.variedades[0].ID, $("#cantidad").val(), $("#precio").val(), gmodo, dibujaPedido);
+			AgregaAlPedidoP(gIDpedido, gdatosvar.variedades[0].ID, $("#cantidad").val(), $("#precio").val(), gmodo, procesos, dibujaPedido);
 		else 
 			$.each(gdatosvar.variedades, function(i,item) {
 				if (item.talla==$("#talla").val() & item.color==$("#color").val())
-					AgregaAlPedidoP(gIDpedido, item.ID, $("#cantidad").val(), $("#precio").val(), gmodo, dibujaPedido);	  
+					AgregaAlPedidoP(gIDpedido, item.ID, $("#cantidad").val(), $("#precio").val(), gmodo, procesos, dibujaPedido);	  
 			});
 
 	cancelar();

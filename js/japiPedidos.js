@@ -466,7 +466,7 @@ function AgregaAlPedidoP(IDpedido, IDvariedad, cantidad, precio, modo, funcion)
 	
 }
 
-function ModificaRenglonPedidoP(IDpedido, IDdetped, cantidad, precio, talla, color, modo, funcion)
+function ModificaRenglonPedidoP(IDpedido, IDdetped, cantidad, precio, talla, color, modo, procesos, funcion)
 {
 	datos = {};
 	datos.IDpedido = IDpedido;
@@ -476,6 +476,7 @@ function ModificaRenglonPedidoP(IDpedido, IDdetped, cantidad, precio, talla, col
 	datos.talla = talla ? talla : "";
 	datos.color = color ? color : "";
 	datos.modo = modo;
+	datos.procesos = procesos;
 	$.post( 'http://' + servidor + '/functiond/ModificaRenglonPedidoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
 	 		if (funcion)

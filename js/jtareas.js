@@ -44,14 +44,9 @@ function dibujaTareas(datos)
 			+ '">' 
 				+ item.nombre + " - " + item.producto
 	 			+ '<br><label class="item-price col">' + item.cliente + '</label>'
-	 			+ '<br><div>' 
-		 			+ '<label class="item-price col">' + equipo + '</label>' 
-		 			+ '<a class="btn v4 col" href="#" onclick="cambiaEquipo(' + item.ID + ');" >Cambiar</a>'
-	 			+ '</div>' 		 			
-				+ dibujaMP(item.ID)
-				+ '<div>' 
-			 		+ '<br><input class="col" type="checkbox" onclick="terminaTarea(' + item.ID + ');">Tarea Terminada' 
-		 		+ '</div>'
+	 			+ '<br><label class="item-price col">' + equipo + '</label>'
+				+ '<br>' + dibujaMP(item.ID)
+				+ '<br><input class="col" type="checkbox" onclick="terminaTarea(' + item.ID + ');">Tarea Terminada' 
 			+ '</div>'
 	});	
 	$("#divtareas").html(cad);	
@@ -66,7 +61,7 @@ function dibujaMP(IDproceso)
 		if (item.IDpedidosproceso==IDproceso)
 			cad += '<div style"padding: 5px">' 
 			 		+ '<input class="col" type="checkbox" onclick="actualizaListo(' + item.ID + ');">' 
-			 		+ '<label class="item-price col">' + item.nombre + '</label>' 
+			 		+ '<label class="item-price col">' + item.nombre + ' - ' + item.cantidad + '</label>' 
 		 		+ '</div><br>'
 	});		
 	return cad;
