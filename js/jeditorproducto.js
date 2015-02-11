@@ -133,23 +133,54 @@ function dibujaProduccion()
 	$("#tab-produccion").addClass("active");
 
 	var cad = "", cadmp;
-	$.each(gdatos.produccion.procesos, function(i,item) {
-		cadmp=""; 
-		$.each(gdatos.produccion.mp, function(j, mp) {
-			if (mp.IDproceso==item.ID)
-				cadmp += '<div style="font-size:8px">' + mp.nombremp + '</div>'; 
+	if (typeof gdatos.produccion!='undefined' & gdatos.producto.tipo>0) {
+		$.each(gdatos.produccion.procesos, function(i,item) {
+			cadmp="";
+			$.each(gdatos.produccion.mp, function(j, mp) {
+				if (mp.IDproceso==item.ID)
+					cadmp += '<div style="font-size:8px">' + mp.nombremp + '</div>'; 
+			} );
+			cad += '<div class="col" style="border-style:solid; border-width:1px;width: 120px; height: 160px;margin-right:5px;padding:5px"'
+						+ 'onclick="editarProceso(' + i + ');">'
+				   + item.nombre 
+				   + cadmp
+				   + '<div style="font-size:9px"><br>Ficha Tecnica' 
+				   		+ '<textarea style="border-style:solid; border-width:1px;width: 100px; height: 80px;font-size:8px">' 
+				   		+ item.ficha + '</textarea></div>' 
+				   + '</div>';
+		
 		} );
-		cad += '<div class="col" style="border-style:solid; border-width:1px;width: 120px; height: 160px;margin-right:5px;padding:5px"'
-					+ 'onclick="editarProceso(' + i + ');">'
-			   + item.nombre + cadmp
-			   + '<div style="font-size:9px"><br>Ficha Tecnica' 
-			   		+ '<textarea style="border-style:solid; border-width:1px;width: 100px; height: 80px;font-size:8px">' 
-			   		+ item.ficha + '</textarea></div>' 
-			   + '</div>';
-
-	} );
-	$("#produccion").html(cad);	
-
+		cad += '<button onclick="agregaProceso();">Agregar Proceso</button>';		
+	} 
+	$("#produccion").html(
+		'<div>Tipo de Producto: <select id="tipo" onchange="cambiaTipo();">'
+			+ '<option>Plantilla</option>'
+			+ '<option>Generico</option>'
+			+ '<option>Particular</option>'
+			+ '<option>Materia Prima</option>'
+			+ '<option>Servicio</option>'
+		+ '</select></div><br>'
+		+ cad 
+	);
+	switch (gdatos.producto.tipo)
+	{
+		case 0:
+			$("#tipo").val("Materia Prima");
+			break;
+		case 1:
+			$("#tipo").val("Plantilla");
+			break;
+		case 2:
+			$("#tipo").val("Generico");
+			break;
+		case 3:
+			$("#tipo").val("Particular");
+			break;
+		case 4:
+			$("#tipo").val("Servicio");
+			break;
+	}		
+	
 	dibujaTitulos(gdatos.cuenta.lenguaje);				
 }
 
@@ -315,19 +346,28 @@ function destapar()
 	
 }
 
-function editarProceso(i)
+function editarProceso(procesoi)
 {
-	var item = gdatos.produccion.procesos[i], cadmp=""; 
+	cambioFicha=false;
+	var item = gdatos.produccion.procesos[procesoi], cadmp="";
+	gprocesoi=procesoi; 
 	$.each(gdatos.produccion.mp, function(i, mp) {
 		if (mp.IDproceso==item.ID)
-			cadmp += '<div>' + mp.nombremp + '</div>'; 
+			cadmp += '<div style="font-size:12px;">' 
+						+ mp.nombremp 
+						+ '<a href="#" onclick="borraMP(' + i + ')"><img src="images/delete.png" style="height:15px"></a>' 
+					+ '</div>'; 
 	} );
-	cad = '<div class="sector v2" style=" z-index:9010;position: fixed;top:20%;left:30%">'
-		   +  '<h3>' + item.nombre + '</h3>' + '<div>' + cadmp + '</div>'
+	cad = '<div class="sector v2" style=" z-index:9010;position: fixed;top:5%;left:30%">'
+		   + '<h3>' + item.nombre + '</h3>' 
+		   + '<div style="border-style:solid; border-width:1px; padding:-3px;">' 
+		   		+ cadmp
+		   		+ '<br><button onclick="agregaMP();">Agregar Material</button>' 
+   		   + '</div>'
 		   + '<br><div>Ficha Tecnica<br>' 
-		   		+ '<textarea id="fichatecnica" style="border-style:solid; border-width:1px;width: 200px; height:300px">' 
+		   		+ '<textarea id="ficha" style="border-style:solid; border-width:1px;width: 300px; height:200px" onchange="cambioFicha=true;">' 
 		   		+ item.ficha + '</textarea></div>' 
-		   + '<div><a id="titcerrar" class="btn" onclick="destapar();">Cerrar</a></div>'
+		   + '<div class="col"><a id="titcerrar" class="btn v4" onclick="cerrar();">Cerrar</a></div>'
 		   + '</div>';
 
 	$("#editorproceso").html(cad);
@@ -336,12 +376,69 @@ function editarProceso(i)
 	
 }
 
-function aceptarEdicionProceso()
+function cerrar()
 {
-	
+	destapar();
+	if (cambioFicha)
+		CambiaFichaProductoP(gdatos.produccion.procesos[gprocesoi].ID, $("#ficha").val(), refrescaProducto)
+	else
+		refrescaProducto();
 }
 
-function cancelarEdicionProceso()
+function agregaMP(IDproceso)
 {
+	var nombre = prompt("Nombre del Material");
+	CreaMaterialP(gdatos.producto.ID, gdatos.produccion.procesos[gprocesoi].ID, nombre, vaRefrescaProceso);
+}
+
+function borraMP(i)
+{
+	BorraMaterialP(gdatos.produccion.mp[i].ID, vaRefrescaProceso);
+}
+
+function agregaProceso()
+{
+	var nombre = prompt("Nombre del Proceso");
+	CreaProcesoP(gdatos.producto.ID, nombre, refrescaProducto);
+}
+
+function refrescaProducto()
+{
+	ListaProductoP(gdatos.producto.ID, dibuja);
+}
+
+function vaRefrescaProceso()
+{
+	ListaProductoP(gdatos.producto.ID, refrescaProceso);
+}
+
+function refrescaProceso(IDproducto, datos)
+{
+	gdatos=datos;
+	editarProceso(gprocesoi);	
+}
+
+function cambiaTipo()
+{
+	var tipo = "";
+	switch ($("#tipo").val())
+	{
+		case "Materia Prima":
+			tipo=0;
+			break;
+		case "Plantilla":
+			tipo=1;
+			break;
+		case "Generico":
+			tipo=2;
+			break;
+		case "Particular":
+			tipo=3;
+			break;
+		case "Servicio":
+			tipo=4;
+			break;
+	}	
 	
+	CambiaTipoProductoP(gdatos.producto.ID, tipo, refrescaProducto)
 }

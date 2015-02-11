@@ -27,8 +27,8 @@ function dibujaTareas(datos)
 	var cad = "", noches, equipo
 		t = $("#divtareas").position().top,
 		l = $("#divtareas").position().left,
-		h = parseInt(Math.sqrt(($(window).width())*($(document).height()-t-40)/n/1.62))-1,
-		h = h>300 ? 160 : h,
+		h1 = parseInt(Math.sqrt(($(window).width())*($(document).height()-t-40)/n/1.62))-1,
+		h = h1>300 ? 160 : h1,
 		w = parseInt(1.62 * h); 		
  		
 	$.each(gdatos.procesos, function(i, item) {
