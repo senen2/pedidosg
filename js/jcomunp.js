@@ -139,7 +139,7 @@ function leeIdioma()
 		document.cookie = "idioma=" + idioma;		
 	}		
 
-	if (idioma=="es")
+	if (idioma.substring(0,2)=="es")
 		$("#idioma").val("Español");
 	else	
 		$("#idioma").val("English");

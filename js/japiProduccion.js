@@ -63,6 +63,8 @@ function ActivaProcesoCarroP(IDproceso, activo)
 	 	});
 }
 
+// --------------------------- plantillas
+
 function CreaProcesoP(IDproducto, nombre, funcion)
 {
 	datos={}
@@ -120,5 +122,27 @@ function CambiaFichaProductoP(IDproceso, ficha, funcion)
 	 	.always(function(){
 	 		if (funcion)
 	 			funcion();
+	 	});
+}
+
+// ----------------------------- pedidos
+
+function CambiaListoPedidoP(IDmp, listo)
+{
+	datos={}
+	datos.IDmp=IDmp;
+	datos.listo=listo;
+	$.post( 'http://' + servidor + '/functiond/CambiaListoPedidoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
+	 	.always(function(){
+	 	});
+}
+
+function CambiaEquipoPedidoP(IDproceso, IDequipo)
+{
+	datos={}
+	datos.IDproceso=IDproceso;
+	datos.IDequipo=IDequipo;
+	$.post( 'http://' + servidor + '/functiond/CambiaEquipoPedidoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
+	 	.always(function(){
 	 	});
 }

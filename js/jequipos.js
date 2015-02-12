@@ -28,7 +28,7 @@ function dibujaEquipos(datos)
 		t = $("#divtareas").position().top,
 		l = $("#divtareas").position().left,
 		h = parseInt(Math.sqrt(($(window).width())*($(document).height()-t-40)/n/1.62))-1,
-		h = h>300 ? 160 : h,
+		h = h>160 ? 160 : h,
 		w = parseInt(1.62 * h); 		
  		
 	$.each(gdatos.equipos, function(i, item) {
