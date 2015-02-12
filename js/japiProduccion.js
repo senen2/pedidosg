@@ -146,3 +146,15 @@ function CambiaEquipoPedidoP(IDproceso, IDequipo)
 	 	.always(function(){
 	 	});
 }
+
+function GuardaOrdenProcesosP(IDequipo, procesos, funcion)
+{
+	datos={}
+	datos.IDequipo=IDequipo;
+	datos.procesos=procesos;
+	$.post( 'http://' + servidor + '/functiond/GuardaOrdenProcesosP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
+	 	.always(function(){
+	 		if (funcion)
+	 			funcion();
+	 	});
+}
