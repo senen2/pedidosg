@@ -450,7 +450,7 @@ function ActualizaDespachoLineaP(ID, entregado, funcion)
 	});	
 }
 
-function AgregaAlPedidoP(IDpedido, IDvariedad, cantidad, precio, modo, funcion)
+function AgregaAlPedidoP(IDpedido, IDvariedad, cantidad, precio, modo, procesos, funcion)
 {
 	datos = {};
 	datos.IDpedido = IDpedido;
@@ -458,6 +458,7 @@ function AgregaAlPedidoP(IDpedido, IDvariedad, cantidad, precio, modo, funcion)
 	datos.cantidad = cantidad;
 	datos.precio = precio;
 	datos.modo = modo;
+	datos.procesos = procesos;
 	$.post( 'http://' + servidor + '/functiond/AgregaAlPedidoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
 	 		if (funcion)

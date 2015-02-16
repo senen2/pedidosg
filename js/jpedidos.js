@@ -91,10 +91,12 @@ function dibujaProductos()
 function dibujaProduccion(IDdetped)
 {
 	var cad="";
-	$.each(gdatosped.produccion.procesos, function(i,item) {
-		if (item.IDdetped==IDdetped & item.activo=="1")
-			cad += '<label class="item-ref">' + item.nombre + '</label>';
-	});
+	if (gdatosped.produccion) {
+		$.each(gdatosped.produccion.procesos, function(i,item) {
+			if (item.IDdetped==IDdetped & item.activo=="1")
+				cad += '<label class="item-ref">' + item.nombre + '</label>';
+		});		
+	}
 	return cad;
 }
 
@@ -165,12 +167,11 @@ function agregarPedido()
 
 function verVariedad(url)
 {
-	//http://localhost/gtienda/imgcat/860.jpg?1416678724.921
 	gurl = url.replace("imgprod","imgcat");
 	var a = url.split("/");
 	var b = a[a.length-1];
 	var IDproductobase = b.split(".")[0]
-	gdatoseditar = null;
+	gdatoseditar = null; // no es una edicion
 	LeeVariedadesxBaseP(IDproductobase, seleccionarVariedad)
 }
 
@@ -239,19 +240,31 @@ function mostrarVariedad()
 		$("#precio").val(gdatosvar.producto.precio);
 		$("#cantidad").val(1);
 	}
-	$("#procesos").html(dibujaEditarProduccion(gIDdetped));
+	$("#procesos").html(dibujaEditarProduccion());
 }
 
-function dibujaEditarProduccion(IDdetped)
+function dibujaEditarProduccion()
 {
 	var cad="";
-	$.each(gdatosped.produccion.procesos, function(i,item) {
-		if (item.IDdetped==IDdetped)
-		 	cad	+= '<div>' 
-			 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + '>' 
-			 		+ '<label class="item-name col">' + item.nombre + '</label>' 
-		 		+ '</div><br>'
-	});	
+	if (gdatoseditar) {
+		if (gdatosped.produccion)
+			$.each(gdatosped.produccion.procesos, function(i,item) {
+				if (item.IDdetped==gIDdetped)
+				 	cad	+= '<div>' 
+					 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + '>' 
+					 		+ '<label class="item-name col">' + item.nombre + '</label>' 
+				 		+ '</div><br>'
+			});	
+	}
+	else { 
+		if (gdatosvar.produccion)
+			$.each(gdatosvar.produccion.procesos, function(i,item) {
+			 	cad	+= '<div>' 
+				 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + '>' 
+				 		+ '<label class="item-name col">' + item.nombre + '</label>' 
+			 		+ '</div><br>'
+			});	
+	}
 	return cad;
 }
 
@@ -317,26 +330,36 @@ function agregar()
 function aceptar()
 {
 	var procesos = [];
-	$.each(gdatosped.produccion.procesos, function(i,item) {
-		if (item.IDdetped==gIDdetped) {
-			p = {};
-			p.ID = item.ID;
-			p.activo = $("#proceso-"+item.ID).prop("checked") ? 1 : 0;
-			procesos.push(p);						
-		}
-	});		
-		
-	if (gdatoseditar)
-		ModificaRenglonPedidoP(gIDpedido, gdatoseditar.ID, $("#cantidad").val(), $("#precio").val(), $("#talla").val(), $("#color").val(), gmodo, procesos, dibujaPedido);	
-	else
+	if (gdatoseditar) {
+		if (gdatosped.produccion)
+			$.each(gdatosped.produccion.procesos, function(i,item) {
+				if (item.IDdetped==gIDdetped) {
+					p = {};
+					p.ID = item.ID;
+					p.activo = $("#proceso-"+item.ID).prop("checked") ? 1 : 0;
+					procesos.push(p);						
+				}
+			});
+		ModificaRenglonPedidoP(gIDpedido, gdatoseditar.ID, $("#cantidad").val(), $("#precio").val()
+							, $("#talla").val(), $("#color").val(), gmodo, procesos, dibujaPedido);			
+	}
+	else {
+		if (gdatosvar.produccion)
+			$.each(gdatosvar.produccion.procesos, function(i,item) {
+				p = {};
+				p.ID = item.ID;
+				p.activo = $("#proceso-"+item.ID).prop("checked") ? 1 : 0;
+				procesos.push(p);						
+			});
+
 		if (gdatosvar.variedades.length==1)
 			AgregaAlPedidoP(gIDpedido, gdatosvar.variedades[0].ID, $("#cantidad").val(), $("#precio").val(), gmodo, procesos, dibujaPedido);
 		else 
 			$.each(gdatosvar.variedades, function(i,item) {
 				if (item.talla==$("#talla").val() & item.color==$("#color").val())
 					AgregaAlPedidoP(gIDpedido, item.ID, $("#cantidad").val(), $("#precio").val(), gmodo, procesos, dibujaPedido);	  
-			});
-
+			});		
+	}		
 	cancelar();
 }
 

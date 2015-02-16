@@ -109,7 +109,6 @@ function activaProceso(i)
 	ActivaProcesoCarroP(gdatos.produccion[i].ID, $("#proceso-" + i).prop("checked") ? 1:0)
 }
 
-
 function dibujaTotal()
 {
 	$("#total").html("$" + total().formatMoney(gdatos.cuenta.decimales));	

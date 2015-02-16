@@ -13,7 +13,7 @@ function inicioTareas()
 	pagina = "ptareas";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Subir_imagenes_de_los_productos";
 	leeServidor();
-	LeeTareasP(dibujaTareas);
+	LeeProduccionTareasP(dibujaTareas);
 }
 
 function dibujaTareas(datos)
@@ -81,7 +81,7 @@ function destapar()
 	$("#editorproceso").hide();
 	$("#mask2").addClass("DN");
 	$('#mask2').css({'width':0,'height':0});	
-	LeeTareasP(dibujaTareas);		
+	LeeProduccionTareasP(dibujaTareas);		
 }
 
 function verProceso(procesoi)
@@ -96,15 +96,18 @@ function verProceso(procesoi)
 		 		+ '</div><br>'		
 	} );
 
-	equipo = item.equipo;
+	gequipo = item.equipo;
 	if (item.equipo==null)
-		equipo="Sin Equipo"
+		gequipo="Sin Equipo"
 				
 	cad = '<div class="sector v2" style=" z-index:9010;position: fixed;top:5%;left:30%">'
 			   + '<h3>' + item.nombre + '</h3>' 
 	 			+ 'Producto: <label class="item-name">' + item.producto+ '</label>'
 	 			+ '<br>Cliente: <label class="item-name">' + item.cliente + '</label>'
- 				+ '<br>Equipo: <select id="equipo" onchange="cambiaEquipo()"></select>'
+	 			+ '<br><div>'
+	 				+ 'Equipo: <select id="equipo" onchange="cambiaEquipo()"></select>'
+	 				+ '<strong><a href="#" onclick="agregaEquipo();" title="Agregar Nuevo Equipo"> + </a></strong>'
+	 			+ '<div>'
 			   + '<h5>Materiales</h5>' 
 			   + cadmp
 			   + '<br><div class="col"><a id="titcerrar" class="btn v4" onclick="cerrar();">Cerrar</a></div>'
@@ -129,4 +132,29 @@ function cambiaEquipo()
 function cerrar()
 {
 	destapar();
+}
+
+function agregaEquipo()
+{
+	var nombre = prompt("Nombre del Equipo");
+	if (nombre)	
+		CreaEquipoP(nombre, leeEquipos);
+}
+
+function leeEquipos()
+{
+	LeeEquiposP(actualizaEquipos);
+}
+
+function actualizaEquipos(datos)
+{
+	gdatos.equipos = datos;
+	llenaSelector(gdatos.equipos, "equipo");
+	var id=0
+	$.each(gdatos.equipos, function(i, item) {
+		if (item.ID>id)
+			id=item.ID
+	});
+	$("#equipo").val(id);
+	CambiaEquipoPedidoP(gdatos.procesos[gprocesoi].ID, id);	
 }

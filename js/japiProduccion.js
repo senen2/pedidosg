@@ -29,10 +29,22 @@ function LeeEquiposPR(funcion)
 	});	
 }
 
-function LeeTareasP(funcion)
+function LeeProduccionTareasP(funcion)
 {
 	$.ajax({
-		url: "http://" + servidor + "/function/LeeTareasP(" + encabezado + ")?pagina=" + pagina,
+		url: "http://" + servidor + "/function/LeeProduccionTareasP(" + encabezado + ")?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			funcion(response);
+		}
+	});	
+}
+
+function LeeProduccionEquiposP(funcion)
+{
+	$.ajax({
+		url: "http://" + servidor + "/function/LeeProduccionEquiposP(" + encabezado + ")?pagina=" + pagina,
 		jsonp: "callback",
 		dataType: "jsonp",
 		success: function( response ) {
@@ -153,6 +165,17 @@ function GuardaOrdenProcesosP(IDequipo, procesos, funcion)
 	datos.IDequipo=IDequipo;
 	datos.procesos=procesos;
 	$.post( 'http://' + servidor + '/functiond/GuardaOrdenProcesosP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
+	 	.always(function(){
+	 		if (funcion)
+	 			funcion();
+	 	});
+}
+
+function CreaEquipoP(nombre, funcion)
+{
+	datos={}
+	datos.nombre=nombre;
+	$.post( 'http://' + servidor + '/functiond/CreaEquipoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
 	 		if (funcion)
 	 			funcion();

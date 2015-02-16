@@ -19,7 +19,7 @@ function inicioEditorProd()
 		window.location.assign("registro.html");		
 	}
 
-	modo="produccion";
+	modo="producto";
 	var IDproducto = getURLParameter('ID');
 	if (IDproducto!=null & IDproducto!=0)
 		ListaProductoP(IDproducto, dibuja)		
@@ -389,7 +389,8 @@ function cerrar()
 function agregaMP(IDproceso)
 {
 	var nombre = prompt("Nombre del Material");
-	CreaMaterialP(gdatos.producto.ID, gdatos.produccion.procesos[gprocesoi].ID, nombre, vaRefrescaProceso);
+	if (nombre)
+		CreaMaterialP(gdatos.producto.ID, gdatos.produccion.procesos[gprocesoi].ID, nombre, vaRefrescaProceso);
 }
 
 function borraMP(i)
@@ -400,7 +401,8 @@ function borraMP(i)
 function agregaProceso()
 {
 	var nombre = prompt("Nombre del Proceso");
-	CreaProcesoP(gdatos.producto.ID, nombre, refrescaProducto);
+	if (nombre)
+		CreaProcesoP(gdatos.producto.ID, nombre, refrescaProducto);
 }
 
 function refrescaProducto()

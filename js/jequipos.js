@@ -13,7 +13,7 @@ function inicioEquipos()
 	pagina = "pequipos";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Subir_imagenes_de_los_productos";
 	leeServidor();
-	LeeEquiposP(dibujaEquipos);
+	LeeProduccionEquiposP(dibujaEquipos);
 }
 
 function dibujaEquipos(datos)
@@ -93,7 +93,7 @@ function guardar()
 
 function refresca()
 {
-	LeeEquiposP(dibujaEquipos);			
+	LeeProduccionEquiposP(dibujaEquipos);			
 }
 
 function cerrar()

@@ -109,12 +109,14 @@ function dibujaProducto(IDproducto, datos)
 
 function dibujaProduccion()
 {
-	var cad = "", cadmp;
-	$.each(gdatos.produccion.procesos, function(i,item) {
-		cad += '<div><input id="proceso-' + i + '" type="checkbox">' + item.nombre + '</input></div>';
-	} );
-	$("#divproduccion").html(cad + '<br>');		
-	$("#divproduccion").show();		
+	if (gdatos.produccion) {
+		var cad = "", cadmp;
+		$.each(gdatos.produccion.procesos, function(i,item) {
+			cad += '<div><input id="proceso-' + i + '" type="checkbox">' + item.nombre + '</input></div>';
+		} );
+		$("#divproduccion").html(cad + '<br>');		
+		$("#divproduccion").show();				
+	}
 }
 
 function llenaColoresxTalla()
@@ -146,12 +148,14 @@ function agregarAlCarro()
 	if (gdatos.colores.length==0)
 		color="";
 	
-	$.each(gdatos.produccion.procesos, function(i,item) {
-		p = {};
-		p.ID=item.ID;
-		p.activo = $("#proceso-"+i).prop("checked") ? 1 : 0;		
-		procesos.push(p);
-	} );	
+	if (gdatos.produccion) {
+		$.each(gdatos.produccion.procesos, function(i,item) {
+			p = {};
+			p.ID=item.ID;
+			p.activo = $("#proceso-"+i).prop("checked") ? 1 : 0;		
+			procesos.push(p);
+		} );
+	}	
 	
 	AgregarAlCarroP(gdatos.producto.ID, IDcuentacli, 0, talla, color, $("#cantidad").val(), -1, procesos, salir);
 }
