@@ -41,8 +41,10 @@ function dibujaTareas(datos)
 			+ 'max-width:' + w + 'px;'
 			+ 'height:' + h + 'px;'
 			+ 'background-image:' + item.color + ';'
-			+ '">' 
+			+ '">'
 				+ item.nombre + " - " + item.producto
+				+ '<img style="height:40px" src="' + imagedir + 'imgcarro/' + item.IDproductobase + '.jpg"/>' 
+	 			+ '<br><label class="item-price col">' + item.referencia + '</label>'
 	 			+ '<br><label class="item-price col">' + item.cliente + '</label>'
 	 			+ '<br><label class="item-price col">' + equipo + '</label>'
 				+ '<br>' + dibujaMP(item.ID)

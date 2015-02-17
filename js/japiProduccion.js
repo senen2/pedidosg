@@ -89,12 +89,24 @@ function CreaProcesoP(IDproducto, nombre, funcion)
 	 	});
 }
 
-function CreaMaterialP(IDproducto, IDproceso, nombre, funcion)
+function EliminaProcesoProductoP(IDproceso, funcion)
+{
+	datos={}
+	datos.IDproceso=IDproceso;
+	$.post( 'http://' + servidor + '/functiond/EliminaProcesoProductoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
+	 	.always(function(){
+	 		if (funcion)
+	 			funcion();
+	 	});
+}
+
+function CreaMaterialP(IDproducto, IDproceso, nombre, cantidad, funcion)
 {
 	datos={}
 	datos.IDproducto=IDproducto;
 	datos.IDproceso=IDproceso;
 	datos.nombre=nombre;
+	datos.cantidad=cantidad;
 	$.post( 'http://' + servidor + '/functiond/CreaMaterialP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
 	 		if (funcion)
@@ -113,10 +125,11 @@ function BorraMaterialP(ID, funcion)
 	 	});
 }
 
-function CambiaTipoProductoP(IDproducto, tipo, funcion)
+function CambiaTipoProductoP(IDproducto, IDplanilla, tipo, funcion)
 {
 	datos={}
 	datos.IDproducto=IDproducto;
+	datos.IDplanilla=IDplanilla;
 	datos.tipo=tipo;
 	$.post( 'http://' + servidor + '/functiond/CambiaTipoProductoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
@@ -125,11 +138,12 @@ function CambiaTipoProductoP(IDproducto, tipo, funcion)
 	 	});
 }
 
-function CambiaFichaProductoP(IDproceso, ficha, funcion)
+function CambiaFichaProductoP(IDproceso, ficha, precio, funcion)
 {
 	datos={}
 	datos.IDproceso=IDproceso;
 	datos.ficha=ficha;
+	datos.precio = precio;
 	$.post( 'http://' + servidor + '/functiond/CambiaFichaProductoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
 	 		if (funcion)
@@ -181,3 +195,17 @@ function CreaEquipoP(nombre, funcion)
 	 			funcion();
 	 	});
 }
+
+/*
+function CopiaProduccionP(IDproductoOr, IDproductoDest, funcion)
+{
+	datos={}
+	datos.IDproductoOr=IDproductoOr;
+	datos.IDproductoDest=IDproductoDest;
+	$.post( 'http://' + servidor + '/functiond/CopiaProduccionP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
+	 	.always(function(){
+	 		if (funcion)
+	 			funcion();
+	 	});
+}
+*/

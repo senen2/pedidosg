@@ -140,14 +140,17 @@ function dibujaProduccion()
 				if (mp.IDproceso==item.ID)
 					cadmp += '<div style="font-size:8px">' + mp.nombremp + '</div>'; 
 			} );
-			cad += '<div class="col" style="border-style:solid; border-width:1px;width: 120px; height: 160px;margin-right:5px;padding:5px"'
+			cad += '<div class="col" style="border-style:solid; border-width:1px;width: 120px; height: 180px;margin-right:5px;padding:5px"'
 						+ 'onclick="editarProceso(' + i + ');">'
-				   + item.nombre 
+				   +  item.nombre 
+				   + '<br><label class="item-name" style="font-size:9px" >Precio: ' + item.precio + '</label>'
 				   + cadmp
 				   + '<div style="font-size:9px"><br>Ficha Tecnica' 
 				   		+ '<textarea style="border-style:solid; border-width:1px;width: 100px; height: 80px;font-size:8px">' 
-				   		+ item.ficha + '</textarea></div>' 
-				   + '</div>';
+				   		+ item.ficha + '</textarea>'
+				   + '</div>' 
+				   + '<button onclick="eliminaProceso(' + item.ID + ');">Eliminar Proceso</button>'
+				   + '</div>'
 		
 		} );
 		cad += '<button onclick="agregaProceso();">Agregar Proceso</button>';		
@@ -181,7 +184,9 @@ function dibujaProduccion()
 			break;
 	}		
 	
-	dibujaTitulos(gdatos.cuenta.lenguaje);				
+	dibujaTitulos(gdatos.cuenta.lenguaje);
+	borrandoProceso=false;
+				
 }
 
 function llenaVariedades()
@@ -348,49 +353,66 @@ function destapar()
 
 function editarProceso(procesoi)
 {
-	cambioFicha=false;
-	var item = gdatos.produccion.procesos[procesoi], cadmp="";
-	gprocesoi=procesoi; 
-	$.each(gdatos.produccion.mp, function(i, mp) {
-		if (mp.IDproceso==item.ID)
-			cadmp += '<div style="font-size:12px;">' 
-						+ mp.nombremp 
-						+ '<a href="#" onclick="borraMP(' + i + ')"><img src="images/delete.png" style="height:15px"></a>' 
-					+ '</div>'; 
-	} );
-	cad = '<div class="sector v2" style=" z-index:9010;position: fixed;top:5%;left:30%">'
-		   + '<h3>' + item.nombre + '</h3>' 
-			   + '<div style="border-style:solid; border-width:1px; padding:-3px;">' 
-			   		+ cadmp
-			   		+ '<br><button onclick="agregaMP();">Agregar Material</button>' 
-	   		   + '</div>'
-			   + '<br><div>Ficha Tecnica<br>' 
-			   		+ '<textarea id="ficha" style="border-style:solid; border-width:1px;width: 300px; height:200px" onchange="cambioFicha=true;">' 
-			   		+ item.ficha + '</textarea>'
-		   	   + '</div>' 
-			   + '<div class="col"><a id="titcerrar" class="btn v4" onclick="cerrar();">Cerrar</a></div>'
-		   + '</div>';
-
-	$("#editorproceso").html(cad);
-	//$("#fichatecnica").attr("top");
-	tapar();	
+	if (!borrandoProceso){
+		cambioFicha=false;
+		var item = gdatos.produccion.procesos[procesoi], cadmp="";
+		gprocesoi=procesoi; 
+		$.each(gdatos.produccion.mp, function(i, mp) {
+			if (mp.IDproceso==item.ID)
+				cadmp += '<div style="font-size:12px;">' 
+							+ mp.nombremp + ', cantidad=' + mp.cantidad
+							+ '<a href="#" onclick="borraMP(' + i + ')"><img src="images/delete.png" style="height:15px"></a>' 
+						+ '</div>'; 
+		} );
+		cad = '<div id="verProc" class="sector v2" style=" z-index:9010;position: fixed;top:5%;left:30%">'
+			   + '<h3>' + item.nombre + '</h3>'
+			   	   + 'Precio: <input id="precioproc" value="' + item.precio + '" onchange="cambioFicha=true;" />'
+				   + '<br><br><div style="border-style:solid; border-width:1px; padding:-3px;">' 
+				   		+ cadmp
+				   		+ '<br><button onclick="agregaMP();">Agregar Material</button>' 
+		   		   + '</div>'
+				   + '<br><div>Ficha Tecnica<br>' 
+				   		+ '<textarea id="ficha" style="border-style:solid; border-width:1px;width: 300px; height:200px" onchange="cambioFicha=true;">' 
+				   		+ item.ficha + '</textarea>'
+			   	   + '</div>' 
+				   + '<div class="col"><a id="titcerrar" class="btn v4" onclick="cerrar();">Cerrar</a></div>'
+			   + '</div>';
 	
+		$("#editorproceso").html(cad);
+		//$("#fichatecnica").attr("top");
+		tapar();		
+	}	
+	borrandoProceso=false;
 }
 
 function cerrar()
 {
 	destapar();
 	if (cambioFicha)
-		CambiaFichaProductoP(gdatos.produccion.procesos[gprocesoi].ID, $("#ficha").val(), refrescaProducto)
+		CambiaFichaProductoP(gdatos.produccion.procesos[gprocesoi].ID, $("#ficha").val(), $("#precioproc").val(), refrescaProducto)
 	else
 		refrescaProducto();
 }
 
 function agregaMP(IDproceso)
 {
-	var nombre = prompt("Nombre del Material");
-	if (nombre)
-		CreaMaterialP(gdatos.producto.ID, gdatos.produccion.procesos[gprocesoi].ID, nombre, vaRefrescaProceso);
+	$('#divdefmaterial').css({'top':$("#verProc").position().top + 10,'left':$("#verProc").position().left+10});	
+	$("#divdefmaterial").removeClass("DN");
+}
+
+function salirmp()
+{
+	$("#divdefmaterial").addClass("DN");
+}
+
+function aceptarmp()
+{
+	if ($('#nombremp').val()!="") {
+		salirmp();	
+		if ($('#cantidadmp').val()=="")
+			$('#cantidadmp').val("1")
+		CreaMaterialP(gdatos.producto.ID, gdatos.produccion.procesos[gprocesoi].ID, $('#nombremp').val(), $('#cantidadmp').val(), vaRefrescaProceso);		
+	}
 }
 
 function borraMP(i)
@@ -403,6 +425,12 @@ function agregaProceso()
 	var nombre = prompt("Nombre del Proceso");
 	if (nombre)
 		CreaProcesoP(gdatos.producto.ID, nombre, refrescaProducto);
+}
+
+function eliminaProceso(ID)
+{
+	borrandoProceso=true;
+	EliminaProcesoProductoP(ID, refrescaProducto)
 }
 
 function refrescaProducto()
@@ -443,5 +471,9 @@ function cambiaTipo()
 			break;
 	}	
 	
-	CambiaTipoProductoP(gdatos.producto.ID, tipo, refrescaProducto)
+	var IDplanilla=0
+	if (typeof gdatos.produccion!='undefined')
+		IDplanilla = gdatos.produccion.IDplanilla
+
+	CambiaTipoProductoP(gdatos.producto.ID, IDplanilla, tipo, refrescaProducto)
 }

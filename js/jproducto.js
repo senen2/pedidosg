@@ -112,7 +112,8 @@ function dibujaProduccion()
 	if (gdatos.produccion) {
 		var cad = "", cadmp;
 		$.each(gdatos.produccion.procesos, function(i,item) {
-			cad += '<div><input id="proceso-' + i + '" type="checkbox">' + item.nombre + '</input></div>';
+			cad += '<div><input id="proceso-' + i + '" type="checkbox" onchange=actualizaPrecio();>'
+					+ item.nombre + ' - $' + item.precio + '</input></div>';
 		} );
 		$("#divproduccion").html(cad + '<br>');		
 		$("#divproduccion").show();				
@@ -188,4 +189,14 @@ function verBusca(datos)
 		else
 			ListaProductoP(datos.datos, dibujaProducto); 
 	}
+}
+
+function actualizaPrecio()
+{
+	var precio=gdatos.producto.precio;
+	$.each(gdatos.produccion.procesos, function(i,item) {
+		if ($("#proceso-"+i).prop("checked"))
+			precio += item.precio;
+	} );
+	$("#precio").html("$ " + precio.formatMoney(gdatos.cuentaCat.decimales));	
 }

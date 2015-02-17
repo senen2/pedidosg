@@ -29,9 +29,10 @@ function dibujaCarro(datos)
 
 		$.each(datos.carro, function(i,item) {
 			precio = item.precio.formatMoney(gdatos.cuenta.decimales);
+			precio = calculaPrecio(item);
 			valor = (item.precio*item.cantidad).formatMoney(gdatos.cuenta.decimales);
 			
-			tagprecio = '<label class="item-price">$' + precio + '</label><br>'
+			tagprecio = '<label id="precio-' + item.ID + '" class="item-price">$' + precio + '</label><br>'
 			if (modo==1)
 				tagprecio = '<label class="item-price">$ </label><input class="item-price" id="precio-' + item.ID + '" value="' + item.precio + '"/><br><br>'
 							
@@ -106,6 +107,7 @@ function dibujaProcesos(IDcarro)
 
 function activaProceso(i)
 {
+	actualizaPrecio(i);
 	ActivaProcesoCarroP(gdatos.produccion[i].ID, $("#proceso-" + i).prop("checked") ? 1:0)
 }
 
@@ -219,4 +221,32 @@ function verBusca(datos)
 		else
 			ListaProductoP(datos.datos, dibujaProducto); 
 	}
+}
+
+function actualizaPrecio(iprecio)
+{
+	var precio=0, IDcarro=gdatos.produccion[iprecio].IDcarro;
+	
+	$.each(gdatos.carro, function(i,item) {
+		if (item.ID==IDcarro)
+			precio = item.precio	
+	} );	
+	
+	$.each(gdatos.produccion, function(i,item) {
+		if (item.IDcarro==IDcarro)
+			if ($("#proceso-"+i).prop("checked"))
+				precio += item.precio;
+	} );	
+	$("#precio-"+IDcarro).html(precio.formatMoney(gdatos.cuentaCat.decimales));	
+}
+
+function calculaPrecio(renglon)
+{
+	var precio = renglon.precio;
+	$.each(gdatos.produccion, function(i,item) {
+		if (item.IDcarro==renglon.ID)
+			if (item.activo)
+				precio += item.precio;
+	} );	
+	return precio;
 }
