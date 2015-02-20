@@ -450,13 +450,14 @@ function ActualizaDespachoLineaP(ID, entregado, funcion)
 	});	
 }
 
-function AgregaAlPedidoP(IDpedido, IDvariedad, cantidad, precio, modo, procesos, funcion)
+function AgregaAlPedidoP(IDpedido, IDvariedad, cantidad, precio, precioprod, modo, procesos, funcion)
 {
 	datos = {};
 	datos.IDpedido = IDpedido;
 	datos.IDvariedad = IDvariedad;
 	datos.cantidad = cantidad;
 	datos.precio = precio;
+	datos.precioprod = precioprod;
 	datos.modo = modo;
 	datos.procesos = procesos;
 	$.post( 'http://' + servidor + '/functiond/AgregaAlPedidoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
@@ -467,13 +468,14 @@ function AgregaAlPedidoP(IDpedido, IDvariedad, cantidad, precio, modo, procesos,
 	
 }
 
-function ModificaRenglonPedidoP(IDpedido, IDdetped, cantidad, precio, talla, color, modo, procesos, funcion)
+function ModificaRenglonPedidoP(IDpedido, IDdetped, cantidad, precio, precioprod, talla, color, modo, procesos, funcion)
 {
 	datos = {};
 	datos.IDpedido = IDpedido;
 	datos.IDdetped = IDdetped;
 	datos.cantidad = cantidad;
 	datos.precio = precio;
+	datos.precioprod = precioprod;
 	datos.talla = talla ? talla : "";
 	datos.color = color ? color : "";
 	datos.modo = modo;

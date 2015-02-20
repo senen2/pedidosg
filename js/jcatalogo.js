@@ -113,36 +113,38 @@ function dibujaCuadro(datos)
 	
 	}
 	$.each(datos.catalogo.productos, function(i,item) {
-		nombre = item.nombre;
-		if (nombre!="")
-			nombre = '<label class="item-name">' + nombre + '</label>';
-
-		referencia = "";
-		if (item.referencia!="")
-			referencia = '<label class="item-ref">Ref: ' + item.referencia + '</label>'
-		
-		precio = "";
-		if (item.precio>0)
-			precio = '<label class="item-price">$ ' + item.precio.formatMoney(gdatos.cuenta.decimales)+ '</label>'
-		
-		pvm = "";
-		if (item.pvm>0)
-			pvm = '<label class="item-price">Al Mayor $ ' + item.pvm.formatMoney(gdatos.cuenta.decimales) + '</label>'
-
-		borrar = "";
-		if (editando)
-			borrar = '<a href="#" onclick="eliminaProducto(' + item.ID +')">' + gdatos.cuenta.lenguaje.desactivar + '</a>';
-		
-		if (pag=="producto.html" || pag=="editorproducto.html" & datos.cuentaCat.ID==item.IDcuenta)
-			cad = cad + '<div id="producto-'+ item.ID +'" class="col item" style="width:200px;"><a href="' + pag + '?ID='+ item.ID + '">'
-					  + '<img src="' + item.imagen + "?" + gdatos.time + '" />'
-					  + '<div>'
-					  + nombre
-					  + referencia
-					  + precio
-					  + pvm
-					  + borrar
-					  + '</div></a></div>'			
+		if (editando | item.tipo>1) {
+			nombre = item.nombre;
+			if (nombre!="")
+				nombre = '<label class="item-name">' + nombre + '</label>';
+	
+			referencia = "";
+			if (item.referencia!="")
+				referencia = '<label class="item-ref">Ref: ' + item.referencia + '</label>'
+			
+			precio = "";
+			if (item.precio>0)
+				precio = '<label class="item-price">$ ' + item.precio.formatMoney(gdatos.cuenta.decimales)+ '</label>'
+			
+			pvm = "";
+			if (item.pvm>0)
+				pvm = '<label class="item-price">Al Mayor $ ' + item.pvm.formatMoney(gdatos.cuenta.decimales) + '</label>'
+	
+			borrar = "";
+			if (editando)
+				borrar = '<a href="#" onclick="eliminaProducto(' + item.ID +')">' + gdatos.cuenta.lenguaje.desactivar + '</a>';
+			
+			if (pag=="producto.html" || pag=="editorproducto.html" & datos.cuentaCat.ID==item.IDcuenta)
+				cad = cad + '<div id="producto-'+ item.ID +'" class="col item" style="width:200px;"><a href="' + pag + '?ID='+ item.ID + '">'
+						  + '<img src="' + item.imagen + "?" + gdatos.time + '" />'
+						  + '<div>'
+						  + nombre
+						  + referencia
+						  + precio
+						  + pvm
+						  + borrar
+						  + '</div></a></div>'						
+		}
 	} );
 	$("#catalogo").html(cad);	
 	cad = cadenaPaginado(); 

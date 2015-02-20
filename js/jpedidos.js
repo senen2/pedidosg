@@ -69,14 +69,14 @@ function dibujaProductos()
 {
 	var cad="";
 	$.each(gdatosped.datos, function(i,item) {
-		 cad += '<div class="col item" style="height: 320px;width: 200px">'
+		 cad += '<div class="col item" style="height: 320px;">'
 		 		+ '<a href="#" onclick="editaVariedad(' + item.ID + ')">'
 		 			+ '<img src="' + item.imagen + '">' 
 		 		+ '</a>'
 		 		+ '<label class="item-name">' + item.producto+ '</label>'
 		 		+ '<label class="item-ref">Ref ' + item.referencia + '</label>'
-		 		+ '<label class="item-name">' + 'Cantidad ' + item.cantidad + '</label>' 
-		 		+ '<label class="item-price">' + 'Precio ' + item.precio + '</label>' 
+		 		+ '<label class="item-name">' + item.cantidad + ' x $' + item.precio + ' = $' + item.valor + '</label>' 
+		 		+ '<label class="item-ref">' + 'Producto $' + item.precioprod + '</label>' 
 		 		+ dibujaProduccion(item.ID)
 		 		+ '<label><a href="#" onclick="eliminaVariedad(' + item.ID + ');">quitar</a></label>'
 		 		+ '<div>' 
@@ -94,7 +94,7 @@ function dibujaProduccion(IDdetped)
 	if (gdatosped.produccion) {
 		$.each(gdatosped.produccion.procesos, function(i,item) {
 			if (item.IDdetped==IDdetped & item.activo=="1")
-				cad += '<label class="item-ref">' + item.nombre + '</label>';
+				cad += '<label class="item-ref">' + item.nombre + ' $' + item.precio + '</label>';
 		});		
 	}
 	return cad;
@@ -231,13 +231,15 @@ function mostrarVariedad()
 	}	
 
 	if (gdatoseditar) {
-		$("#precio").val(gdatoseditar.precio.replace(",",""));
-		$("#cantidad").val(gdatoseditar.cantidad);
+		$("#precio").html(gdatoseditar.precio.replace(/\,/g,""));
+		$("#precioprod").val(gdatoseditar.precioprod.replace(/\,/g,""));
+		$("#cantidad").val(gdatoseditar.cantidad.replace(/\,/g,""));
 		$("#talla").val(gdatoseditar.talla);
 		$("#color").val(gdatoseditar.color);
 	}
 	else {
-		$("#precio").val(gdatosvar.producto.precio);
+		$("#precio").html(gdatosvar.producto.precio);
+		$("#precioprod").val(gdatosvar.producto.precio);
 		$("#cantidad").val(1);
 	}
 	$("#procesos").html(dibujaEditarProduccion());
@@ -252,18 +254,27 @@ function dibujaEditarProduccion()
 				if (item.IDdetped==gIDdetped)
 				 	cad	+= '<div>' 
 					 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + '>' 
-					 		+ '<label class="item-name col">' + item.nombre + '</label>' 
+					 		+ '<label class="item-name col">' + item.nombre + '&nbsp;$&nbsp;</label>'
+				 			+ '<input id="precioproceso-' + item.ID  + '" class="item-name col" style="width:70px" value="' + item.precio  + '"/>' 
 				 		+ '</div><br>'
 			});	
 	}
 	else { 
 		if (gdatosvar.produccion)
+		{
+			var precio = parseFloat($("#precioprod").val());
 			$.each(gdatosvar.produccion.procesos, function(i,item) {
 			 	cad	+= '<div>' 
 				 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + '>' 
 				 		+ '<label class="item-name col">' + item.nombre + '</label>' 
+			 			+ '<input id="precioproceso-' + item.ID  + '" class="item-name col" style="width:70px" value="' + item.precio  + '"/>' 
 			 		+ '</div><br>'
-			});	
+			 	if (item.activo)
+			 		precio += item.precio;
+			});				
+			$("#precio").html(precio);
+		}
+				
 	}
 	return cad;
 }
@@ -329,6 +340,7 @@ function agregar()
 
 function aceptar()
 {
+	var precio = parseFloat($("#precioprod").val());
 	var procesos = [];
 	if (gdatoseditar) {
 		if (gdatosped.produccion)
@@ -337,10 +349,13 @@ function aceptar()
 					p = {};
 					p.ID = item.ID;
 					p.activo = $("#proceso-"+item.ID).prop("checked") ? 1 : 0;
-					procesos.push(p);						
+					p.precio = parseFloat($("#precioproceso-"+item.ID).val());
+					procesos.push(p);
+					if (p.activo)
+						precio += p.precio;
 				}
 			});
-		ModificaRenglonPedidoP(gIDpedido, gdatoseditar.ID, $("#cantidad").val(), $("#precio").val()
+		ModificaRenglonPedidoP(gIDpedido, gdatoseditar.ID, $("#cantidad").val(), precio, $("#precioprod").val()
 							, $("#talla").val(), $("#color").val(), gmodo, procesos, dibujaPedido);			
 	}
 	else {
@@ -349,15 +364,20 @@ function aceptar()
 				p = {};
 				p.ID = item.ID;
 				p.activo = $("#proceso-"+item.ID).prop("checked") ? 1 : 0;
-				procesos.push(p);						
+				p.precio = parseFloat($("#precioproceso-"+item.ID).val());
+				procesos.push(p);
+				if (p.activo)						
+					precio += p.precio;
 			});
 
 		if (gdatosvar.variedades.length==1)
-			AgregaAlPedidoP(gIDpedido, gdatosvar.variedades[0].ID, $("#cantidad").val(), $("#precio").val(), gmodo, procesos, dibujaPedido);
+			AgregaAlPedidoP(gIDpedido, gdatosvar.variedades[0].ID, $("#cantidad").val(), precio
+				, $("#precioprod").val(), gmodo, procesos, dibujaPedido);
 		else 
 			$.each(gdatosvar.variedades, function(i,item) {
 				if (item.talla==$("#talla").val() & item.color==$("#color").val())
-					AgregaAlPedidoP(gIDpedido, item.ID, $("#cantidad").val(), $("#precio").val(), gmodo, procesos, dibujaPedido);	  
+					AgregaAlPedidoP(gIDpedido, item.ID, $("#cantidad").val(), precio
+						, $("#precioprod").val(), gmodo, procesos, dibujaPedido);	  
 			});		
 	}		
 	cancelar();

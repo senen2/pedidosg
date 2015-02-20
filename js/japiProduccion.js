@@ -138,12 +138,13 @@ function CambiaTipoProductoP(IDproducto, IDplanilla, tipo, funcion)
 	 	});
 }
 
-function CambiaFichaProductoP(IDproceso, ficha, precio, funcion)
+function CambiaFichaProductoP(IDproceso, ficha, precio, nombre, funcion)
 {
 	datos={}
 	datos.IDproceso=IDproceso;
 	datos.ficha=ficha;
 	datos.precio = precio;
+	datos.nombre = nombre;
 	$.post( 'http://' + servidor + '/functiond/CambiaFichaProductoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
 	 		if (funcion)

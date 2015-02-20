@@ -100,15 +100,18 @@ function dibujaProcesos(IDcarro)
 		if (item.IDcarro==IDcarro)
 			cad += '<div><input id="proceso-' + i + '" type="checkbox"' + (item.activo=="1" ? " checked": "") 
 					+ ' onclick="activaProceso(' + i + ')">' 
-					+ item.nombre + '</input></div>';
+					+ item.nombre + ' $' + item.precio + '</input></div>';
 	} );	
 	return cad;
 }
 
 function activaProceso(i)
 {
+	var proceso = gdatos.produccion[i];
+	proceso.activo = $("#proceso-" + i).prop("checked") ? 1:0;
 	actualizaPrecio(i);
-	ActivaProcesoCarroP(gdatos.produccion[i].ID, $("#proceso-" + i).prop("checked") ? 1:0)
+	dibujaTotal();
+	ActivaProcesoCarroP(gdatos.produccion[i].ID, proceso.activo)
 }
 
 function dibujaTotal()
@@ -118,6 +121,7 @@ function dibujaTotal()
 
 function actualizarPedido()
 {
+	
 	$.each(gdatos.carro, function(i,item) {
 		item.cantidad=$("#cantidad" + item.ID).val();
 		if (modo==1)
@@ -131,7 +135,7 @@ function total()
 {
 	var s = 0;
 	$.each(gdatos.carro, function(i,item) {
-		s = s + item.precio*item.cantidad
+		s = s + item.cantidad * calculaPrecio(item);
 	} );
 	return s;
 }
@@ -147,7 +151,7 @@ function realizarPedido()
 		d = {}
 		d.ID = item.ID;
 		d.cantidad = item.cantidad;
-		d.precio = item.precio;
+		d.precio = calculaPrecio(item);
 		datos.detalle.push(d);
 	} );
 	if (gdatos.cuenta.tipo=="P" | gdatos.cuenta.tipo=="V")
@@ -237,7 +241,7 @@ function actualizaPrecio(iprecio)
 			if ($("#proceso-"+i).prop("checked"))
 				precio += item.precio;
 	} );	
-	$("#precio-"+IDcarro).html(precio.formatMoney(gdatos.cuentaCat.decimales));	
+	$("#precio-"+IDcarro).html(precio.formatMoney(gdatos.cuentaCat.decimales));
 }
 
 function calculaPrecio(renglon)

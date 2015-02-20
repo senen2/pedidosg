@@ -365,8 +365,8 @@ function editarProceso(procesoi)
 						+ '</div>'; 
 		} );
 		cad = '<div id="verProc" class="sector v2" style=" z-index:9010;position: fixed;top:5%;left:30%">'
-			   + '<h3>' + item.nombre + '</h3>'
-			   	   + 'Precio: <input id="precioproc" value="' + item.precio + '" onchange="cambioFicha=true;" />'
+			   	   + 'Nombre: <input id="nombreproc" value="' + item.nombre + '" onchange="cambioFicha=true;" />'
+			   	   + '<br>Precio: <input id="precioproc" value="' + item.precio + '" onchange="cambioFicha=true;" />'
 				   + '<br><br><div style="border-style:solid; border-width:1px; padding:-3px;">' 
 				   		+ cadmp
 				   		+ '<br><button onclick="agregaMP();">Agregar Material</button>' 
@@ -389,7 +389,7 @@ function cerrar()
 {
 	destapar();
 	if (cambioFicha)
-		CambiaFichaProductoP(gdatos.produccion.procesos[gprocesoi].ID, $("#ficha").val(), $("#precioproc").val(), refrescaProducto)
+		CambiaFichaProductoP(gdatos.produccion.procesos[gprocesoi].ID, $("#ficha").val(), $("#precioproc").val(), $("#nombreproc").val(), refrescaProducto)
 	else
 		refrescaProducto();
 }

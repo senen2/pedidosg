@@ -153,6 +153,7 @@ function agregarAlCarro()
 		$.each(gdatos.produccion.procesos, function(i,item) {
 			p = {};
 			p.ID=item.ID;
+			p.precio=item.precio;
 			p.activo = $("#proceso-"+i).prop("checked") ? 1 : 0;		
 			procesos.push(p);
 		} );
