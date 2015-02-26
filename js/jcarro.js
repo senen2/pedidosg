@@ -75,6 +75,7 @@ function dibujaCarro(datos)
 		} );
 		$("#totalcuadro").show();
 		$("#carro").html(cad);
+		$("#formapago").html(gdatos.cuentaCat.formapago);
 		dibujaTotal();		
 	}
 	else {
@@ -140,13 +141,14 @@ function total()
 	return s;
 }
 
-function realizarPedido()
+function realizarPedido(estado)
 {
 	document.cookie = "nota=''";
 	actualizarPedido();
 	var datos = {};
 	datos.detalle = [];
-	datos.notas = $("#notas").val();
+	datos.notas = $("#notas").val() + (estado==0 ? " cotizacion" : "") ;
+	datos.estado = estado;
 	$.each(gdatos.carro, function(i,item) {
 		d = {}
 		d.ID = item.ID;

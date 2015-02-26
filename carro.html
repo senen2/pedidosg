@@ -89,10 +89,15 @@
 		<div class="container min-width fila">
 				<div id="carro" class="col" align="left"> </div>
 				<div id="totalcuadro" class="col pay-block" align="center">
-					<br>
-					<label id="tittotaldelpedido">Total del Pedido</label><br><br>
+					<br><textarea id="formapago" style="border-style: none; width: 300px;"></textarea>
+					<br><br><label id="tittotaldelpedido">Total del Pedido</label><br><br>
 					<label id="total" style="font-weight: bold"> </label><br><br>
-					<a id="realizar" class="btn" href="#" onclick="realizarPedido();" style="font-weight: bold"><label id="titrealizarpedido">Realizar Pedido</label></a><br><br>
+					<a id="realizar" class="btn" href="#" onclick="realizarPedido(2);" style="font-weight: bold">
+						<label id="titrealizarpedido">Realizar Pedido</label>
+					</a><br><br>
+					<a id="cotizacion" class="btn" href="#" onclick="realizarPedido(0);" style="font-weight: bold">
+						<label id="titrealizarcotizacion">Solicitar Cotizacion</label>
+					</a><br><br>
 					<a id="autenticar" class="btn" href="#" onclick="login();" style="font-weight: bold"><label id="titautenticarseparapedido">Autenticarse para Realizar el Pedido</label></a><br><br>
 					<textarea id="notas" placeholder="agregue sus notas aqui" style="border-style: solid; width: 300px; height: 200px;"></textarea>
 				</div>

@@ -68,16 +68,22 @@
 		</div>
 		<hr>
 		<div class="container min-width fila" align="left">
-			<h3 id="tap-xdespachar" class="col tap-btn active">
-					<a href="#" class="normal" onclick="refrescar('xdespachar');"><label id="titxdespachar">Por Despachar</label></a>
+			<h3 id="tab-xcotizar" class="col tap-btn active">
+				<a href="#" class="normal" onclick="refrescar('xcotizar');"><label id="titxcotizar">Por Cotizar</label></a>
 			</h3>
-			<h3 id="tap-despachados" class="col tap-btn">
+			<h3 id="tab-cotizaciones" class="col tap-btn active">
+				<a href="#" class="normal" onclick="refrescar('cotizaciones');"><label id="titcotizaciones">Cotizaciones</label></a>
+			</h3>
+			<h3 id="tab-xdespachar" class="col tap-btn active">
+				<a href="#" class="normal" onclick="refrescar('xdespachar');"><label id="titxdespachar">Por Despachar</label></a>
+			</h3>
+			<h3 id="tab-despachados" class="col tap-btn">
 				<a href="#" class="normal" onclick="refrescar('despachados');"><label id="titdespachados">Despachados</label></a>
 			</h3>
-			<h3 id="tap-xrecibir" class="col tap-btn active">
+			<h3 id="tab-xrecibir" class="col tap-btn active">
 				<a href="#" class="normal" onclick="refrescar('xrecibir');"><label id="titxrecibir">Por Recibir</label></a>
 			</h3>
-			<h3 id="tap-recibidos" class="col tap-btn">
+			<h3 id="tab-recibidos" class="col tap-btn">
 				<a href="#" class="normal" onclick="refrescar('recibidos');"><label id="titrecibidos">Recibidos</label></a>
 			</h3>
 		</div>
@@ -105,6 +111,9 @@
 							</div>
 							<div class="sector v2 min-width" align="center">
 								<div id="productos" style="min-height: 20px"> </div>
+							</div>							
+							<div id="enviaremail" class="sector v2 min-width" align="center">
+								<a class="btn v4" href="#" onclick="enviarEmail()"><label id="titenviaremail">Enviar Email</label></a>
 							</div>							
 						</div>
 					</div>
@@ -138,15 +147,19 @@
 			<div align="left">
 		  		<div id="divTalla">Tamaño: <select id="talla" onchange="llenaColoresxTalla();"> </select></div>
 		  		<div id="divColor">Color: <select id="color"> </select></div>
-		  		<div>Producto: $ <input id="precioprod" class="item-name" style="width: 70px"/></div>
+		  		<div>
+		  			<label class="col auto-width">Producto: $ </label>
+		  			<input id="precioprod" class="item-name" style="width: 70px"/>
+	  			</div>
 		  		<div id="procesos"> </div>
-		  		<div>Cantidad: <input id="cantidad" value="1" onclick="this.select();" onkeydown="if (event.keyCode == 13) aceptar();" autofocus/></div>
+		  		<div>
+		  			<label class="col auto-width">Cantidad: </label>
+		  			<input id="cantidad" value="1" autofocus/>
+	  			</div>
 		  		<div>Precio Total: <label id="precio"> </label></div>
 		  	</div>
-
-				<a class="btn v4" href="#" onclick="aceptar()">Aceptar</a>
-				<a class="btn v4" href="#" onclick="cancelar()">Cancelar</a>
-
+			<a class="btn v4" href="#" onclick="aceptar()">Aceptar</a>
+			<a class="btn v4" href="#" onclick="cancelar()">Cancelar</a>
 		</div>
 	</div>
 	</div>

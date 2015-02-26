@@ -15,18 +15,25 @@ function inicioPedidos()
 	leeServidor();
 	gIDpedido=0;
 	gurl="";
-	refrescar("xdespachar");
+	refrescar("xcotizar");
 }
 
 function refrescar(modo)
 {
 	gmodo = modo;
 	LeePedidosP(modo, dibujaPedidos);
-	$("#tap-despachados").removeClass("active");
-	$("#tap-xdespachar").removeClass("active");
-	$("#tap-recibidos").removeClass("active");
-	$("#tap-xrecibir").removeClass("active");
-	$("#tap-" + modo).addClass("active");
+	$("#tab-xcotizar").removeClass("active");
+	$("#tab-cotizaciones").removeClass("active");
+	$("#tab-despachados").removeClass("active");
+	$("#tab-xdespachar").removeClass("active");
+	$("#tab-recibidos").removeClass("active");
+	$("#tab-xrecibir").removeClass("active");
+	$("#tab-" + modo).addClass("active");
+	$("#notas").val('');
+	if (modo=="xcotizar")
+		$("#enviaremail").show();
+	else
+		$("#enviaremail").hide();
 }
 
 function dibujaPedidos(datos)
@@ -67,23 +74,30 @@ function dibujaPedido(datos)
 
 function dibujaProductos()
 {
-	var cad="";
+	var cad="", entrega;
+	var pedido = buscaObjetoxID(gdatos.datos, gIDpedido)
 	$.each(gdatosped.datos, function(i,item) {
+		entrega = '';
+		if (pedido.aprobado)
+			entrega = '<div>' 
+			 		+ '<label class="item-price col">Despachado</label>'
+			 		+ '<input class="col" id="entregado-' + item.ID 
+			 			+ '" type="checkbox" onclick="actualizaRenglonDespacho(' + item.ID + ');"' 
+			 			+ (item.entregado ? ' checked' : '') + '>'
+		 		+ '</div>';
+		 		
 		 cad += '<div class="col item" style="height: 320px;">'
-		 		+ '<a href="#" onclick="editaVariedad(' + item.ID + ')">'
-		 			+ '<img src="' + item.imagen + '">' 
-		 		+ '</a>'
-		 		+ '<label class="item-name">' + item.producto+ '</label>'
-		 		+ '<label class="item-ref">Ref ' + item.referencia + '</label>'
-		 		+ '<label class="item-name">' + item.cantidad + ' x $' + item.precio + ' = $' + item.valor + '</label>' 
-		 		+ '<label class="item-ref">' + 'Producto $' + item.precioprod + '</label>' 
-		 		+ dibujaProduccion(item.ID)
-		 		+ '<label><a href="#" onclick="eliminaVariedad(' + item.ID + ');">quitar</a></label>'
-		 		+ '<div>' 
-			 		+ '<label class="item-price col">Despachado</label>' 
-			 		+ '<input class="col" id="entregado-' + item.ID + '" type="checkbox" onclick="actualizaRenglonDespacho(' + item.ID + ');">' 
-		 		+ '</div>'
-		 		 + '</div>';	
+			 		+ '<a href="#" onclick="editaVariedad(' + item.ID + ')">'
+			 			+ '<img src="' + item.imagen + '">' 
+			 		+ '</a>'
+			 		+ '<label class="item-name">' + item.producto+ '</label>'
+			 		+ '<label class="item-ref">Ref ' + item.referencia + '</label>'
+			 		+ '<label class="item-name">' + item.cantidad + ' x $' + item.precio + ' = $' + item.valor + '</label>' 
+			 		+ '<label class="item-ref">' + 'Producto $' + item.precioprod + '</label>' 
+			 		+ dibujaProduccion(item.ID)
+			 		+ '<label><a href="#" onclick="eliminaVariedad(' + item.ID + ');">quitar</a></label>'
+			 		+ entrega
+	 		    + '</div>';	
 	});
 	$("#productos").html(cad);
 }
@@ -123,11 +137,18 @@ function actualizaRenglonDespacho(ID)
 	$("#productos-" + ID).hide();
 }
 
+function aprobar(ID)
+{
+	AprobarPedidoP(ID, $("#aprobado-" + ID).prop("checked") ? 1 : 0);
+	$("#pedidos-" + ID).hide();
+	$("#productos").html("");
+}
+
 function llenaTercero()
 {
-	if (gmodo=="xdespachar" | "despachados") {
+	if (gmodo=="xdespachar" | gmodo=="despachados" | gmodo=="xcotizar" | gmodo=="cotizaciones") {
 	    $("#tercero").autocomplete({
-	      source: extraeNombre(gdatos.clientes, "nombre")
+	      source: extraeNombre(gdatos.clientes, "empresa")
 	    });
 		$("#tercero").attr("placeholder", gdatos.cuenta.lenguaje.cliente)
 	}
@@ -160,7 +181,15 @@ function actualizaTotal(datos)
 function agregarPedido()
 {
 	if ($("#tercero").val()) {
-		AgregarPedidoCabP(gdatos.cuenta.ID, $("#tercero").val(), gmodo, dibujaPedidos);
+		var cliente, email="";
+		$.each(gdatos.clientes, function(i,item) {
+			if (item.empresa==$("#tercero").val())
+				cliente = item	
+		});
+		if (!cliente)
+			email = prompt("ingrese email del cliente");
+	
+		AgregarPedidoCabP(gdatos.cuenta.ID, $("#tercero").val(), email, gmodo, dibujaPedidos);
 		$("#tercero").val("");
 	}
 }
@@ -252,11 +281,7 @@ function dibujaEditarProduccion()
 		if (gdatosped.produccion)
 			$.each(gdatosped.produccion.procesos, function(i,item) {
 				if (item.IDdetped==gIDdetped)
-				 	cad	+= '<div>' 
-					 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + '>' 
-					 		+ '<label class="item-name col">' + item.nombre + '&nbsp;$&nbsp;</label>'
-				 			+ '<input id="precioproceso-' + item.ID  + '" class="item-name col" style="width:70px" value="' + item.precio  + '"/>' 
-				 		+ '</div><br>'
+				 	cad	+= cadRenglonProduccion(item); 
 			});	
 	}
 	else { 
@@ -264,19 +289,25 @@ function dibujaEditarProduccion()
 		{
 			var precio = parseFloat($("#precioprod").val());
 			$.each(gdatosvar.produccion.procesos, function(i,item) {
-			 	cad	+= '<div>' 
-				 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + '>' 
-				 		+ '<label class="item-name col">' + item.nombre + '</label>' 
-			 			+ '<input id="precioproceso-' + item.ID  + '" class="item-name col" style="width:70px" value="' + item.precio  + '"/>' 
-			 		+ '</div><br>'
+			 	cad	+= cadRenglonProduccion(item); 
 			 	if (item.activo)
 			 		precio += item.precio;
 			});				
 			$("#precio").html(precio);
-		}
-				
+		}				
 	}
 	return cad;
+}
+
+function cadRenglonProduccion(item)
+{
+ 	return '<div class="fila" style="min-width: 300px;">'
+ 			+ '<div class="auto-width col">' 
+		 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + '>' 
+		 		+ '<label class="item-name col">' + item.nombre + '&nbsp;$&nbsp;</label>'
+	 		+ '</div>'
+ 			+ '<input id="precioproceso-' + item.ID  + '" class="item-name col auto-width" style="width:70px" value="' + item.precio  + '"/>' 
+ 		+ '</div>';
 }
 
 function llenaColoresxTalla()
@@ -396,3 +427,14 @@ function tapar()
     $('#mask').fadeIn(100);    
     $('#mask').fadeTo("slow",0.7);
 }
+
+function enviarEmail()
+{
+	EnviarEmailPedidoP(gIDpedido, EmailEnviado)
+}
+
+function EmailEnviado()
+{
+	alert("El Email ha sido enviado");
+	LeePedidosP(gmodo, dibujaPedidos);
+} 

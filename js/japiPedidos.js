@@ -337,10 +337,10 @@ function LeerPedidoP(IDpedido)
 	});	
 }
 
-function AgregarPedidoCabP(IDcuenta, cliente, modo, funcion)
+function AgregarPedidoCabP(IDcuenta, cliente, email, modo, funcion)
 {
 	$.ajax({
-		url: "http://" + servidor + "/function/AgregarPedidoCabP(" + encabezado + "," + IDcuenta + ",'" + cliente + "','" + modo + "')?pagina=" + pagina,
+		url: "http://" + servidor + "/function/AgregarPedidoCabP(" + encabezado + "," + IDcuenta + ",'" + cliente + "','" + email+ "','" + modo + "')?pagina=" + pagina,
 		jsonp: "callback",
 		dataType: "jsonp",
 		success: function( response ) {	
@@ -449,6 +449,17 @@ function ActualizaDespachoLineaP(ID, entregado, funcion)
 		}
 	});	
 }
+   
+function AprobarPedidoP(ID, aprobado)
+{
+	$.ajax({
+		url: "http://" + servidor + "/function/AprobarPedidoP(" + encabezado + ',' + ID + ',' + aprobado + ")?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+		}
+	});	
+}
 
 function AgregaAlPedidoP(IDpedido, IDvariedad, cantidad, precio, precioprod, modo, procesos, funcion)
 {
@@ -506,6 +517,32 @@ function GrabaNotasPedidoP(IDpedido, notas)
 	datos.IDpedido = IDpedido;
 	datos.notas = notas;
 	$.post( 'http://' + servidor + '/functiond/GrabaNotasPedidoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos));
+}
+   
+function EnviarEmailPedidoP(ID, funcion)
+{
+	$.ajax({
+		url: "http://" + servidor + "/function/EnviarEmailPedidoP(" + encabezado + ',' + ID + ")?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			if (funcion)
+				funcion();
+		}
+	});	
+}
+
+function ProbarEmailPedidoP(ID, funcion)
+{
+	$.ajax({
+		url: "http://" + servidor + "/function/ProbarEmailPedidoP(" + encabezado + ',' + ID + ")?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			if (funcion)
+				funcion(response);
+		}
+	});	
 }
 
 // ----------------------- carro
@@ -717,21 +754,17 @@ function CambiarClaveP(claveactual, clavenueva, funcion)
 
 function GuardarInfoContactoP(direccion, telefono)
 {
-	var direccionc = direccion.replace("#", "No");
-	$.ajax({
-		url: "http://" + servidor + "/function/GuardarInfoContactoP(" + encabezado + ",'" + direccionc + "','" + telefono + "')?pagina=" + pagina,
-		jsonp: "callback",
-		dataType: "jsonp"
-	});	
+	
+	datos = {};
+	datos.direccion = direccion.replace("#", "No");
+	$.post( 'http://' + servidor + '/functiond/GuardarInfoContactoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos));	
 }
 
-function GuardarFormaPagoP(texto)
+function GuardarFormaPagoP(formapago)
 {
-	$.ajax({
-		url: "http://" + servidor + "/function/GuardarFormaPagoP(" + encabezado + ",'" + texto + "')?pagina=" + pagina,
-		jsonp: "callback",
-		dataType: "jsonp"
-	});	
+	datos = {};
+	datos.formapago = formapago;
+	$.post( 'http://' + servidor + '/functiond/GuardarFormaPagoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos));	
 }
 /*
 function CreaProductoxUrlP(url)
@@ -766,3 +799,18 @@ function CambiaUrlFotoP(IDproductobase, urlfoto, funcion)
 	 			funcion(response);
 	 	});
 } 
+
+// ------------------------------- visitas
+  
+function LeeVisitasSI(funcion)
+{
+	fecha = '2015-02-26';
+	$.ajax({
+		url: "http://" + servidor + "/function/LeeVisitasSI(" + encabezado + ",'" + fecha + "')?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			funcion(funcion(response));
+		}
+	});	
+}

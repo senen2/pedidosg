@@ -54,10 +54,11 @@ function registro()
 		$("#error").show();				
 		return;
 	}
-		if ($("#empresanuevo").val()=="") {
-		$("#error").html("la empresa no puede estar vacia");
-		$("#error").show();				
-		return;
+	if ($("#empresanuevo").val()=="") {
+		$("#empresanuevo").val($("#nombrenuevo").val())
+		//$("#error").html("la empresa no puede estar vacia");
+		//$("#error").show();				
+		//return;
 	}
 	if ($("#clave1nuevo").val()=="") {
 		$("#error").html("la clave no puede estar vacia");

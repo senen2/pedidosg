@@ -24,7 +24,7 @@ function dibujaTareas(datos)
 	gdatos = datos;
 	var n = (Math.sqrt(gdatos.procesos.length) + 1);
 	n = n * n; 
-	var cad = "", noches, equipo
+	var cad = "", noches, equipo, color
 		t = $("#divtareas").position().top,
 		l = $("#divtareas").position().left,
 		h1 = parseInt(Math.sqrt(($(window).width())*($(document).height()-t-40)/n/1.62))-1,
@@ -33,14 +33,17 @@ function dibujaTareas(datos)
  		
 	$.each(gdatos.procesos, function(i, item) {
 		equipo = item.equipo;
-		if (item.equipo==null)
+		color = '#DDD';
+		if (item.equipo==null) {
 			equipo="Sin Equipo"
+			color = 'linear-gradient(#FF7D7D, #FF4F4F)';		
+		}
 		
 		cad += '<div class="node col" onclick="verProceso(' + i + ')" style="padding: 5px;' 
 			+ 'width:' + w + 'px;'
 			+ 'max-width:' + w + 'px;'
 			+ 'height:' + h + 'px;'
-			+ 'background-image:' + item.color + ';'
+			+ 'background-image:' + color + ';'
 			+ '">'
 				+ item.nombre + " - " + item.producto
 				+ '<img style="height:40px" src="' + imagedir + 'imgcarro/' + item.IDproductobase + '.jpg"/>' 

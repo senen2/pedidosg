@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Tu tienda | Ventas por internet | mi sitio en internet | GTienda</title>
+	<meta name="description" content="La forma mas facil de poner tu tienda en internet con los mejores precios y sin cobro de comision, todo lo que vengas con gtienda sera 100% tuyo" />
+	<meta name="author" content="Andres Botello" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:700,400' rel='stylesheet' type='text/css'>
+		
+	<!--script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script-->
+	<!--script>
+    	WebFont.load({
+    	  google: {
+    	    families: ["Montserrat:400,700"]
+    	  }
+    	});
+	</script-->
+
+	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	<!--link rel="stylesheet" type="text/css" href="css/catalogo.css"-->
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/japiPedidos.js"></script>
+	<script type="text/javascript" src="js/jcomunp.js"></script>
+	<script type="text/javascript" src="js/jtit.js"></script>
+	<script type="text/javascript" src="js/jgoogle.js"></script>
+		
+	<script>
+		$( document ).ready(function() {
+			encabezado = getCookie("encabezado");
+			if (encabezado==null || encabezado=="'','',''" || encabezado.split(',')[0]=="''") {
+				document.cookie = "pagpend=" + document.URL;			
+				window.location.assign("registro.html");		
+			}
+				
+			pagina = "pdpedidos";
+			ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Subir_imagenes_de_los_productos";
+			leeServidor();
+			ProbarEmailPedidoP(151, dibuja);
+		});
+		
+		function dibuja(datos)
+		{
+			$("#sitio").html(datos);
+		}
+	</script>
+</head>
+<body>
+	<div id="sitio"> </div>
+</body>
+</html>
