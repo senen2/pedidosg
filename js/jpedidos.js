@@ -15,7 +15,7 @@ function inicioPedidos()
 	leeServidor();
 	gIDpedido=0;
 	gurl="";
-	refrescar("xcotizar");
+	refrescar("xdespachar");
 }
 
 function refrescar(modo)
@@ -107,7 +107,7 @@ function dibujaProduccion(IDdetped)
 	var cad="";
 	if (gdatosped.produccion) {
 		$.each(gdatosped.produccion.procesos, function(i,item) {
-			if (item.IDdetped==IDdetped & item.activo=="1")
+			if (item.IDdetped==IDdetped & item.activo=="1" & item.opcional==1)
 				cad += '<label class="item-ref">' + item.nombre + ' $' + item.precio + '</label>';
 		});		
 	}
@@ -231,7 +231,7 @@ function seleccionarVariedad(datos)
 
 function mostrarVariedad()
 {
-    $('#selVariedad').css({'top':$(window).height()/2-250,'left':$(window).width()/2-250});
+    $('#selVariedad').css({'top':50,'left':$(window).width()/2-250});
 	$("#selVariedad").removeClass("DN");
 
 	$("#imagen").attr("src", gurl);
@@ -280,7 +280,7 @@ function dibujaEditarProduccion()
 	if (gdatoseditar) {
 		if (gdatosped.produccion)
 			$.each(gdatosped.produccion.procesos, function(i,item) {
-				if (item.IDdetped==gIDdetped)
+				if (item.IDdetped==gIDdetped & item.opcional==1)
 				 	cad	+= cadRenglonProduccion(item); 
 			});	
 	}
@@ -289,9 +289,11 @@ function dibujaEditarProduccion()
 		{
 			var precio = parseFloat($("#precioprod").val());
 			$.each(gdatosvar.produccion.procesos, function(i,item) {
-			 	cad	+= cadRenglonProduccion(item); 
-			 	if (item.activo)
-			 		precio += item.precio;
+				if (item.opcional==1) {
+				 	cad	+= cadRenglonProduccion(item); 
+				 	if (item.activo)
+				 		precio += item.precio;					
+				}
 			});				
 			$("#precio").html(precio);
 		}				
@@ -302,6 +304,17 @@ function dibujaEditarProduccion()
 function cadRenglonProduccion(item)
 {
  	return '<div class="fila" style="min-width: 300px;">'
+ 			+ '<div class="col">' 
+		 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + '>' 
+		 		+ '<label class="item-name col">' + item.nombre + '&nbsp;$&nbsp;</label>'
+	 		+ '</div>'
+ 			+ '<input id="precioproceso-' + item.ID  + '" class="item-name col" style="width:70px" value="' + item.precio  + '"/>' 
+ 		+ '</div>';
+}
+/*
+function cadRenglonProduccion1(item)
+{
+ 	return '<div class="fila" style="min-width: 300px;">'
  			+ '<div class="auto-width col">' 
 		 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + '>' 
 		 		+ '<label class="item-name col">' + item.nombre + '&nbsp;$&nbsp;</label>'
@@ -309,7 +322,7 @@ function cadRenglonProduccion(item)
  			+ '<input id="precioproceso-' + item.ID  + '" class="item-name col auto-width" style="width:70px" value="' + item.precio  + '"/>' 
  		+ '</div>';
 }
-
+*/
 function llenaColoresxTalla()
 {
 	var colores, cad="";
@@ -379,8 +392,15 @@ function aceptar()
 				if (item.IDdetped==gIDdetped) {
 					p = {};
 					p.ID = item.ID;
-					p.activo = $("#proceso-"+item.ID).prop("checked") ? 1 : 0;
-					p.precio = parseFloat($("#precioproceso-"+item.ID).val());
+					if (item.opcional==1) {
+						p.activo = $("#proceso-"+item.ID).prop("checked") ? 1 : 0;
+						p.precio = parseFloat($("#precioproceso-"+item.ID).val());						
+					}
+					else {
+						p.activo=1;
+						p.precio=0;						
+					}
+					p.opcional = item.opcional;
 					procesos.push(p);
 					if (p.activo)
 						precio += p.precio;
@@ -394,8 +414,15 @@ function aceptar()
 			$.each(gdatosvar.produccion.procesos, function(i,item) {
 				p = {};
 				p.ID = item.ID;
-				p.activo = $("#proceso-"+item.ID).prop("checked") ? 1 : 0;
-				p.precio = parseFloat($("#precioproceso-"+item.ID).val());
+				if (item.opcional==1) {
+					p.activo = $("#proceso-"+item.ID).prop("checked") ? 1 : 0;
+					p.precio = parseFloat($("#precioproceso-"+item.ID).val());					
+				}
+				else {
+					p.activo=1;
+					p.precio=0;
+				}
+				p.opcional = item.opcional;
 				procesos.push(p);
 				if (p.activo)						
 					precio += p.precio;

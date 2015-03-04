@@ -30,11 +30,12 @@
 	<link rel="stylesheet" type="text/css" href="css/hotelManager.css">
 		
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="http://d3js.org/d3.v3.min.js"></script>
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/japiPedidos.js"></script>
 	<script type="text/javascript" src="js/jcomunp.js"></script>
-	<script type="text/javascript" src="js/jvisitas.js"></script>
+	<script type="text/javascript" src="js/jvisitas2.js"></script>
 	<script type="text/javascript" src="js/jtit.js"></script>
 	<script type="text/javascript" src="js/jgoogle.js"></script>
 		
@@ -43,6 +44,40 @@
 			inicioVisitas();
 		});
 	</script>
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: none;
+  stroke: steelblue;
+}
+
+</style>
 </head>
 <body>
 	<div class="section">

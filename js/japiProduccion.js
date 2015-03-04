@@ -138,13 +138,14 @@ function CambiaTipoProductoP(IDproducto, IDplanilla, tipo, funcion)
 	 	});
 }
 
-function CambiaFichaProductoP(IDproceso, ficha, precio, nombre, funcion)
+function CambiaFichaProductoP(IDproceso, ficha, precio, nombre, opcional, funcion)
 {
 	datos={}
 	datos.IDproceso=IDproceso;
 	datos.ficha=ficha;
 	datos.precio = precio;
 	datos.nombre = nombre;
+	datos.opcional = opcional;
 	$.post( 'http://' + servidor + '/functiond/CambiaFichaProductoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
 	 		if (funcion)
@@ -210,3 +211,14 @@ function CopiaProduccionP(IDproductoOr, IDproductoDest, funcion)
 	 	});
 }
 */
+
+function TerminarProcesoP(IDproceso, funcion)
+{
+	datos={}
+	datos.IDproceso=IDproceso;
+	$.post( 'http://' + servidor + '/functiond/TerminarProcesoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
+	 	.always(function(){
+	 		if (funcion)
+	 			funcion();
+	 	});
+}

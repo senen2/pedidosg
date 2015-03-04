@@ -27,8 +27,9 @@ function dibujaEquipos(datos)
 	var cad = "", noches
 		t = $("#divequipos").position().top,
 		l = $("#divequipos").position().left,
-		h = parseInt(Math.sqrt(($(window).width())*($(document).height()-t-40)/n/1.62))-1,
-		h = h>160 ? 160 : h,
+		h = parseInt(Math.sqrt(($(window).width())*($(document).height()-t-40)/n/1.62))-1;
+		
+		h = h>160 ? 160 : h;
 		w = parseInt(1.62 * h); 		
  		
 	$.each(gdatos.equipos, function(i, item) {
@@ -54,7 +55,12 @@ function dibujaProcesos(IDequipo)
 	$.each(gdatos.procesos, function(i, item) {
 		if (item.IDequipo==IDequipo)
 			cad += '<div style="padding-left: 5px";padding-right: 5px">' 
-			 		+ '<label class="item-price col">' + item.cantidad + ' ' + item.producto + ' - ' + item.cliente + '</label>' 
+			 		+ '<label class="item-price col">'
+			 			+ item.cliente.substr(0,15)
+			 			+ ' -' + item.nombre.substr(0,15)
+			 		 	+ ' -' + item.producto.substr(0,15)
+			 			+ ' - ' + item.cantidad
+	 			    + '</label>' 
 		 		+ '</div><br>'
 	});		
 	return cad;
@@ -109,9 +115,10 @@ function verEquipo(equipoi)
 	$.each(gdatos.procesos, function(i, item) {
 		if (item.IDequipo==equipo.ID) {
 			cad += '<li id="proceso-' + item.ID + '" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' 
-			 		+ item.cantidad 
+			 		+ item.cliente
+			 		+ ' - ' + item.nombre
 			 		+ ' - ' + item.producto
-			 		+ ' - ' +item.cliente
+			 		+ ' - ' +item.cantidad
 		 		+ '</li>'
 		}
 	});		

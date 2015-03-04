@@ -802,15 +802,30 @@ function CambiaUrlFotoP(IDproductobase, urlfoto, funcion)
 
 // ------------------------------- visitas
   
-function LeeVisitasSI(funcion)
+function LeeVisitasSI(fecha, funcion)
 {
-	fecha = '2015-02-26';
+	//fecha = '2015-02-26';
+	var fecha = $.datepicker.formatDate("yy-mm-dd", fecha);
 	$.ajax({
 		url: "http://" + servidor + "/function/LeeVisitasSI(" + encabezado + ",'" + fecha + "')?pagina=" + pagina,
 		jsonp: "callback",
 		dataType: "jsonp",
 		success: function( response ) {
-			funcion(funcion(response));
+			funcion(response);
+		}
+	});	
+}
+  
+function LeePuntosSI(fecha, funcion)
+{
+	//fecha = '2015-02-26';
+	var fecha = $.datepicker.formatDate("yy-mm-dd", fecha);
+	$.ajax({
+		url: "http://" + servidor + "/function/LeePuntosSI(" + encabezado + ",'" + fecha + "')?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			funcion(response);
 		}
 	});	
 }

@@ -112,8 +112,9 @@ function dibujaProduccion()
 	if (gdatos.produccion) {
 		var cad = "", cadmp;
 		$.each(gdatos.produccion.procesos, function(i,item) {
-			cad += '<div><input id="proceso-' + i + '" type="checkbox" onchange=actualizaPrecio();>'
-					+ item.nombre + ' - $' + item.precio + '</input></div>';
+			if (item.opcional==1)
+				cad += '<div><input id="proceso-' + i + '" type="checkbox" onchange=actualizaPrecio();>'
+						+ item.nombre + ' - $' + item.precio + '</input></div>';
 		} );
 		$("#divproduccion").html(cad + '<br>');		
 		$("#divproduccion").show();				

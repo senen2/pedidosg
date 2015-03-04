@@ -13,8 +13,14 @@ function inicioTareas()
 	pagina = "ptareas";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Subir_imagenes_de_los_productos";
 	leeServidor();
-	LeeProduccionTareasP(dibujaTareas);
+	refrescar();
 }
+
+function refrescar()
+{
+	LeeProduccionTareasP(dibujaTareas);	
+}
+
 
 function dibujaTareas(datos)
 {
@@ -47,9 +53,9 @@ function dibujaTareas(datos)
 			+ '">'
 				+ item.nombre + " - " + item.producto
 				+ '<img style="height:40px" src="' + imagedir + 'imgcarro/' + item.IDproductobase + '.jpg"/>' 
-	 			+ '<br><label class="item-price col">' + item.referencia + '</label>'
-	 			+ '<br><label class="item-price col">' + item.cliente + '</label>'
-	 			+ '<br><label class="item-price col">' + equipo + '</label>'
+	 			+ '<br><label class="item-price col">Ref: ' + item.referencia + '</label>'
+	 			+ '<br><label class="item-price col">Cliente: ' + item.cliente + '</label>'
+	 			+ '<br><label class="item-price col">Equipo: ' + equipo + '</label>'
 				+ '<br>' + dibujaMP(item.ID)
 			+ '</div>'
 	});	
@@ -86,7 +92,7 @@ function destapar()
 	$("#editorproceso").hide();
 	$("#mask2").addClass("DN");
 	$('#mask2').css({'width':0,'height':0});	
-	LeeProduccionTareasP(dibujaTareas);		
+	refrescar()	
 }
 
 function verProceso(procesoi)
@@ -115,7 +121,8 @@ function verProceso(procesoi)
 	 			+ '<div>'
 			   + '<h5>Materiales</h5>' 
 			   + cadmp
-			   + '<br><div class="col"><a id="titcerrar" class="btn v4" onclick="cerrar();">Cerrar</a></div>'
+			   + '<input type="checkbox" onclick="terminar();"> Proceso Terminado'
+			   + '<br><br><div class="col"><a id="titcerrar" class="btn v4" onclick="cerrar();">Cerrar</a></div>'
 		   + '</div>';
 
 	$("#editorproceso").html(cad);
@@ -162,4 +169,9 @@ function actualizaEquipos(datos)
 	});
 	$("#equipo").val(id);
 	CambiaEquipoPedidoP(gdatos.procesos[gprocesoi].ID, id);	
+}
+
+function terminar()
+{
+	TerminarProcesoP(gdatos.procesos[gprocesoi].ID, refrescar);
 }
