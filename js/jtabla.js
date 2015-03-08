@@ -4,6 +4,11 @@
 
 function dibujaTabla(tabla, tag, tagID, fundetalle)
 {
+	$('#' + tag).html(cadTabla(tabla, tagID, fundetalle));	
+}
+
+function cadTabla(tabla, tagID, fundetalle)
+{
 	var cad = "", tit="", tot="", estado="", f="", finput, val;
 	
 	$.each(tabla.titulos, function(i,item) {
@@ -25,7 +30,7 @@ function dibujaTabla(tabla, tag, tagID, fundetalle)
 		});
 	});
 
-	$('#' + tag).html('<tr>' + tit + '</tr>' + cad + '<tr>' + tot + '</tr>');	
+	return '<tr>' + tit + '</tr>' + cad + '<tr>' + tot + '</tr>';	
 }
 
 function dibujaRenglon(item, titulos)

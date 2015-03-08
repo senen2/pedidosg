@@ -3,6 +3,10 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+
 	<title>Pedidos</title>
     <meta name="description" content="manejador de pedidos y despachos">
     <meta name="author" content="Andres Botello" />
@@ -96,8 +100,11 @@
 				<div class="fila">
 					<div class="col mo v2 sector min-width" align="left">
 						<table id="pedidos"> </table>
-<!--						<br />
-						<div align="right"><a class="button3" onclick="refrescar();">Actualizar</a></div> -->
+						<div style="margin-top: 10px;">
+							<input id="tercero" placeholder="empresa" onclick="this.select();" onkeydown="if (event.keyCode == 13) agregarPedido();">
+							<a class="btn v4" href="#" onclick="agregarPedido()"><label id="titcrearpedidonuevo">Crear Pedido Nuevo</label></a>
+							<a class="btn v4" href="catalogo.html?m=0" target="_blank"><label id="titabrircatalogo">Abrir Catalogo para agregar productos</label></a>
+						</div>						
 					</div>
 				</div>
 				</div>
@@ -107,11 +114,16 @@
 					<div class="col">
 						<div class="fila">
 							<div class="sector v2 min-width" align="center">
-								<textarea id="notas" placeholder="aqui puede escribir sus notas" style="min-height: 20px; width: 100%" onchange="grabaObs()"> </textarea>
-							</div>
-							<div class="sector v2 min-width" align="center">
 								<div id="productos" style="min-height: 20px"> </div>
 							</div>							
+							<div id="titref" class="DN" style="padding-left: 16px; margin-top: -11px">
+								<input id="ref" placeholder="referencia" onkeydown="if (event.keyCode == 13) agregarxReferencia();">
+								<a class="btn v4" href="#" onclick="agregarxReferencia()"><label id="titagregarreferencia">Agregar Referencia</label></a>
+								<br>				
+							</div>
+							<div class="sector v2 min-width" align="center">
+								<textarea id="notas" placeholder="aqui puede escribir sus notas" style="min-height: 100px; width: 100%" onchange="grabaObs()"> </textarea>
+							</div>
 							<div id="enviaremail" class="sector v2 min-width" align="center">
 								<a class="btn v4" href="#" onclick="enviarEmail()"><label id="titenviaremail">Enviar Email</label></a>
 							</div>							
@@ -119,17 +131,6 @@
 					</div>
 				</div>			
 			</div>
-		</div>
-		<div>
-			<br>
-			<div id="titref" class="DN">
-				<input id="ref" placeholder="referencia" onkeydown="if (event.keyCode == 13) agregarxReferencia();">
-				<a class="btn v4" href="#" onclick="agregarxReferencia()"><label id="titagregarreferencia">Agregar Referencia</label></a>
-				<br><br>				
-			</div>
-			<input id="tercero" placeholder="cliente" onclick="this.select();" onkeydown="if (event.keyCode == 13) agregarPedido();">
-			<a class="btn v4" href="#" onclick="agregarPedido()"><label id="titcrearpedidonuevo">Crear Pedido Nuevo</label></a>
-			<a class="btn v4" href="catalogo.html?m=0" target="_blank"><label id="titabrircatalogo">Abrir Catalogo para agregar productos</label></a>
 		</div>
 
 		<div class="config-menu fila">
@@ -149,12 +150,12 @@
 		  		<div id="divColor">Color: <select id="color"> </select></div>
 		  		<div>
 		  			<label class="col auto-width">Producto: $ </label>
-		  			<input id="precioprod" class="item-name" style="width: 70px"/>
+		  			<input id="precioprod" class="item-name" style="width: 70px" onchange="totalizaEditor();"/>
 	  			</div>
 		  		<div id="procesos"> </div>
 		  		<div>
 		  			<label class="col auto-width">Cantidad: </label>
-		  			<input id="cantidad" value="1" autofocus/>
+		  			<input id="cantidad" value="1" autofocus onchange="totalizaEditor();"/>
 	  			</div>
 		  		<div>Precio Total: <label id="precio"> </label></div>
 		  	</div>

@@ -49,7 +49,7 @@ function dibujaTitulos(l)
 		$("#titcrearpedidonuevo").html(l.crearpedidonuevo);		
 		$("#titabrircatalogo").html(l.abrircatalogo);		
 		$("#ref").attr("placeholder", l.referencia);		
-		$("#tercero").attr("placeholder", l.cliente);		
+		$("#tercero").attr("placeholder", l.empresa);		
 		$("#notas").attr("placeholder", l.escribirnotas);		
 
 		// editorproducto.html

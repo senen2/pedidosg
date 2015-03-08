@@ -44,7 +44,7 @@ function dibujaPedidos(datos)
 	$("#productos").html("");
 	$("#usuario").html(datos.cuenta.empresa + " / " + datos.cuenta.usuario);
 	dibujaLogin(datos.cuenta);
-	dibujaTabla(datos, "pedidos", "pedidos", "leePedido");
+	$('#pedidos').html( cadTabla(datos, "pedidos", "leePedido"));
 	llenaTercero();
 	dibujaTitulos(gdatos.cuenta.lenguaje);
 }
@@ -186,8 +186,8 @@ function agregarPedido()
 			if (item.empresa==$("#tercero").val())
 				cliente = item	
 		});
-		if (!cliente)
-			email = prompt("ingrese email del cliente");
+		//if (!cliente)
+			//email = prompt("ingrese email del cliente");
 	
 		AgregarPedidoCabP(gdatos.cuenta.ID, $("#tercero").val(), email, gmodo, dibujaPedidos);
 		$("#tercero").val("");
@@ -272,6 +272,7 @@ function mostrarVariedad()
 		$("#cantidad").val(1);
 	}
 	$("#procesos").html(dibujaEditarProduccion());
+	totalizaEditor();
 }
 
 function dibujaEditarProduccion()
@@ -287,28 +288,48 @@ function dibujaEditarProduccion()
 	else { 
 		if (gdatosvar.produccion)
 		{
-			var precio = parseFloat($("#precioprod").val());
 			$.each(gdatosvar.produccion.procesos, function(i,item) {
 				if (item.opcional==1) {
 				 	cad	+= cadRenglonProduccion(item); 
-				 	if (item.activo)
-				 		precio += item.precio;					
 				}
 			});				
-			$("#precio").html(precio);
 		}				
 	}
 	return cad;
+}
+
+function totalizaEditor()
+{
+	var precio = parseFloat($("#precioprod").val());
+	if (gdatoseditar) {
+		if (gdatosped.produccion)
+			$.each(gdatosped.produccion.procesos, function(i,item) {
+				if (item.IDdetped==gIDdetped) {
+					if (item.opcional==1 & $("#proceso-"+item.ID).prop("checked")) {
+						precio += parseFloat($("#precioproceso-"+item.ID).val());						
+					}
+				}
+			});
+	}
+	else {
+		if (gdatosvar.produccion)
+			$.each(gdatosvar.produccion.procesos, function(i,item) {
+				if (item.opcional==1 & $("#proceso-"+item.ID).prop("checked")) {
+					precio += parseFloat($("#precioproceso-"+item.ID).val());					
+				}
+			});
+	}		
+	$("#precio").html((precio*parseFloat($("#cantidad").val())).formatMoney(gdatos.cuenta.decimales));	
 }
 
 function cadRenglonProduccion(item)
 {
  	return '<div class="fila" style="min-width: 300px;">'
  			+ '<div class="col">' 
-		 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + '>' 
+		 		+ '<input class="col" id="proceso-' + item.ID + '" type="checkbox" ' + (item.activo=='1' ? ' checked':'') + ' onchange="totalizaEditor()" />' 
 		 		+ '<label class="item-name col">' + item.nombre + '&nbsp;$&nbsp;</label>'
 	 		+ '</div>'
- 			+ '<input id="precioproceso-' + item.ID  + '" class="item-name col" style="width:70px" value="' + item.precio  + '"/>' 
+ 			+ '<input id="precioproceso-' + item.ID  + '" class="item-name col" style="width:70px" value="' + item.precio  + '" onchange="totalizaEditor()"/>' 
  		+ '</div>';
 }
 /*
