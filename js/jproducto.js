@@ -18,7 +18,6 @@ function inicioProd()
 	if (IDproducto==null)
 		IDproducto=1;
 	ListaProductoP(IDproducto, dibujaProducto);
-	a = 0;
 }
 
 function dibujaProducto(IDproducto, datos)
