@@ -81,7 +81,7 @@ function activaAsociado(ID)
 function agregaAsociacion()
 {
 	if (modo != "proveedores" & !IsEmail($("#email").val())) {
-		$("#aviso").html("se requiere un email valido")
+		$("#aviso").html("se requiere un email valido");
 		$("#aviso").show();
 	}
 	else {

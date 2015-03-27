@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Gtienda - How it works</title>
+  <meta name="description" content="Gtienda - How it works">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="css/mopp.webflow.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700","Bitter:400,700"]
+      }
+    });
+  </script>
+  <script>
+    if (/mobile/i.test(navigator.userAgent)) document.documentElement.className += ' w-mobile';
+  </script>
+  <meta http-equiv="pragma" content="no-cache">
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script type="text/javascript" src="js/jgoogle.js"></script>
+  <script>
+    $(document).ready(function() {
+    });
+    
+    function verImagen(imagen)
+    {
+    	window.location.assign("imagen.html?i=pantallasen/" + imagen + ".png");
+    }
+  </script>
+</head>
+<body>
+  <header class="section">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-4 subfooter-left">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-clearfix">
+              <div class="app-name">GTienda</div>
+            </div>
+          </div>
+        </div>
+        <div class="w-col w-col-8 nav-column">
+        	<a class="nav-link" href="index.html">Home</a>
+        	<a class="nav-link" href="contacto.html">contact</a>
+        	<a class="nav-link" href="precio.html">prices</a>
+        	<a class="nav-link" href="registro.html">register</a>
+	        <!--a class="w-inline-block app-store-button" href="registro.html">
+	            <img src="images/entrar2.png" width="114px" alt="Enter">
+	        </a-->
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="section purple">
+    <h1 class="encabezado">GTienda, how it works</h1>
+    <div class="w-container center"><a class="button" href="registro.html">Register</a>
+    </div>
+  </div>
+  <div class="w-clearfix section white" id="page-nav-intro">
+    <div class="w-container">
+      <div class="w-row organize-row">
+        <div class="w-col w-col-6">
+          <h2>Add products</h2>
+          	<p>
+          		Product creation is done by adding pictures of them. You can do this in several ways:
+      		</p>
+      		<ul>
+      			<li>Select images from your PC, tablet or phone</li>
+      			<li>Take pictures and upload them immediately</li>
+      			<li>Drag images from other sites</li>
+      		</ul>
+      		<p>
+      			You can arrange the catalog images by drag and drop them.
+		  	</p>
+        </div>
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallasen/agregarProductos-peq.png" width="460" alt="Add Products" onclick="verImagen('agregarProductos')">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section grey" id="page-nav-produt">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallasen/editorProducto-peq.png" width="460" alt="Edit Product" onclick="verImagen('editorProducto')">
+        </div>
+        <div class="w-col w-col-6">
+          <h2>Add data</h2>
+          	<p>
+          		Now you can move through the images to add necessary data to each product.
+          		<br><br>
+          		It is important to add tags or labels that serve to help customers find what they want or to facilitate the setting of prices.
+		  	</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section white" id="page-nav-progra">
+    <div class="w-container">
+      <div class="w-row organize-row">
+        <div class="w-col w-col-6">
+          <h2>Promote your site</h2>
+          	<p>
+          		You've got your website ready to sell. 
+          		<br><br>
+          		You can now tell your clients and friends, by word of mouth or by email, posting on Facebook, Twitter...
+          		Maybe put some stickers at the entrance and inside of your business.
+          		<br><br>
+          		Many of yours clients seeing how simple it is to buy by your page could increase its purchases.
+          		<br><br>
+          		The more people know about your site, more likely they tell others and increase your orders.
+		  	</p>
+        </div>
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallasen/promocion-peq.png" width="460" alt="promote" onclick="verImagen('promocion')">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section grey" id="page-nav-avances">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallasen/carro-peq.png" width="460" alt="Cart" onclick="verImagen('carro')">
+        </div>
+        <div class="w-col w-col-6">
+          <h2>Customers place orders</h2>
+          	<p>
+          		On the website, customers observe the product catalog and consult product details, 
+          		use the filters (created with tags) and put what they want on the cart. 
+          		In the cart they can review, remove or add products.
+          		<br><br>
+          		When they are ready they will place the order or request a quote. 
+          		If you have a Paypal account they can paid at this time, otherwise you will tell them how make the payment.
+		  	</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-clearfix section white" id="page-nav-produccion">
+    <div class="w-container">
+      <div class="w-row organize-row">
+        <div class="w-col w-col-6">
+          <h2>You enter orders</h2>
+          	<p>
+          		You can also enter orders from your store or office, to serve yours customers as it has done so far. 
+          		<br><br>
+          		Being inside your account, drag products from the catalog or write the reference.
+           		In this way you can also change the order.
+		  	</p>
+        </div>
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallasen/editorPedido-peq.png" width="460" alt="Orders" onclick="verImagen('editorPedido')">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section grey" id="page-nav-recursos">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallasen/xdespachar-peq.png" width="460" alt="Delivery" onclick="verImagen('xdespachar')">
+        </div>
+        <div class="w-col w-col-6">
+          <h2>Deliver on time</h2>
+          	<p>
+          		Don't make your client suffer because you forgot to delivery an order.
+          		<br><br>
+          		Your page has mechanisms to track the execution of orders.
+		  	</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="page-nav-delega">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6">
+          <h2>Assign work</h2>
+          	<p>
+          		If you are a manufacturer or a third-party service integrator,
+          		you can have our complete production control system to assist you
+           		to assign work to different teams, control materials required.
+		  	</p>
+        </div>
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallasen/tareas-peq.png" width="460" alt="Tasks" onclick="verImagen('tareas')">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section grey" id="page-nav-recursos">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallasen/equipos-peq.png" width="460" alt="Equipment" onclick="verImagen('equipos')">
+        </div>
+        <div class="w-col w-col-6">
+          <h2>Production control</h2>
+          	<p>
+          		At any time, easily establish the work excution order for each team.
+          		<br><br>
+          		This way you can optimize your production or make last minute changes without disturbing the production.
+		  	</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section purple">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-8">
+          <h2 class="price-text">Why wait, create an account now!*</h2>
+        </div>
+        <div class="w-col w-col-4"><a class="button" href="registro.html">Register</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="w-container subfooter-right">
+      <h3>Last news of GTienda.</h3>
+      <a class="w-inline-block social-button red" href="contacto.html">
+        <img src="images/7a-social-email.png" width="21px" alt="contacto">
+      </a>
+      <a class="w-inline-block social-button hidde" href="http://facebook.com/webflowapp" target="_blank">
+        <img src="images/7b-social-facebook.png" width="21px" alt="facebook">
+      </a>
+      <a class="w-inline-block social-button hidde" href="https://twitter.com/GTIENDA_ES" target="_blank">
+        <img src="images/7c-social-twitter.png" width="21px" alt="twitter">
+      </a>
+    </div>
+  </div>
+  <div class="section grey footer">
+    <div class="w-container">
+      <p class="footer-text">* The business model and prices can change</p>
+    </div>
+  </div>
+</body>
+</html>

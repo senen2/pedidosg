@@ -3,7 +3,7 @@
  */
 
 function getURLParameter(name) {
-  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
 
 function logout()
@@ -38,14 +38,14 @@ function dibujaCatalogos(datos, titulo, carro)
 {
 	var cad = armaCadCatalogos(datos, carro);
 	$("#catalogosh").html(cad);
-	$("#titulocatalogo").html('<label> ' + titulo + ' </label>')
+	$("#titulocatalogo").html('<label> ' + titulo + ' </label>');
 }
 
 function dibujaCatalogosAbajo(datos, titulo, carro)
 {
 	var cad = armaCadCatalogos(datos, carro);
 	$("#catalogosh1").html(cad);
-	$("#titulocatalogo1").html('<label> ' + titulo + ' </label>')
+	$("#titulocatalogo1").html('<label> ' + titulo + ' </label>');
 }
 
 function armaCadCatalogos(datos, carro)
@@ -54,9 +54,9 @@ function armaCadCatalogos(datos, carro)
 	$.each(datos, function(i,item) {
 		cad = cad + '<a class="nav-link" href="catalogo.html?ID='+ item.ID +'"><div class="nav-col col"><span>' + item.nombre + '</span></div></a>';
 	} );
-	cad = cad + '<a class="nav-link" href="contacto.html"><div class="nav-col col"><span>Contacto</span></div></a>';
+	cad = cad + '<a class="nav-link" href="contacto.html"><div class="nav-col col"><span>' + gdatos.cuenta.lenguaje.contacto + '</span></div></a>';
 	if (carro>=0)
-		cad = cad + '<a class="nav-link icon-cart" href="carro.html"><div class="nav-col col"><span>Carro (' + carro + ')</span></div></a>'
+		cad = cad + '<a class="nav-link icon-cart" href="carro.html"><div class="nav-col col"><span>' + gdatos.cuenta.lenguaje.carro + ' (' + carro + ')</span></div></a>';
 	
 	return cad;
 }
@@ -64,13 +64,13 @@ function armaCadCatalogos(datos, carro)
 function dibujaTitulo(titulo, logo)
 {
 	$("#titulocuenta").html('<h2>' + titulo + '</h2>');
-	$("#logo").attr("src", imagedir + "logos/" + logo)
+	$("#logo").attr("src", imagedir + "logos/" + logo);
 }
 
 function dibujaTituloAbajo(titulo, logo)
 {
 	$("#titulocuenta1").html('<h2>' + titulo + '</h2>');
-	$("#logo1").attr("src","logos/" + logo)
+	$("#logo1").attr("src","logos/" + logo);
 }
 
 function dibujaBuscar(tags)
@@ -95,21 +95,31 @@ function dibujaLogin(cuenta)
 				usuario = cuenta.usuario + " / " + cuenta.empresa;
 	$("#ayuda").attr("href", ayuda);			
 	if (usuario!="") {
-		$("#quierovender").hide();
+		$("#quierovender").addClass("DN");
+		$("#registro").addClass("DN");
+		$("#login").addClass("DN");
+/*		$("#quierovender").hide();
 		$("#registro").hide();
-		$("#login").hide();
+		$("#login").hide();*/
 		$("#nombreusuario").html(usuario);
-		$("#nombreusuario").show();
-		$("#logout").show();
+		$("#nombreusuario").removeClass("DN");
+		$("#logout").removeClass("DN");
+/*		$("#nombreusuario").show();
+		$("#logout").show();*/
 		if (cuenta.tipo=="P" | cuenta.tipo=="V")
 			dibujaMenu();
 	}
-	else {	
-		$("#quierovender").show();
+	else {
+		$("#quierovender").removeClass("DN");
+		$("#registro").removeClass("DN");
+		$("#login").removeClass("DN");
+		$("#nombreusuario").addClass("DN");
+		$("#logout").addClass("DN");	
+/*		$("#quierovender").show();
 		$("#registro").show();
 		$("#login").show();
 		$("#nombreusuario").hide();
-		$("#logout").hide();
+		$("#logout").hide();*/
 	}	
 	if (cuenta.eslenguaje)
 		dibujaTitulos(cuenta);
@@ -121,7 +131,7 @@ function inicioSinLogin()
 	encabezado = getCookie("encabezado");
 	if (encabezado==null | encabezado=="" | encabezado=="'',''")
 		encabezado="'','',''";
-	token = encabezado.split(",")[2]
+	token = encabezado.split(",")[2];
 	token = token.trim().substr(1,token.length-2);
 	if (token=="''")
 		token = "";
@@ -134,7 +144,15 @@ function leeIdioma()
 {	
 	idioma = getCookie("idioma");
 	if (idioma==null) {
-		idioma = navigator.languages? navigator.languages[0] : (navigator.language || navigator.userLanguage)
+		idioma="en";
+		if (navigator.languages) {
+			$.each(navigator.languages, function(i,item) {
+				if (item.split("-")[0]=="es")
+					idioma="es";
+			});
+		}
+		else
+			idioma = navigator.language || navigator.userLanguage;
 		//idioma = "en";
 		document.cookie = "idioma=" + idioma;		
 	}		
@@ -177,7 +195,7 @@ function dibujaMenu()
 		+ '<a class="nav-link v2" href="tactivap.html"><div class="nav-col v2"><span id="titpapelera">Papelera</span></div></a>'
 		+ '<a class="nav-link v2" href="tareas.html"><div class="nav-col v2"><span id="tittareas">Tareas</span></div></a>'
 		+ '<a class="nav-link v2" href="equipos.html"><div class="nav-col v2"><span id="titequipos">Equipos</span></div></a>'
-	)
+	);
 }
 /*
 function muestraMenu()
@@ -234,7 +252,7 @@ function buscaObjetoxID(datos, ID)
 			break;
 	if (i<datos.length)
 		return datos[i];
-	return null
+	return null;
 }
 
 function esUsuario(datos)

@@ -3,7 +3,7 @@
  */
 
 function inicioReg() {
-	pagina = "loginP";
+	pagina = "pdlogin";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Crear_una_cuenta";
 	$("#aviso").hide();
 	inicioSinLogin();
@@ -23,7 +23,7 @@ function login()
 function ingreso(response)
 {
 	if (response) {
-		ajustaEncabezado(response)
+		ajustaEncabezado(response);
 		token = response.token;
 		var pagpend = getCookie("pagpend");
 		if (pagpend==null || pagpend=="")
@@ -32,7 +32,7 @@ function ingreso(response)
 			else				
 				window.location.assign("subeprod.html");
 		else {
-			document.cookie = "pagpend="
+			document.cookie = "pagpend=";
 			window.location.assign(pagpend);			
 		}
 	}
@@ -55,7 +55,7 @@ function registro()
 		return;
 	}
 	if ($("#empresanuevo").val()=="") {
-		$("#empresanuevo").val($("#nombrenuevo").val())
+		$("#empresanuevo").val($("#nombrenuevo").val());
 		//$("#error").html("la empresa no puede estar vacia");
 		//$("#error").show();				
 		//return;
@@ -71,5 +71,5 @@ function registro()
 		return;
 	}
 	encabezado = "'" + $("#emailnuevo").val() + "','" + $("#clave1nuevo").val() + "','" + token + "'";
-	CreaCuentaP($("#nombrenuevo").val(), $("#emailnuevo").val(), $("#empresanuevo").val(), $("#clave1nuevo").val(), ingreso)
+	CreaCuentaP($("#nombrenuevo").val(), $("#emailnuevo").val(), $("#empresanuevo").val(), $("#clave1nuevo").val(), ingreso);
 }

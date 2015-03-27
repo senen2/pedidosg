@@ -162,7 +162,7 @@ function ListaProductoxReferenciaP(IDcuentaCat, referencia, funcion)
 		dataType: "jsonp",
 		success: function( response ) {
 			IDproducto = response.producto.ID;
-			funcion(IDproducto, response)	
+			funcion(IDproducto, response);	
 		}
 	});	
 }
@@ -474,7 +474,7 @@ function AgregaAlPedidoP(IDpedido, IDvariedad, cantidad, precio, precioprod, mod
 	$.post( 'http://' + servidor + '/functiond/AgregaAlPedidoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
 	 		if (funcion)
-	 			LeePedidoDetP(IDpedido, modo, funcion)
+	 			LeePedidoDetP(IDpedido, modo, funcion);
 	 	});
 	
 }
@@ -494,7 +494,7 @@ function ModificaRenglonPedidoP(IDpedido, IDdetped, cantidad, precio, precioprod
 	$.post( 'http://' + servidor + '/functiond/ModificaRenglonPedidoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
 	 		if (funcion)
-	 			LeePedidoDetP(IDpedido, modo, funcion)
+	 			LeePedidoDetP(IDpedido, modo, funcion);
 	 	});	
 }
 
@@ -554,7 +554,7 @@ function LeerCarroP(IDcuentaCat, dibujaCarro)
 		jsonp: "callback",
 		dataType: "jsonp",
 		success: function( response ) {
-			dibujaCarro(response)	
+			dibujaCarro(response);
 		}
 	});		
 }

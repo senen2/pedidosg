@@ -13,9 +13,9 @@ function inicioCarro()
 		$("#notas").val(nota);
 			
 	if (IDcuentaCat==null)
-		window.location.assign("registro.html")
+		window.location.assign("registro.html");
 	else
-		LeerCarroP(IDcuentaCat, dibujaCarro)
+		LeerCarroP(IDcuentaCat, dibujaCarro);
 }
 
 function dibujaCarro(datos)
@@ -32,18 +32,18 @@ function dibujaCarro(datos)
 			precio = calculaPrecio(item);
 			valor = (item.precio*item.cantidad).formatMoney(gdatos.cuenta.decimales);
 			
-			tagprecio = '<label id="precio-' + item.ID + '" class="item-price">$' + precio + '</label><br>'
+			tagprecio = '<label id="precio-' + item.ID + '" class="item-price">$' + precio + '</label><br>';
 			if (modo==1)
-				tagprecio = '<label class="item-price">$ </label><input class="item-price" id="precio-' + item.ID + '" value="' + item.precio + '"/><br><br>'
+				tagprecio = '<label class="item-price">$ </label><input class="item-price" id="precio-' + item.ID + '" value="' + item.precio + '"/><br><br>';
 							
-			prop=""
+			prop="";
 			if (item.talla!="")
-				prop = prop + '<label class="item-ref">Talla: ' + item.talla + '</label>'
+				prop = prop + '<label class="item-ref">Talla: ' + item.talla + '</label>';
 			
 			if (item.color!="") {
 				if (prop != "")
 					prop = prop + ', ';
-				prop = prop + '<label class="item-ref">Color: ' + item.color+ '</label>'				
+				prop = prop + '<label class="item-ref">Color: ' + item.color+ '</label>';				
 			}
 
 			cad = cad + '<div class="hor-item">'
@@ -71,7 +71,7 @@ function dibujaCarro(datos)
 					  	  		+ '<br><a class="btn" href="#" onclick="quitarDelCarro('+ item.ID + ');" style="font-weight: bold">' + l.quitar + '</a>'
 					  		+ '</div><br>'
 					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
-					  + '</div><hr><br>'
+					  + '</div><hr><br>';
 		} );
 		$("#totalcuadro").show();
 		$("#carro").html(cad);
@@ -112,7 +112,7 @@ function activaProceso(i)
 	proceso.activo = $("#proceso-" + i).prop("checked") ? 1:0;
 	actualizaPrecio(i);
 	dibujaTotal();
-	ActivaProcesoCarroP(gdatos.produccion[i].ID, proceso.activo)
+	ActivaProcesoCarroP(gdatos.produccion[i].ID, proceso.activo);
 }
 
 function dibujaTotal()
@@ -150,7 +150,7 @@ function realizarPedido(estado)
 	datos.notas = $("#notas").val() + (estado==0 ? " cotizacion" : "") ;
 	datos.estado = estado;
 	$.each(gdatos.carro, function(i,item) {
-		d = {}
+		d = {};
 		d.ID = item.ID;
 		d.cantidad = item.cantidad;
 		d.precio = calculaPrecio(item);
@@ -209,7 +209,7 @@ function quitarDelCarro(ID)
 	if (indice>=0)
 	{
 		gdatos.carro.splice(indice, 1);
-		BorraDelCarroP(ID, refresca())
+		BorraDelCarroP(ID, refresca());
 	}
 }
 
@@ -235,7 +235,7 @@ function actualizaPrecio(iprecio)
 	
 	$.each(gdatos.carro, function(i,item) {
 		if (item.ID==IDcarro)
-			precio = item.precio	
+			precio = item.precio;
 	} );	
 	
 	$.each(gdatos.produccion, function(i,item) {

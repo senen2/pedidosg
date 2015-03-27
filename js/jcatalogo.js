@@ -26,10 +26,15 @@ function inicioCat()
 	itemini = getCookie("itemini");
 	if (itemini == null)
 		itemini=0;
+	else
+		itemini = parseInt(getCookie("itemini"));
+	
 		
 	itemsxpag = getCookie("itemsxpag");
 	if (itemsxpag == null)
-		itemsxpag=24;		
+		itemsxpag=24;
+	else		
+		itemsxpag = parseInt(itemsxpag);
 	
 	empresa = getURLParameter('n');
 	if (empresa!=null)
@@ -38,7 +43,7 @@ function inicioCat()
 			window.location.assign("http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=P%C3%A1gina_principal");		
 			return;			
 		}
-		ListaProductosxEmpresaP(empresa, itemini, itemsxpag, filtrosact, idioma, dibujaCatalogo)
+		ListaProductosxEmpresaP(empresa, itemini, itemsxpag, filtrosact, idioma, dibujaCatalogo);
 	} 
 	else {
 		IDcatalogo = getURLParameter('ID');
@@ -78,7 +83,7 @@ function dibujaCatalogo(datos)
 	document.cookie = "IDcuentaCat=" + datos.cuentaCat.ID;
 	
 	dibujaLogin(gdatos.cuenta);
-	dibujaTitulos(gdatos.cuenta.lenguaje)
+	dibujaTitulos(gdatos.cuenta.lenguaje);
 	dibujaCatalogos(datos.catalogos, datos.catalogoCab.titulo, editando ? -1 : datos.carro.length);
 	dibujaCuadro(datos);
 	dibujaTitulo(datos.cuentaCat.titulo, datos.cuentaCat.ID + ".jpg");
@@ -120,15 +125,15 @@ function dibujaCuadro(datos)
 	
 			referencia = "";
 			if (item.referencia!="")
-				referencia = '<label class="item-ref">Ref: ' + item.referencia + '</label>'
+				referencia = '<label class="item-ref">Ref: ' + item.referencia + '</label>';
 			
 			precio = "";
 			if (item.precio>0)
-				precio = '<label class="item-price">$ ' + item.precio.formatMoney(gdatos.cuenta.decimales)+ '</label>'
+				precio = '<label class="item-price">$ ' + item.precio.formatMoney(gdatos.cuenta.decimales)+ '</label>';
 			
 			pvm = "";
 			if (item.pvm>0)
-				pvm = '<label class="item-price">Al Mayor $ ' + item.pvm.formatMoney(gdatos.cuenta.decimales) + '</label>'
+				pvm = '<label class="item-price">Al Mayor $ ' + item.pvm.formatMoney(gdatos.cuenta.decimales) + '</label>';
 	
 			borrar = "";
 			if (editando)
@@ -143,7 +148,7 @@ function dibujaCuadro(datos)
 						  + precio
 						  + pvm
 						  + borrar
-						  + '</div></a></div>'						
+						  + '</div></a></div>';						
 		}
 	} );
 	$("#catalogo").html(cad);	

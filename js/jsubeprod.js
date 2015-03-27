@@ -13,7 +13,7 @@ function inicioSubeProd()
 		window.location.assign("registro.html");		
 	}
 		
-	pagina = "subeprod";
+	pagina = "pdsubeprod";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Subir_imagenes_de_los_productos";
 	leeServidor();
 	
@@ -33,7 +33,7 @@ function inicioSubeProd()
 	else
 		itemdefault = JSON.parse(itemdefault);
 	
-	leeCuentaP(dibujaPagina)
+	leeCuentaP(dibujaPagina);
 	
 }
 
@@ -84,18 +84,18 @@ function upload() {
 
     var a = encabezado.split(',');
     var datos = [];
-    datos.push({nombre: "email", valor: a[0].replace("'","").replace("'","")})
-    datos.push({nombre: "token", valor: a[2].replace("'","").replace("'","")})
-    datos.push({nombre: "IDcuentacat", valor: gdatos.ID })
-    datos.push({nombre: "nombre", valor: itemdefault.nombre })
-    datos.push({nombre: "referencia", valor: itemdefault.referencia })
-    datos.push({nombre: "barcode ", valor: itemdefault.barcode })
-    datos.push({nombre: "descripcion ", valor: itemdefault.descripcion })
-    datos.push({nombre: "precio", valor: itemdefault.precio })
-    datos.push({nombre: "pvm", valor: itemdefault.pvm })
-    datos.push({nombre: "tallas", valor: itemdefault.tallas })
-    datos.push({nombre: "colores", valor: itemdefault.colores })
-    datos.push({nombre: "tags", valor: JSON.stringify(itemdefault.tags) })
+    datos.push({nombre: "email", valor: a[0].replace("'","").replace("'","")});
+    datos.push({nombre: "token", valor: a[2].replace("'","").replace("'","")});
+    datos.push({nombre: "IDcuentacat", valor: gdatos.ID });
+    datos.push({nombre: "nombre", valor: itemdefault.nombre });
+    datos.push({nombre: "referencia", valor: itemdefault.referencia });
+    datos.push({nombre: "barcode ", valor: itemdefault.barcode });
+    datos.push({nombre: "descripcion ", valor: itemdefault.descripcion });
+    datos.push({nombre: "precio", valor: itemdefault.precio });
+    datos.push({nombre: "pvm", valor: itemdefault.pvm });
+    datos.push({nombre: "tallas", valor: itemdefault.tallas });
+    datos.push({nombre: "colores", valor: itemdefault.colores });
+    datos.push({nombre: "tags", valor: JSON.stringify(itemdefault.tags) });
 
 	$.each(file.files, function(i, archivo) {
 	  theQueue.queue('uploads', function(next) {

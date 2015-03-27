@@ -33,7 +33,7 @@ function refrescar(datos)
 
 function iframeFinal()
 {
-  	$("#hiddenFrame").attr("onload",'finalSubirImagen();')
+  	$("#hiddenFrame").attr("onload",'finalSubirImagen();');
   	$("#busy").show();
 
 }
@@ -72,7 +72,7 @@ function verifica(response)
 		//$("#aviso").html("La contraseña no se pudo cambiar");
 		alert("La contraseña no se pudo cambiar");
 	else {
-		alert("la clave fue cambiada con exito")
+		alert("la clave fue cambiada con exito");
 		$("#claveactual").val("");
 		$("#clave1nuevo").val("");
 		$("#clave2nuevo").val("");

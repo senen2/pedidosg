@@ -3,11 +3,11 @@
  */
 function inicioContacto()
 {
-	pagina = "pdeditLogo";
+	pagina = "pdcontacto";
 	leeServidor();
 	encabezado = getCookie("encabezado");
 	if (!(encabezado==null | encabezado=="'','',''"))
-		leeCuentaP(refrescar)
+		leeCuentaP(refrescar);
 	else
 		refrescar(null, "");
 }

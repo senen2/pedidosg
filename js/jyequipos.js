@@ -11,7 +11,7 @@ function inicioOcupacion()
 	pagina = "hOcupacion";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Subir_imagenes_de_los_productos";
 	leeServidor();
-	LeeEquiposP(dibujaOcupacion)
+	LeeEquiposP(dibujaOcupacion);
 }
 
 function dibujaOcupacion(datos, fecha)
@@ -19,7 +19,7 @@ function dibujaOcupacion(datos, fecha)
 	gdatos = datos;
 	var n = (Math.sqrt(gdatos.length) + 1);
 	n = n * n; 
-	var cad = "", noches
+	var cad = "", noches,
 		t = $("#ocupacion").position().top,
 		l = $("#ocupacion").position().left,
 		h = parseInt(Math.sqrt(($(window).width()-l*2)*($(document).height()-t-40)/n/1.62))-1,

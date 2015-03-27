@@ -67,7 +67,7 @@ function LeeEquiposP(funcion)
 
 function ActivaProcesoCarroP(IDproceso, activo)
 {
-	datos={}
+	datos={};
 	datos.IDproceso=IDproceso;
 	datos.activo=activo;
 	$.post( 'http://' + servidor + '/functiond/ActivaProcesoCarroP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
@@ -79,7 +79,7 @@ function ActivaProcesoCarroP(IDproceso, activo)
 
 function CreaProcesoP(IDproducto, nombre, funcion)
 {
-	datos={}
+	datos={};
 	datos.IDproducto=IDproducto;
 	datos.nombre=nombre;
 	$.post( 'http://' + servidor + '/functiond/CreaProcesoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
@@ -91,7 +91,7 @@ function CreaProcesoP(IDproducto, nombre, funcion)
 
 function EliminaProcesoProductoP(IDproceso, funcion)
 {
-	datos={}
+	datos={};
 	datos.IDproceso=IDproceso;
 	$.post( 'http://' + servidor + '/functiond/EliminaProcesoProductoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
@@ -102,7 +102,7 @@ function EliminaProcesoProductoP(IDproceso, funcion)
 
 function CreaMaterialP(IDproducto, IDproceso, nombre, cantidad, funcion)
 {
-	datos={}
+	datos={};
 	datos.IDproducto=IDproducto;
 	datos.IDproceso=IDproceso;
 	datos.nombre=nombre;
@@ -116,7 +116,7 @@ function CreaMaterialP(IDproducto, IDproceso, nombre, cantidad, funcion)
 
 function BorraMaterialP(ID, funcion)
 {
-	datos={}
+	datos={};
 	datos.ID=ID;
 	$.post( 'http://' + servidor + '/functiond/BorraMaterialP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
@@ -127,7 +127,7 @@ function BorraMaterialP(ID, funcion)
 
 function CambiaTipoProductoP(IDproducto, IDplanilla, tipo, funcion)
 {
-	datos={}
+	datos={};
 	datos.IDproducto=IDproducto;
 	datos.IDplanilla=IDplanilla;
 	datos.tipo=tipo;
@@ -140,7 +140,7 @@ function CambiaTipoProductoP(IDproducto, IDplanilla, tipo, funcion)
 
 function CambiaFichaProductoP(IDproceso, ficha, precio, nombre, opcional, funcion)
 {
-	datos={}
+	datos={};
 	datos.IDproceso=IDproceso;
 	datos.ficha=ficha;
 	datos.precio = precio;
@@ -157,7 +157,7 @@ function CambiaFichaProductoP(IDproceso, ficha, precio, nombre, opcional, funcio
 
 function CambiaListoPedidoP(IDmp, listo)
 {
-	datos={}
+	datos={};
 	datos.IDmp=IDmp;
 	datos.listo=listo;
 	$.post( 'http://' + servidor + '/functiond/CambiaListoPedidoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
@@ -167,7 +167,7 @@ function CambiaListoPedidoP(IDmp, listo)
 
 function CambiaEquipoPedidoP(IDproceso, IDequipo)
 {
-	datos={}
+	datos={};
 	datos.IDproceso=IDproceso;
 	datos.IDequipo=IDequipo;
 	$.post( 'http://' + servidor + '/functiond/CambiaEquipoPedidoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
@@ -177,7 +177,7 @@ function CambiaEquipoPedidoP(IDproceso, IDequipo)
 
 function GuardaOrdenProcesosP(IDequipo, procesos, funcion)
 {
-	datos={}
+	datos={};
 	datos.IDequipo=IDequipo;
 	datos.procesos=procesos;
 	$.post( 'http://' + servidor + '/functiond/GuardaOrdenProcesosP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
@@ -189,7 +189,7 @@ function GuardaOrdenProcesosP(IDequipo, procesos, funcion)
 
 function CreaEquipoP(nombre, funcion)
 {
-	datos={}
+	datos={};
 	datos.nombre=nombre;
 	$.post( 'http://' + servidor + '/functiond/CreaEquipoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
@@ -214,7 +214,7 @@ function CopiaProduccionP(IDproductoOr, IDproductoDest, funcion)
 
 function TerminarProcesoP(IDproceso, funcion)
 {
-	datos={}
+	datos={};
 	datos.IDproceso=IDproceso;
 	$.post( 'http://' + servidor + '/functiond/TerminarProcesoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){

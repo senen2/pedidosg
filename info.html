@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Gtienda - Como Funciona</title>
+  <meta name="description" content="Gtienda - Como Funciona">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="css/mopp.webflow.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700","Bitter:400,700"]
+      }
+    });
+  </script>
+  <script>
+    if (/mobile/i.test(navigator.userAgent)) document.documentElement.className += ' w-mobile';
+  </script>
+  <meta http-equiv="pragma" content="no-cache">
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script type="text/javascript" src="js/jgoogle.js"></script>
+  <script>
+    $(document).ready(function() {
+    });
+    
+    function verImagen(imagen)
+    {
+    	window.location.assign("imagen.html?i=pantallas/" + imagen + ".png");
+    }
+        
+  </script>
+</head>
+<body>
+  <header class="section">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-4 subfooter-left">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-clearfix">
+              <div class="app-name">GTienda</div>
+            </div>
+          </div>
+        </div>
+        <div class="w-col w-col-8 nav-column">
+        	<a class="nav-link" href="index.html">Inicio</a>
+        	<a class="nav-link" href="contacto.html">contacto</a>
+        	<a class="nav-link" href="precio.html">precios</a>
+        	<a class="nav-link" href="registro.html">registrarse</a>
+          <a class="w-inline-block app-store-button" href="registro.html">
+            <img src="images/entrar2.png" width="114px" alt="Entrar">
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="section purple">
+    <h1 class="encabezado">Como funciona GTienda</h1>
+    <div class="w-container center"><a class="button" href="registro.html">Registrarse</a>
+    </div>
+  </div>
+  <div class="w-clearfix section white" id="page-nav-intro">
+    <div class="w-container">
+      <div class="w-row organize-row">
+        <div class="w-col w-col-6">
+          <h2>Agregue productos</h2>
+          	<p>
+          		La creación de productos se hace agregando imágenes de ellos. Puede hacerlo de varias formas:
+      		</p>
+      		<ul>
+      			<li>Seleccionar imágenes desde su PC, tablet o teléfono</li>
+      			<li>Tomar fotos y subirlas inmediatamente</li>
+      			<li>Arrastrar imágenes de otras páginas</li>
+      		</ul>
+      		<p>
+      			Puede organizar las imágenes en el catálogo moviéndolas con el mouse si es un PC, on con el dedo si es un móvil.
+		  	</p>
+        </div>
+        <div class="w-col w-col-6 center">
+          <img class="lima" name="agregarProductos" src="pantallas/agregarProductos-peq.png" width="460" alt="Agregar Productos" onclick="verImagen('agregarProductos')">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section grey" id="page-nav-produt">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallas/editorProducto-peq.png" width="460" alt="Editar Producto" onclick="verImagen('editorProducto')">
+        </div>
+        <div class="w-col w-col-6">
+          <h2>Datos de los productos</h2>
+          	<p>
+          		Ahora puede recorrer todas las imágenes e ir escribiendo los datos de cada producto.
+          		<br><br>
+          		Es importante agregar tags o etiquetas que servirán para ayudar a los clientes a encontrar lo que buscan 
+          		o para facilitarle a usted el manejo de los precios.
+		  	</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section white" id="page-nav-progra">
+    <div class="w-container">
+      <div class="w-row organize-row">
+        <div class="w-col w-col-6">
+          <h2>Promueva su página</h2>
+          	<p>
+          		Ya tiene su página web lista para vender. 
+          		<br><br>
+          		Ya puede contarle a sus clientes y amigos, voz a voz o por email, comentar en Facebook, Twitter...
+          		Tal vez poner un sticker en la entrada de su negocio.
+          		<br><br>
+          		Muchos de sus clientes al ver lo sencillo que es comprar por su página podrían aumentar sus compras.
+          		<br><br>
+          		Entre más gente conozca de su página más posibilidades de que le cuenten a otros y que aumenten los pedidos.
+		  	</p>
+        </div>
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallas/promocion-peq.png" width="460" alt="promocion" onclick="verImagen('promocion')">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section grey" id="page-nav-avances">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallas/carro-peq.png" width="460" alt="Comprar con el carro" onclick="verImagen('carro')">
+        </div>
+        <div class="w-col w-col-6">
+          <h2>Los clientes hacen pedidos</h2>
+          	<p>
+          		En la página, los clientes observan el catálogo de productos y consultan detalles de los productos, utilizan los filtros (creados con los tags)
+          		y meten lo que quieren al carro. En el carro pueden revisar, quitar o agregar.
+          		<br><br>
+          		Cuando están listos enviarán el pedido o solicitarán una cotización o presupuesto. 
+          		Si usted tiene una cuenta paypal ellos podrán pagar en ese momento, si no usted les indicará como le harán el pago.
+		  	</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-clearfix section white" id="page-nav-produccion">
+    <div class="w-container">
+      <div class="w-row organize-row">
+        <div class="w-col w-col-6">
+          <h2>Usted ingresa los pedidos</h2>
+          	<p>
+          		Usted también puede ingresar pedidos desde su tienda u oficina, para atender
+          		a sus clientes como hasta ahora lo viene haciendo. 
+          		<br><br>
+          		Estando dentro de su cuenta, arrastre los productos desde el catálogo o digite la referencia.
+          		De esta manera también puede modificar los pedidos.
+		  	</p>
+        </div>
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallas/editorPedido-peq.png" width="460" alt="Hacer Pedidos" onclick="verImagen('editorPedido')">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section grey" id="page-nav-recursos">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallas/xdespachar-peq.png" width="460" alt="Despacho" onclick="verImagen('xdespachar')">
+        </div>
+        <div class="w-col w-col-6">
+          <h2>Despache a tiempo</h2>
+          	<p>
+          		Su página cuenta con mecanismos para seguir el despacho de los pedidos.
+		  	</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="page-nav-delega">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6">
+          <h2>Distribuya el trabajo</h2>
+          	<p>
+          		Si es un productor o trabaja como integrador de otros servicios también cuenta con sistema de producción
+          		para asignar los trabajos a los diferentes equipos, controlar los materiales que se necesitan, 
+          		programar la producción y registrarla cuando se ejecute.
+		  	</p>
+        </div>
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallas/tareas-peq.png" width="460" alt="organice las tareas" onclick="verImagen('tareas')">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section grey" id="page-nav-recursos">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6 center">
+          <img class="lima" src="pantallas/equipos-peq.png" width="460" alt="Despacho" onclick="verImagen('equipos')">
+        </div>
+        <div class="w-col w-col-6">
+          <h2>Organice la producción</h2>
+          	<p>
+          		Su página cuenta con mecanismos para seguir el despacho de los pedidos.
+		  	</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section purple">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-8">
+          <h2 class="price-text">Para que esperar, cree una cuenta ya!*</h2>
+        </div>
+        <div class="w-col w-col-4"><a class="button" href="registro.html">Registrarse</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="w-container subfooter-right">
+      <h3>Ultimas novedades de GTienda.</h3>
+      <a class="w-inline-block social-button red" href="contacto.html">
+        <img src="images/7a-social-email.png" width="21px" alt="contacto">
+      </a>
+      <a class="w-inline-block social-button hidde" href="http://facebook.com/webflowapp" target="_blank">
+        <img src="images/7b-social-facebook.png" width="21px" alt="facebook">
+      </a>
+      <a class="w-inline-block social-button hidde" href="https://twitter.com/GTIENDA_ES" target="_blank">
+        <img src="images/7c-social-twitter.png" width="21px" alt="twitter">
+      </a>
+    </div>
+  </div>
+  <div class="section grey footer">
+    <div class="w-container">
+      <p class="footer-text">* El modelo de negocios y el precio pueden variar</p>
+    </div>
+  </div>
+</body>
+</html>

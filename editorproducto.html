@@ -88,12 +88,12 @@
  		<div class="container">
 			<div id="producto" class="fila">
 				<div class="col2 fileinputs" align="center" >	
-					<br>					
+					
 					<div class="change-photo">
 						<a id="titcambiarimagen" class="btn v2" onclick="activaCambioFoto();">Cambiar foto</a>
 						<div id="cambiarFoto" class="DN" style="border: solid 1px gray;border-radius: 10px;width: 265px;background-color: white;">
 							<img id="busy" src="images/busy.gif" />
-							<label>Cambio de Foto:</label>
+							<!--label id="titcambioimagen">Cambio de Foto:</label-->
 							<iframe id="hiddenFrame" name="hiddenFrame" class="DN"> </iframe>
 							<form id="formaImagen" onsubmit="iframeFinal();" action="http://192.168.1.112:8080/uploadped" method="post" 
 								enctype="multipart/form-data" target="hiddenFrame" style="width: 260px">
@@ -109,11 +109,11 @@
 						</div>
 					</div>				
 					<div class="fila">
-						<div class="col adv-pag-prod">
+						<div class="col adv-pag-prod no-cellphone">
 							<a id="prevProd" href="#"><img src="images/retrocede.JPG"> </a>
 						</div>
 						<img class="col" src="" id="imgprod"/>
-						<div class="col adv-pag-prod">
+						<div class="col adv-pag-prod no-cellphone">
 							<a id="sigProd" href="#"><img src="images/avanza.JPG"> </a>				
 						</div>
 					</div>
@@ -124,8 +124,8 @@
 				</div>
 
 				<div class="col">					
-					<div class="section">
-						<div class="container min-width fila" align="left">
+					<div class="">
+						<div class=" min-width fila" align="left">
 							<h3 id="tab-datos" class="col tap-btn active">
 								<a href="#" class="normal" onclick="dibujaDatos();"><label id="titdatos">Datos</label></a>
 							</h3>
@@ -138,8 +138,8 @@
 						</div>
 					</div>
 								
-					<div id="divdatos" class="section">
-						<div class="container">
+					<div id="divdatos" class="DN">
+						<div class="">
 							<div id="datos" class="fila">			
 								<div class="col2 item-info" align="left" style="width: 400px">
 									<label id="titnombre" class="text-blod">Nombre</label>
@@ -176,16 +176,16 @@
 						</div>	
 					</div>
 			
-					<div id="divproduccion" class="section">
-						<div class="container">
+					<div id="divproduccion" class="DN">
+						<div class="">
 							<div class="mo v2 sector min-width " style="text-align: left">
 								<div id="produccion"> </div>
 							</div>
 						</div>
 					</div>
 					
-					<div id="divkardex" class="section">
-						<div class="container">
+					<div id="divkardex" class="">
+						<div class="">
 							<div class="mo v2 sector min-width">
 								<table id="kardex"> </table>
 							</div>

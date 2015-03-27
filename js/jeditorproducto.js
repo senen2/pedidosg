@@ -8,7 +8,7 @@ function inicioEditorProd()
 	encabezado = getCookie("encabezado");
 	if (encabezado==null || encabezado=="" || encabezado=="'',''")
 		encabezado="'','',''";
-	pagina = "pdproducto";
+	pagina = "pdeditorproducto";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Ingresar_datos_de_los_productos";
 
 	leeServidor();
@@ -22,7 +22,7 @@ function inicioEditorProd()
 	modo="producto";
 	var IDproducto = getURLParameter('ID');
 	if (IDproducto!=null & IDproducto!=0)
-		ListaProductoP(IDproducto, dibuja)		
+		ListaProductoP(IDproducto, dibuja);	
 	else {
 		document.cookie = "pagpend=" + document.URL;					
 		window.location.assign("registro.html");		
@@ -73,10 +73,10 @@ function dibujaDatos()
 {
 	modo = "producto";
 	$("#divdatos").show();
-	$("#divkardex").hide()
-	$("#divproduccion").hide()
+	$("#divkardex").hide();
+	$("#divproduccion").hide();
 	$("#tab-datos").addClass("active");
-	$("#tab-kardex").removeClass("active")
+	$("#tab-kardex").removeClass("active");
 	$("#tab-produccion").removeClass("active");
 	
 	var item = gdatos.producto;
@@ -98,10 +98,10 @@ function dibujaKardex()
 {
 	modo = "kardex";		
 	$("#divdatos").hide();
-	$("#divkardex").show()
-	$("#divproduccion").hide()
+	$("#divkardex").show();
+	$("#divproduccion").hide();
 	$("#tab-datos").removeClass("active");
-	$("#tab-kardex").addClass("active")
+	$("#tab-kardex").addClass("active");
 	$("#tab-produccion").removeClass("active");
 
 	if (gdatos.kardex.datos.length>0) {
@@ -112,7 +112,7 @@ function dibujaKardex()
 		$("#divkardex").hide();
 		
 	if (gdatos.proveedor && gdatos.proveedores.length>0) {
-		llenaSelector(gdatos.proveedores, "proveedor")
+		llenaSelector(gdatos.proveedores, "proveedor");
 		poneSelectorxID(gdatos.proveedor.ID, "proveedor");
 		$("#divproveedor").show();
 	}
@@ -124,12 +124,12 @@ function dibujaKardex()
 
 function dibujaProduccion()
 {
-	modo = "produccion"
+	modo = "produccion";
 	$("#divdatos").hide();
-	$("#divkardex").hide()
-	$("#divproduccion").show()
+	$("#divkardex").hide();
+	$("#divproduccion").show();
 	$("#tab-datos").removeClass("active");
-	$("#tab-kardex").removeClass("active")
+	$("#tab-kardex").removeClass("active");
 	$("#tab-produccion").addClass("active");
 
 	var cad = "", cadmp;
@@ -150,7 +150,7 @@ function dibujaProduccion()
 				   		+ item.ficha + '</textarea>'
 				   + '</div>' 
 				   + '<button onclick="eliminaProceso(' + item.ID + ');">Eliminar Proceso</button>'
-				   + '</div>'
+				   + '</div>';
 		
 		} );
 		cad += '<button onclick="agregaProceso();">Agregar Proceso</button>';		
@@ -250,12 +250,12 @@ function salir()
 {
 	verPendiente();
 	//history.back(-1);
-	window.location.assign('catalogo.html')
+	window.location.assign('catalogo.html');
 }
 
 function iframeFinal()
 {
-  $("#hiddenFrame").attr("onload",'finalSubirImagen();')
+  	$("#hiddenFrame").attr("onload",'finalSubirImagen();');
   	$("#busy").show();
 
 }
@@ -392,7 +392,7 @@ function cerrar()
 	if (cambioFicha)
 		CambiaFichaProductoP(gdatos.produccion.procesos[gprocesoi].ID
 			, $("#ficha").val(), $("#precioproc").val(), $("#nombreproc").val()
-			, $("#opcionalproc").prop("checked") ? 1: 0, refrescaProducto)
+			, $("#opcionalproc").prop("checked") ? 1: 0, refrescaProducto);
 	else
 		refrescaProducto();
 }
@@ -413,7 +413,7 @@ function aceptarmp()
 	if ($('#nombremp').val()!="") {
 		salirmp();	
 		if ($('#cantidadmp').val()=="")
-			$('#cantidadmp').val("1")
+			$('#cantidadmp').val("1");
 		CreaMaterialP(gdatos.producto.ID, gdatos.produccion.procesos[gprocesoi].ID, $('#nombremp').val(), $('#cantidadmp').val(), vaRefrescaProceso);		
 	}
 }
@@ -433,7 +433,7 @@ function agregaProceso()
 function eliminaProceso(ID)
 {
 	borrandoProceso=true;
-	EliminaProcesoProductoP(ID, refrescaProducto)
+	EliminaProcesoProductoP(ID, refrescaProducto);
 }
 
 function refrescaProducto()
@@ -474,9 +474,9 @@ function cambiaTipo()
 			break;
 	}	
 	
-	var IDplanilla=0
+	var IDplanilla=0;
 	if (typeof gdatos.produccion!='undefined')
-		IDplanilla = gdatos.produccion.IDplanilla
+		IDplanilla = gdatos.produccion.IDplanilla;
 
-	CambiaTipoProductoP(gdatos.producto.ID, IDplanilla, tipo, refrescaProducto)
+	CambiaTipoProductoP(gdatos.producto.ID, IDplanilla, tipo, refrescaProducto);
 }

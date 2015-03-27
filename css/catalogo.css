@@ -24,6 +24,13 @@ hr {
 footer {
 	display: block;
 }
+.yes-cellphone {
+	display: none;
+}
+.padding-no-cellphone {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
 .node {
   	border: solid 1px white;
   	font: 12px sans-serif;
@@ -419,6 +426,10 @@ input.file {
 .icon-cart:hover span {
 	background: transparent url("../images/shoping_cart_whitex14.png") no-repeat left 30%;
 }
+.icon-cart2 span {
+	background: transparent url("../images/shoping_cart_whitex14.png") no-repeat left 30%;
+	padding-left: 20px;
+}
 .gray-bk {
 	margin-bottom: 0px;
  	padding-bottom: 0px;
@@ -539,6 +550,9 @@ input.file {
 }
 .item-info {
 	margin-left: 10px;
+}
+.item-info div	{
+	margin-bottom: 3px;
 }
 .item-description {
 	border: 0;
@@ -741,6 +755,18 @@ input.file {
 	background: #DEEFF5;
 	color: black;
 }
+tr.seleccionada:hover {
+	background: #1E90FF;
+	color: white;
+}
+.mo thead,tbody {
+	display: block;
+}
+.mo.scroll tbody {
+	max-height: 200px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
 .seleccionada {
 	background: #1E90FF;
 	color: white;
@@ -775,6 +801,9 @@ input.file {
 }
 input#cantidad {
 	width: 100px;
+}
+#div-description label {
+	display: none;
 }
 #imgprod {
 	height: 484px;
@@ -948,6 +977,12 @@ input#cantidad {
 	h2 {
 		font-size: 1.2em;
 	}
+	.yes-cellphone {
+		display: inherit;
+	}
+	.solo-prodt-descript textarea {
+		display: none;
+	}
 	.col.c3 {
 		float: inherit;
 	}
@@ -984,7 +1019,7 @@ input#cantidad {
 		display: none;
 	}
 	.search-bar input {
-		width: 140px;
+		width: 65%;
 	}
 	.brand-gtienda {
 		font-size: 14px;
@@ -992,11 +1027,8 @@ input#cantidad {
 	.brand-gtienda span {
 		font-size: 10px;
 	}
-	.solo-prodt {
+	.no-cellphone {
 		display: none;
-	}
-	.solo-prodt-back {
-		display: inherit;
 	}
 	.pay-block{
 		margin-left: 55%;
@@ -1029,13 +1061,44 @@ input#cantidad {
 	.img-solo-text {
 		font-size: 28px;
 	}
+	.item {
+		height: 120%;
+		max-width: 100%;
+		font-size: 14px;
+		margin: 1px;
+		padding: 1px;
+		border: 1px solid transparent;
+	}
+	.item img {
+		max-height: 95%;
+		max-width: 95%;
+		width: 100%;
+	}
+	.padding-no-cellphone {
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+	.btn-on-cellphone {
+		width: 90%;
+	}
+	#div-description {
+		border-top: 2px solid #F58427;
+		border-bottom: 2px solid #F58427;
+		padding-top: 7px;
+		padding-bottom: 7px;
+	}
+	#div-description label {
+		display: inherit;
+	}
 	#titulocatalogo {
 		font-size: 24px;
 		margin-top: 30px;
 	}
 	#imgprod {
-		height: 384px;
+		/*height: 384px;*/
+		width: 100%;
 	}
+	
 }
 @media (max-width: 320px) {
 	.text-white-index.right {
@@ -1052,5 +1115,20 @@ input#cantidad {
 	}
 	.img-solo-text {
 		font-size: 20px;
+	}
+	.item-name2 {
+		font-size: 17px;
+	}
+	.item-info {
+		font-size: 12px;
+	}
+	.item-price2 {
+		font-size: 17px;
+	}
+	.item-ref2 {
+		font-size: 12px;
+	}
+	input#cantidad {
+		width: 20px;
 	}
 }

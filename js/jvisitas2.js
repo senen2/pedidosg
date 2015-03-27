@@ -21,7 +21,7 @@ function inicioVisitas()
 function refrescar()
 {
 	//dibuja(1);
-	LeePuntosSI(new Date($("#fecha").val()), dibuja)
+	LeePuntosSI(new Date($("#fecha").val()), dibuja);
 	//LeeVisitasSI(new Date($("#fecha").val()), dibuja);
 }
 

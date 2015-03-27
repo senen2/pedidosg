@@ -17,12 +17,13 @@ function inicioProd()
 	var IDproducto = getURLParameter('ID');
 	if (IDproducto==null)
 		IDproducto=1;
-	ListaProductoP(IDproducto, dibujaProducto)
+	ListaProductoP(IDproducto, dibujaProducto);
 }
 
 function dibujaProducto(IDproducto, datos)
 {
 	gdatos = datos;
+	$("#nombretienda").html(gdatos.cuentaCat.empresa);
 	dibujaTitulos(datos.cuenta.lenguaje);
 	dibujaLogin(datos.cuenta);
 	dibujaCatalogos(datos.catalogos, $("title").html(), datos.carro.length);
@@ -32,7 +33,7 @@ function dibujaProducto(IDproducto, datos)
 	
 	var cad = "", tallas = "", colores = "";
 	var item = datos.producto;
-	$("#imgprod").attr("src", item.imagen)
+	$("#imgprod").attr("src", item.imagen);
 	$("#nombre").html(item.nombre);
 	
 	if (item.precio>0) {
@@ -105,6 +106,8 @@ function dibujaProducto(IDproducto, datos)
 		dibujaProduccion();
 	else
 		$("#divproduccion").hide();	
+
+	desColapsed = true;
 }
 
 function dibujaProduccion()
@@ -201,4 +204,16 @@ function actualizaPrecio()
 			precio += item.precio;
 	} );
 	$("#precio").html("$ " + precio.formatMoney(gdatos.cuentaCat.decimales));	
+}
+
+function popDes()
+{
+	if (desColapsed){
+		$('#div-description').removeClass('solo-prodt-descript');
+		desColapsed = false;
+	}	
+	else {
+		$('#div-description').addClass('solo-prodt-descript');
+		desColapsed = true;
+	}
 }

@@ -14,4 +14,16 @@
 	<natures>
 		<nature>com.aptana.projects.webnature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>pantallas</name>
+			<type>2</type>
+			<locationURI>PARENT-5-PROJECT_LOC/gtienda/pantallas</locationURI>
+		</link>
+		<link>
+			<name>pantallasen</name>
+			<type>2</type>
+			<locationURI>PARENT-5-PROJECT_LOC/gtienda/pantallasen</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

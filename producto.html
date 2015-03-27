@@ -49,18 +49,20 @@
 			<div class="section header">
 			<div class="container max-width fila black-back">
 				<div class="col auto-width-gtienda" align="left">
-					<a class="brand-gtienda normal" href="#">G<span>ran</span>Tienda</a>
+					<a class="brand-gtienda normal no-cellphone" href="index.html">G<span>ran</span>Tienda</a>
+					<a id="nombretienda" class="brand-gtienda normal yes-cellphone" href="index.html">NombreTienda</a>
 				</div>
 				<div class="col fila auto-width-grest" align="right">
-					<a id="login" class="col-right normal" href="registro.html"><label id="titlogin">Iniciar sesion</label></a>
+					<a id="login" class="col-right normal no-cellphone" href="registro.html"><label id="titlogin">Iniciar sesion</label></a>
 					<a id="logout" class="col-right normal" href="#" onclick="logout();"><label id="titlogout">Cerrar Sesion</label></a>
-					<span class="col-right">|</span>
-					<a id="quierovender" class="col-right normal" href="precio.html"><label id="titquierovender">Quiero vender</label></a>
-					<span class="col-right">|</span>
-					<a id="registro" class="col-right normal" href="registro.html"><label id="titregistro">Registro</label></a>
+					<span class="col-right no-cellphone">|</span>
+					<a id="quierovender" class="col-right normal no-cellphone" href="precio.html"><label id="titquierovender">Quiero vender</label></a>
+					<span class="col-right no-cellphone">|</span>
+					<a id="registro" class="col-right normal no-cellphone" href="registro.html"><label id="titregistro">Registro</label></a>
 					<span id="nombreusuario" class="col-right">Usuario | </span>
-					<span class="col-right">|</span>
-					<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com"><label id="titayuda">Ayuda</label></a>
+					<span class="col-right no-cellphone">|</span>
+					<a id="ayuda" class="col-right normal no-cellphone" href="http://wiki.gtienda.com"><label id="titayuda">Ayuda</label></a>
+					<a class="col-right normal icon-cart2 yes-cellphone" href="carro.html"><span>(0)</span></a>
 				</div>
 			</div>
 		</div>
@@ -88,40 +90,47 @@
 				<div id="producto">
 					<label class="item-name2" id="nombre"> </label>
 					<div class="col2 fila" align="center">
-						<div class="col adv-pag-prod">
+						<div class="col adv-pag-prod no-cellphone">
 							<a id="prevProd" href="#"><img src="images/retrocede.JPG"> </a>
 						</div>
 						<img class="col" src="" id="imgprod" />
-						<div class="col adv-pag-prod">
+						<div class="col adv-pag-prod no-cellphone">
 							<a id="sigProd" href="#"><img src="images/avanza.JPG"> </a>				
 						</div>
 					</div>
 					<div class="col2 item-info" align="left">
 					  	<!--<a id="agregarAlCatalogo" class="btn" href="#" onclick="agregarAlCatalogo();"><label>Agregar al Catalogo</label></a><br>-->
-						<label class="item-ref2">Ref: </label><label class="item-ref2" id="referencia"> </label><br>
-					  	<label id="titprecio" class="item-price2">Precio</label>: <label class="item-price2" id="precio"> </label><br>
-					  	<div id="divpvm"><label id="titpvm" class="item-price2">Precio Mayor</label>: <label class="item-price2" id="pvm"> </label></div><br>
-					  	<div id="divTalla"><label id="tittamano">Tamaño</label>: <select id="talla" onchange="llenaColoresxTalla();"> </select><br></div>
-					  	<div id="divColor"><label id="titcolor">Color</label>: <select id="color"> </select><br><br></div>
+						<div  class="item-ref2"><label>Ref: </label><label id="referencia"> </label></div>
+					  	<div class="item-price2"><label id="titprecio">Precio</label>: <label id="precio"> </label></div>
+					  	<div id="divpvm"><label id="titpvm" class="item-price2">Precio Mayor</label>: <label class="item-price2" id="pvm"> </label></div>
+					  	<div id="divTalla"><label id="tittamano">Tamaño</label>: <select id="talla" onchange="llenaColoresxTalla();"> </select></div>
+					  	<div id="divColor"><label id="titcolor">Color</label>: <select id="color"> </select></div>
 					  	<div id="divproduccion"> </div>
-					  	<label id="titcantidad">Cantidad</label>: <input id="cantidad" value="1" />
-					  	<a class="btn" href="#" onclick="agregarAlCarro();"><label id="titagregaralcarro">Agregar al Carro</label></a><br><br>
-					  	<textarea id="descripcion" class="item-description" readonly> </textarea><br>
+					  	<div><label id="titcantidad">Cantidad</label>: <input id="cantidad" value="1" /></div>
+					  	<div class="padding-no-cellphone" align="center">
+					  		<a class="btn btn-on-cellphone" href="#" onclick="agregarAlCarro();">
+					  			<label id="titagregaralcarro">Agregar al Carro</label>
+					  		</a>
+					  	</div>
+					  	<div id="div-description" class="solo-prodt-descript" onclick="popDes();">
+					  		<label>Descripcion +</label>
+					  		<textarea id="descripcion" class="item-description" readonly> </textarea>
+					  	</div>
 				    </div>		
 				</div>
-				<div align="center">
+				<div class="no-cellphone" align="center">
 					<a id="titregresar" class="btn" onclick="salir();">Regresar</a>
 				</div>
 			</div>
 		</div>
-		<div class="section solo-prodt-back">
+		<div class="section no-cellphone solo-prodt-back">
 			<div class="container min-width">
 				<nav id="catalogosh1" class="nav-column fila">
 				</nav>
 				<hr />
 			</div>		
 		</div>
-		<header class="section solo-prodt-back">
+		<header class="section no-cellphone solo-prodt-back">
 			<div class="container min-width fila">
 				<div class="col fila auto-width" align="left">
 					<img class="brand-logo col" id="logo1" src="" />

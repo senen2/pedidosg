@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+
+	<title>Pedidos</title>
+    <meta name="description" content="manejador de pedidos y despachos">
+    <meta name="author" content="Andres Botello" />
+	
+	<link rel="stylesheet" type="text/css" href="css/catalogo.css">
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,500,550,700">
+
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jcomunp.js"></script>
+	<script type="text/javascript" src="js/jgoogle.js"></script>
+	<script>
+		$( document ).ready(function() {
+			var imagen = getURLParameter('i');
+			if (imagen!=null)
+				$("#imagen").attr("src", imagen);
+			else
+				window.close();
+		});
+	</script>
+</head>
+<body style="margin: 10%; margin-top: 5%">
+	<div style="width: 100%">
+		<img id="imagen" src="" style="width: 100%">
+	</div>
+</body>
+</html>
+

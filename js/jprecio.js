@@ -4,6 +4,7 @@
 
 function inicioPrecios()
 {
+	pagina = "pdprecios";
 	$("#precio1").html("$" + precioPlan(1));
 	$("#precio2").html("$" + precioPlan(2));
 	$("#precio3").html("$" + precioPlan(3));

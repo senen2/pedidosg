@@ -12,7 +12,7 @@ function resizeAndUpload(file, datos, next, anchomax, altomax) {
 		    EXIF.getData(tempImg, function() {
 		    	rot = EXIF.getTag(tempImg, "Orientation");;
 		    });
-		    datos.push({nombre: "rot", valor: rot })
+		    datos.push({nombre: "rot", valor: rot });
 			    
 		    var MAX_WIDTH = anchomax; // 484
 		    var MAX_HEIGHT = altomax; // 330
@@ -42,8 +42,8 @@ function resizeAndUpload(file, datos, next, anchomax, altomax) {
 				}
 				, "image/png"
 			);	    	
-	    } 
-	}
+	    };
+	};
     reader.readAsDataURL(file);
 }	
 

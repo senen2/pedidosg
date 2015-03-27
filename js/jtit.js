@@ -2,6 +2,11 @@
 function dibujaTitulos(l)
 {
 	if (typeof l!='undefined' && l) {
+		if (pagina in l)
+			document.title = l[pagina];
+		else
+			document.title = "Gtienda";
+
 		// encabezado
 		$("#titquierovender").html(l.quierovender);
 		$("#quierovender").attr("href", l.pagprecio);
@@ -41,6 +46,8 @@ function dibujaTitulos(l)
 
 		// pedidos.html
 		$("#pagpedidos").html(l.pedidos);		
+		$("#titxcotizar").html(l.xcotizar);		
+		$("#titcotizaciones").html(l.cotizaciones);		
 		$("#titxdespachar").html(l.xdespachar);		
 		$("#titdespachados").html(l.despachados);		
 		$("#titxrecibir").html(l.xrecibir);		
@@ -51,6 +58,11 @@ function dibujaTitulos(l)
 		$("#ref").attr("placeholder", l.referencia);		
 		$("#tercero").attr("placeholder", l.empresa);		
 		$("#notas").attr("placeholder", l.escribirnotas);		
+		$("#titabrircatalogo").html(l.abrircatalogo);		
+		$("#titpreciototal").html(l.preciototal);		
+		$("#titproducto").html(l.producto);		
+		$("#btnaceptar").html(l.aceptar);		
+		$("#btncancelar").html(l.cancelar);		
 
 		// editorproducto.html
 		$("#titeditordeproductos").html(l.editordeproductos);
@@ -62,9 +74,11 @@ function dibujaTitulos(l)
 		$("#titabrircatalogo").html(l.abrircatalogo);		
 		$("#titfinalizar").html(l.finalizar);		
 		$("#titcambiarimagen").html(l.cambiarimagen);		
+		$("#titproveedor").html(l.proveedor);		
 		$("#aceptar").attr("value", l.aceptar);		
 		$("#cancelar").attr("value", l.cancelar);		
 		$("#seleccionarimagen").attr("value", l.seleccionarimagen);		
+		$("#titcambioimagen").html(l.cambioimagen);		
 
 		// gracias.html
 		$("#titgraciasporsupedido").html(l.graciasporsupedido);
@@ -116,6 +130,7 @@ function dibujaTitulos(l)
 		$("#titsubeprod2").html(l.subeprod2);
 		$("#titsubeprod3").html(l.subeprod3);
 		$("#titsubeprod4").html(l.subeprod4);
+		$("#titsubeprod5").html(l.subeprod5);
 
 		// tsubeprod.html
         $("#pagpapelera").html(l.papelera);
@@ -137,6 +152,8 @@ function dibujaTitulos(l)
 		// index.html
 		$("#titprueba").html(l.prueba);
 		$("#pagprecio").attr("href", l.pagprecio);
+		$("#pagfunciona").attr("href", l.pagfunciona);
+		$("#titcomofunciona").html(l.comofunciona);
 		$("#titplanesyprecios").html(l.planesyprecios);
 		$("#titsincomisiones1").html(l.sincomisiones1);
 		$("#titsincomisiones2").html(l.sincomisiones2);
@@ -163,7 +180,25 @@ function dibujaTitulos(l)
         $("#titasociados").html(l.asociados);
         $("#titsecciones").html(l.secciones);
         $("#titmicuenta").html(l.micuenta);
+        $("#tittareas").html(l.tareas);
+        $("#titequipos").html(l.equipos);
         $("#titpapelera").html(l.papelera);
+        
+        // Tareas
+        $("#pagtareas").html(l.asignaciontareas);
+        
+        // Menu
+        $("#pagequipos").html(l.programacionequipos);
 
 	}
+}
+
+function dibujaTituloPag()
+{
+	var titulo = "GTienda";
+	switch (pagina) {
+		case "Indexp":
+			titulo = "GTienda es tu tienda | Ventas por internet | Mi sitio en internet";
+	}
+	document.title = titulo;
 }

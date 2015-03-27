@@ -56,10 +56,10 @@
 			    	
 			    	//$("#dropbox").html(i[1]);
 			    	$("#imagensoltada").attr("src", i[1]);
-			    	datos={}
+			    	datos={};
 			    	AgregaReferenciaP(gdatos.ID, itemdefault.referencia, itemdefault.barcode, itemdefault.nombre
 			    		, itemdefault.precio, itemdefault.pvm, itemdefault.descripcion, i[1]
-			    		, itemdefault.tallas, itemdefault.colores, itemdefault.tags, TomaImagenesxUrlP)
+			    		, itemdefault.tallas, itemdefault.colores, itemdefault.tags, TomaImagenesxUrlP);
 			    }
 			});	
 		</script>
@@ -91,10 +91,11 @@
 			    	<h4> </h4>
 				    <div style="border: dotted 1px gray;border-radius: 3px; width: 320px; height: 240px; padding: 5px">
 				    	<br><label id="titsubeprod1">Arrastre las imagenes hasta aqui o</label> 
-					    <br><input class="btn box-margin-10" type="file" id="uploadfile" name="uploadfile" accept="image/*" multiple onchange="upload()" />
-						<label id="titsubeprod3">de una carpeta local</label>
+					    <br><input class="btn box-margin-10" style="margin-top: 10px" type="file" id="uploadfile" name="uploadfile" accept="image/*" multiple onchange="upload()" />
+						<br><label id="titsubeprod3">de una carpeta local</label>
 						<!--br><input id="botsubirimagenes" class="btn box-margin-10" placeholder="subir" type="button" value="Subir imágenes" onclick="upload()" /-->
-						<br><br><label id="titsubeprod4">Con las imágenes y los datos que escriba se crearán productos que luego podrá borrar o modificar</label>
+						<br><br><label id="titsubeprod4" style="font-size: 12px">Con las imágenes y los datos que escriba se crearán productos que luego podrá borrar o modificar</label>
+						<br><br><label id="titsubeprod5" style="font-size: 12px"> </label>
 					</div>
 					<br>
 					<img id="imagensoltada" style="height: 100px" />

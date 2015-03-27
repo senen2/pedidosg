@@ -42,7 +42,7 @@ function cadenaPaginado()
 	var npaginas = Math.floor(nitems/ itemsxpag) + 1;
 	var pagina = itemini / itemsxpag + 1;
 	if (npaginas<6)
-		cad += cadPags(pagina, 1, npaginas) 
+		cad += cadPags(pagina, 1, npaginas);
 	else {
 		if (pagina<4) {
 			cad += cadPags(pagina, 1, 4);
@@ -59,7 +59,7 @@ function cadenaPaginado()
 		else {
  			cad += cadPags(pagina, 1, 1);
 			cad	+= '<td>...</td>';
-			cad += cadPags(pagina, npaginas-3, 4)
+			cad += cadPags(pagina, npaginas-3, 4);
 		}
 	}
 	
@@ -73,9 +73,9 @@ function cadPags(pagina, pagini, npags)
 	var cad = "";
 	for (var i=0; i<npags; i++) {
 		if (i + pagini==pagina)
-			cad += '<td><a href="#" onclick="iraPag(' + (i + pagini) + ');"><strong style="color: orange">' + (i + pagini) + '&nbsp;</strong></a></td>'
+			cad += '<td><a href="#" onclick="iraPag(' + (i + pagini) + ');"><strong style="color: orange">' + (i + pagini) + '&nbsp;</strong></a></td>';
 		else
-			cad += '<td><a href="#" onclick="iraPag(' + (i + pagini) + ');">' + (i + pagini) + '&nbsp;</a></td>'
+			cad += '<td><a href="#" onclick="iraPag(' + (i + pagini) + ');">' + (i + pagini) + '&nbsp;</a></td>';
 	}		
 	return cad;
 }

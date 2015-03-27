@@ -12,9 +12,9 @@ function dibujaCuadro(tabla, tag, altoitem, anchoitem)
 				ancho = ' width="' + (itemtit.ancho-4) + 'px"';
 				
 			if ("link" in itemtit)
-				cad += '<td><a class="normal" style="font-weight: 700" href="' + itemtit.linktext + item[itemtit.link] + '">'+ item[itemtit.campo] + '</a></td>'
+				cad += '<td><a class="normal" style="font-weight: 700" href="' + itemtit.linktext + item[itemtit.link] + '">'+ item[itemtit.campo] + '</a></td>';
 			else if ("funcion" in itemtit)
-				cad += '<td><a href="#" onclick="' + itemtit.funcion + '(' + item.ID + ');">' + itemtit.titulo + '</a></td>'
+				cad += '<td><a href="#" onclick="' + itemtit.funcion + '(' + item.ID + ');">' + itemtit.titulo + '</a></td>';
 			else if ("input" in itemtit) {
 				finput = "";
 				if ("funcioninput" in itemtit)
@@ -24,9 +24,9 @@ function dibujaCuadro(tabla, tag, altoitem, anchoitem)
 					+ ' onclick="' + finput + '(' + item.ID + ');"></div>';
 			}
 			else if ("img" in itemtit)
-				cad += '<a href="' + itemtit.img + item[itemtit.imgcampo] + '"><img src="' + item[itemtit.campo] + '"/></a>'
+				cad += '<a href="' + itemtit.img + item[itemtit.imgcampo] + '"><img src="' + item[itemtit.campo] + '"/></a>';
 			else
-				cad += '<label class="'+ clase + '">' + itemtit.titulo + " " + item[itemtit.campo]  + ' </label>'
+				cad += '<label class="'+ clase + '">' + itemtit.titulo + " " + item[itemtit.campo]  + ' </label>';
 		});
 		cad = cad + '</div>';
 	});	

@@ -10,7 +10,7 @@ function inicioEquipos()
 		window.location.assign("registro.html");		
 	}
 		
-	pagina = "pequipos";
+	pagina = "pdequipos";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Subir_imagenes_de_los_productos";
 	leeServidor();
 	LeeProduccionEquiposP(dibujaEquipos);
@@ -24,7 +24,7 @@ function dibujaEquipos(datos)
 	gdatos = datos;
 	var n = (Math.sqrt(gdatos.procesos.length) + 1);
 	n = n * n; 
-	var cad = "", noches
+	var cad = "", noches;
 		t = $("#divequipos").position().top,
 		l = $("#divequipos").position().left,
 		h = parseInt(Math.sqrt(($(window).width())*($(document).height()-t-40)/n/1.62))-1;
@@ -41,11 +41,12 @@ function dibujaEquipos(datos)
 			+ '">' 
 				+ item.nombre
 				+ '<br>' + dibujaProcesos(item.ID)
-			+ '</div>'
+			+ '</div>';
 	});	
 	$("#divequipos").html(cad);	
 	
 	dibujaMenu();
+	dibujaTitulos(gdatos.cuenta.lenguaje);
 }
 
 function dibujaProcesos(IDequipo)
@@ -61,7 +62,7 @@ function dibujaProcesos(IDequipo)
 			 		 	+ ' -' + item.producto.substr(0,15)
 			 			+ ' - ' + item.cantidad
 	 			    + '</label>' 
-		 		+ '</div><br>'
+		 		+ '</div><br>';
 	});		
 	return cad;
 }
@@ -111,7 +112,7 @@ function verEquipo(equipoi)
 {
 	var equipo = gdatos.equipos[equipoi], cad="";
 	gequipoi=equipoi;
-	gnprocesos = 0 
+	gnprocesos = 0 ;
 	$.each(gdatos.procesos, function(i, item) {
 		if (item.IDequipo==equipo.ID) {
 			cad += '<li id="proceso-' + item.ID + '" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' 
@@ -119,13 +120,13 @@ function verEquipo(equipoi)
 			 		+ ' - ' + item.nombre
 			 		+ ' - ' + item.producto
 			 		+ ' - ' +item.cantidad
-		 		+ '</li>'
+		 		+ '</li>';
 		}
 	});		
 
 	$("#editorequipo").html(
 		'<div class="sector v2" style=" z-index:9010;position: fixed;top:5%;left:30%;">'
-			+ '<label class="item-name" align="center">Procesos ' + equipo.nombre + '</label><br><br>'
+			+ '<label class="item-name" align="center">' + equipo.nombre + '</label><br><br>'
 			+ '<div style="min-height:200px; font-size:12px" align="left">'
 				+ '<ul id="sortable">'
 					+ cad 
@@ -146,14 +147,14 @@ function verEquipo1(equipoi)
 {
 	var equipo = gdatos.equipos[equipoi], cad="";
 	gequipoi=equipoi;
-	gnprocesos = 0 
+	gnprocesos = 0;
 	$.each(gdatos.procesos, function(i, item) {
 		if (item.IDequipo==equipo.ID) {
 			cad += '<tr id="proceso-' + i + '" onclick="selProceso(' + i + ')">' 
 			 		+ '<td align="left">' + item.producto + '</td>'
 			 		+ '<td align="left">' + item.cliente + '</td>'
 			 		+ '<td align="right">' + item.cantidad + '</td>' 
-		 		+ '</tr>'
+		 		+ '</tr>';
 		 	gnprocesos++; 			
 		}
 	});		

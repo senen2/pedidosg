@@ -98,7 +98,7 @@
 			<div class="fila">
 				<div class="col">
 				<div class="fila">
-					<div class="col mo v2 sector min-width" align="left">
+					<div class="col mo scroll v2 sector min-width" align="left">
 						<table id="pedidos"> </table>
 						<div style="margin-top: 10px;">
 							<input id="tercero" placeholder="empresa" onclick="this.select();" onkeydown="if (event.keyCode == 13) agregarPedido();">
@@ -146,21 +146,21 @@
 		<div class="sector v2 margin-div-img-6">
 			<img id="imagen">
 			<div align="left">
-		  		<div id="divTalla">Tamaño: <select id="talla" onchange="llenaColoresxTalla();"> </select></div>
-		  		<div id="divColor">Color: <select id="color"> </select></div>
+		  		<div id="divTalla"><label id="tittamano">Tamaño</label>: <select id="talla" onchange="llenaColoresxTalla();"> </select></div>
+		  		<div id="divColor"><label id="titcolor">Color</label>: <select id="color"> </select></div>
 		  		<div>
-		  			<label class="col auto-width">Producto: $ </label>
+		  			<label id="titproducto" class="col auto-width">Producto:</label>$ 
 		  			<input id="precioprod" class="item-name" style="width: 70px" onchange="totalizaEditor();"/>
 	  			</div>
 		  		<div id="procesos"> </div>
 		  		<div>
-		  			<label class="col auto-width">Cantidad: </label>
-		  			<input id="cantidad" value="1" autofocus onchange="totalizaEditor();"/>
+		  			<label id="titcantidad" class="col auto-width">Cantidad: </label>
+		  			<input  id="cantidad" value="1" autofocus onchange="totalizaEditor();"/>
 	  			</div>
-		  		<div>Precio Total: <label id="precio"> </label></div>
+		  		<div><label id="titpreciototal">Precio Total</label> $ <label id="precio"> </label></div>
 		  	</div>
-			<a class="btn v4" href="#" onclick="aceptar()">Aceptar</a>
-			<a class="btn v4" href="#" onclick="cancelar()">Cancelar</a>
+			<a id="btnaceptar" class="btn v4" href="#" onclick="aceptar()">Aceptar</a>
+			<a id="btncancelar" class="btn v4" href="#" onclick="cancelar()">Cancelar</a>
 		</div>
 	</div>
 	</div>

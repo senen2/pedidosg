@@ -10,7 +10,7 @@ function inicioTareas()
 		window.location.assign("registro.html");		
 	}
 		
-	pagina = "ptareas";
+	pagina = "pdtareas";
 	ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=Implementacion&section=#Subir_imagenes_de_los_productos";
 	leeServidor();
 	refrescar();
@@ -30,7 +30,7 @@ function dibujaTareas(datos)
 	gdatos = datos;
 	var n = (Math.sqrt(gdatos.procesos.length) + 1);
 	n = n * n; 
-	var cad = "", noches, equipo, color
+	var cad = "", noches, equipo, color,
 		t = $("#divtareas").position().top,
 		l = $("#divtareas").position().left,
 		h1 = parseInt(Math.sqrt(($(window).width())*($(document).height()-t-40)/n/1.62))-1,
@@ -41,7 +41,7 @@ function dibujaTareas(datos)
 		equipo = item.equipo;
 		color = '#DDD';
 		if (item.equipo==null) {
-			equipo="Sin Equipo"
+			equipo=gdatos.cuenta.lenguaje.sinequipo;
 			color = 'linear-gradient(#FF7D7D, #FF4F4F)';		
 		}
 		
@@ -54,14 +54,15 @@ function dibujaTareas(datos)
 				+ item.nombre + " - " + item.producto
 				+ '<img style="height:40px" src="' + imagedir + 'imgcarro/' + item.IDproductobase + '.jpg"/>' 
 	 			+ '<br><label class="item-price col">Ref: ' + item.referencia + '</label>'
-	 			+ '<br><label class="item-price col">Cliente: ' + item.cliente + '</label>'
-	 			+ '<br><label class="item-price col">Equipo: ' + equipo + '</label>'
+	 			+ '<br><label class="item-price col">' + gdatos.cuenta.lenguaje.empresa + ': ' + item.cliente + '</label>'
+	 			+ '<br><label class="item-price col">' + gdatos.cuenta.lenguaje.equipo + ': ' + equipo + '</label>'
 				+ '<br>' + dibujaMP(item.ID)
-			+ '</div>'
+			+ '</div>';
 	});	
 	$("#divtareas").html(cad);	
 	
 	dibujaMenu();
+	dibujaTitulos(gdatos.cuenta.lenguaje);
 }
 
 function dibujaMP(IDproceso)
@@ -72,7 +73,7 @@ function dibujaMP(IDproceso)
 			cad += '<div style"padding: 5px">' 
 			 		+ '<input class="col" type="checkbox" onclick="return false;">' 
 			 		+ '<label class="item-price col">' + item.nombre + ' - ' + item.cantidad + '</label>' 
-		 		+ '</div><br>'
+		 		+ '</div><br>';
 	});		
 	return cad;
 }
@@ -92,7 +93,7 @@ function destapar()
 	$("#editorproceso").hide();
 	$("#mask2").addClass("DN");
 	$('#mask2').css({'width':0,'height':0});	
-	refrescar()	
+	refrescar();
 }
 
 function verProceso(procesoi)
@@ -104,41 +105,41 @@ function verProceso(procesoi)
 			cadmp += '<div>' 
 			 		+ '<input id="mp-' + i + '" class="col" type="checkbox"' + (mp.listo==1 ? ' checked' : '') + ' onclick="cambiaListoMP(' + i + ');">' 
 			 		+ '<label class="item-price col">' + mp.nombre + ' - ' + mp.cantidad + '</label>' 
-		 		+ '</div><br>'		
+		 		+ '</div><br>';		
 	} );
 
 	gequipo = item.equipo;
 	if (item.equipo==null)
-		gequipo="Sin Equipo"
+		gequipo="Sin Equipo";
 				
 	cad = '<div class="sector v2" style=" z-index:9010;position: fixed;top:5%;left:30%">'
 			   + '<h3>' + item.nombre + '</h3>' 
-	 			+ 'Producto: <label class="item-name">' + item.producto+ '</label>'
-	 			+ '<br>Cliente: <label class="item-name">' + item.cliente + '</label>'
+	 			+ gdatos.cuenta.lenguaje.producto + ': <label class="item-name">' + item.producto+ '</label>'
+	 			+ '<br>' + gdatos.cuenta.lenguaje.empresa + ': <label class="item-name">' + item.cliente + '</label>'
 	 			+ '<br><div>'
-	 				+ 'Equipo: <select id="equipo" onchange="cambiaEquipo()"></select>'
+	 				+ gdatos.cuenta.lenguaje.equipo + ': <select id="equipo" onchange="cambiaEquipo()"></select>'
 	 				+ '<strong><a href="#" onclick="agregaEquipo();" title="Agregar Nuevo Equipo"> + </a></strong>'
 	 			+ '<div>'
-			   + '<h5>Materiales</h5>' 
+			   + '<h5>' + gdatos.cuenta.lenguaje.materiales + '</h5>' 
 			   + cadmp
-			   + '<input type="checkbox" onclick="terminar();"> Proceso Terminado'
-			   + '<br><br><div class="col"><a id="titcerrar" class="btn v4" onclick="cerrar();">Cerrar</a></div>'
+			   + '<input type="checkbox" onclick="terminar();"> ' + gdatos.cuenta.lenguaje.procesoterminado
+			   + '<br><br><div class="col"><a id="titcerrar" class="btn v4" onclick="cerrar();">' + gdatos.cuenta.lenguaje.cerrar + '</a></div>'
 		   + '</div>';
 
 	$("#editorproceso").html(cad);
 	llenaSelector(gdatos.equipos, "equipo");
-	$("#equipo").val(item.IDequipo)
+	$("#equipo").val(item.IDequipo);
 	tapar();		
 }
 
 function cambiaListoMP(i)
 {
-	CambiaListoPedidoP(gdatos.mp[i].ID, $("#mp-" + i).prop("checked") ? 1: 0)
+	CambiaListoPedidoP(gdatos.mp[i].ID, $("#mp-" + i).prop("checked") ? 1: 0);
 }
 
 function cambiaEquipo()
 {
-	CambiaEquipoPedidoP(gdatos.procesos[gprocesoi].ID, $("#equipo").val())
+	CambiaEquipoPedidoP(gdatos.procesos[gprocesoi].ID, $("#equipo").val());
 }
 
 function cerrar()
@@ -162,10 +163,10 @@ function actualizaEquipos(datos)
 {
 	gdatos.equipos = datos;
 	llenaSelector(gdatos.equipos, "equipo");
-	var id=0
+	var id=0;
 	$.each(gdatos.equipos, function(i, item) {
 		if (item.ID>id)
-			id=item.ID
+			id=item.ID;
 	});
 	$("#equipo").val(id);
 	CambiaEquipoPedidoP(gdatos.procesos[gprocesoi].ID, id);	

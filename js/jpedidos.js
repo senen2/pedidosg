@@ -47,6 +47,8 @@ function dibujaPedidos(datos)
 	$('#pedidos').html( cadTabla(datos, "pedidos", "leePedido"));
 	llenaTercero();
 	dibujaTitulos(gdatos.cuenta.lenguaje);
+	ajustaTabla("pedidos");
+	leePedido(gdatos.datos[0].ID);
 }
 
 function leePedido(IDpedido)
@@ -75,12 +77,12 @@ function dibujaPedido(datos)
 function dibujaProductos()
 {
 	var cad="", entrega;
-	var pedido = buscaObjetoxID(gdatos.datos, gIDpedido)
+	var pedido = buscaObjetoxID(gdatos.datos, gIDpedido);
 	$.each(gdatosped.datos, function(i,item) {
 		entrega = '';
 		if (pedido.aprobado)
 			entrega = '<div>' 
-			 		+ '<label class="item-price col">Despachado</label>'
+			 		+ '<label class="item-price col">' + gdatos.cuenta.lenguaje.despachado + '</label>'
 			 		+ '<input class="col" id="entregado-' + item.ID 
 			 			+ '" type="checkbox" onclick="actualizaRenglonDespacho(' + item.ID + ');"' 
 			 			+ (item.entregado ? ' checked' : '') + '>'
@@ -93,9 +95,9 @@ function dibujaProductos()
 			 		+ '<label class="item-name">' + item.producto+ '</label>'
 			 		+ '<label class="item-ref">Ref ' + item.referencia + '</label>'
 			 		+ '<label class="item-name">' + item.cantidad + ' x $' + item.precio + ' = $' + item.valor + '</label>' 
-			 		+ '<label class="item-ref">' + 'Producto $' + item.precioprod + '</label>' 
+			 		+ '<label class="item-ref">' + gdatos.cuenta.lenguaje.producto + ' $' + item.precioprod + '</label>' 
 			 		+ dibujaProduccion(item.ID)
-			 		+ '<label><a href="#" onclick="eliminaVariedad(' + item.ID + ');">quitar</a></label>'
+			 		+ '<label><a href="#" onclick="eliminaVariedad(' + item.ID + ');">' + gdatos.cuenta.lenguaje.quitar + '</a></label>'
 			 		+ entrega
 	 		    + '</div>';	
 	});
@@ -150,13 +152,13 @@ function llenaTercero()
 	    $("#tercero").autocomplete({
 	      source: extraeNombre(gdatos.clientes, "empresa")
 	    });
-		$("#tercero").attr("placeholder", gdatos.cuenta.lenguaje.cliente)
+		$("#tercero").attr("placeholder", gdatos.cuenta.lenguaje.cliente);
 	}
 	else {
 	    $("#tercero").autocomplete({
 	      source: extraeNombre(gdatos.proveedores, "empresa")
 	    });
-		$("#tercero").attr("placeholder", "proveedor")		
+		$("#tercero").attr("placeholder", "proveedor");	
 	} 	
 }
 
@@ -184,7 +186,7 @@ function agregarPedido()
 		var cliente, email="";
 		$.each(gdatos.clientes, function(i,item) {
 			if (item.empresa==$("#tercero").val())
-				cliente = item	
+				cliente = item;
 		});
 		//if (!cliente)
 			//email = prompt("ingrese email del cliente");
@@ -199,9 +201,9 @@ function verVariedad(url)
 	gurl = url.replace("imgprod","imgcat");
 	var a = url.split("/");
 	var b = a[a.length-1];
-	var IDproductobase = b.split(".")[0]
+	var IDproductobase = b.split(".")[0];
 	gdatoseditar = null; // no es una edicion
-	LeeVariedadesxBaseP(IDproductobase, seleccionarVariedad)
+	LeeVariedadesxBaseP(IDproductobase, seleccionarVariedad);
 }
 
 function editaVariedad(IDdetped)
@@ -210,11 +212,11 @@ function editaVariedad(IDdetped)
 	gIDdetped=IDdetped;
 	$.each(gdatosped.datos, function(i,item) {
 		if (item.ID==IDdetped) {
-			gdatoseditar = item
+			gdatoseditar = item;
 			return;
 		}
 	});
-	LeeVariedadesxBaseP(gdatoseditar.IDproductobase, seleccionarVariedad)	
+	LeeVariedadesxBaseP(gdatoseditar.IDproductobase, seleccionarVariedad);	
 }
 
 function seleccionarVariedad(datos)
@@ -478,7 +480,7 @@ function tapar()
 
 function enviarEmail()
 {
-	EnviarEmailPedidoP(gIDpedido, EmailEnviado)
+	EnviarEmailPedidoP(gIDpedido, EmailEnviado);
 }
 
 function EmailEnviado()
