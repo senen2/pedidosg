@@ -94,6 +94,8 @@ function dibujaCatalogo(datos)
 	}
 	else
 		$("#titfiltros").hide();
+		
+	$("#carro").html("(" + gdatos.carro.length + ")");
 	
 }
 
@@ -140,7 +142,7 @@ function dibujaCuadro(datos)
 				borrar = '<a href="#" onclick="eliminaProducto(' + item.ID +')">' + gdatos.cuenta.lenguaje.desactivar + '</a>';
 			
 			if (pag=="producto.html" || pag=="editorproducto.html" & datos.cuentaCat.ID==item.IDcuenta)
-				cad = cad + '<div id="producto-'+ item.ID +'" class="col item" style="width:200px;"><a href="' + pag + '?ID='+ item.ID + '">'
+				cad = cad + '<div id="producto-'+ item.ID +'" class="col item" style="width:200px; margin-bottom:14px;"><a href="' + pag + '?ID='+ item.ID + '">'
 						  + '<img src="' + item.imagen + "?" + gdatos.time + '" />'
 						  + '<div>'
 						  + nombre
