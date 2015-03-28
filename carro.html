@@ -13,8 +13,6 @@
 
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		
-		<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
 
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="stylesheet" type="text/css" href="css/catalogo.css">
@@ -51,25 +49,26 @@
 		<div class="section header">
 				<div class="container max-width fila black-back">
 					<div class="col auto-width-gtienda" align="left">
-						<a class="brand-gtienda normal" href="index.html">G<span>ran</span>Tienda</a>
-					</div>
-					<div class="col fila auto-width-grest" align="right">
-						<a id="login" class="col-right normal" href="registro.html"><label id="titlogin">Iniciar sesion</label></a>
-						<a id="logout" class="col-right normal" href="#" onclick="logout();"><label id="titlogout">Cerrar Sesion</label></a>
-						<span class="col-right">|</span>
-						<a id="quierovender" class="col-right normal" href="precio.html"><label id="titquierovender">Quiero vender</label></a>
-						<span class="col-right">|</span>
-						<a id="registro" class="col-right normal" href="registro.html"><label id="titregistro">Registro</label></a>
-						<span id="nombreusuario" class="col-right">Usuario | </span>
-						<span class="col-right">|</span>
-						<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com"><label id="titayuda">Ayuda</label></a>
-					</div>
+					<a class="brand-gtienda normal no-cellphone" href="index.html">G<span>ran</span>Tienda</a>
+					<a id="nombretienda" class="brand-gtienda normal yes-cellphone" href="index.html">NombreTienda</a>
+				</div>
+				<div class="col fila auto-width-grest" align="right">
+					<a id="login" class="col-right normal no-cellphone" href="registro.html"><label id="titlogin">Iniciar sesion</label></a>
+					<a id="logout" class="col-right normal" href="#" onclick="logout();"><label id="titlogout">Cerrar Sesion</label></a>
+					<span class="col-right no-cellphone">|</span>
+					<a id="quierovender" class="col-right normal no-cellphone" href="precio.html"><label id="titquierovender">Quiero vender</label></a>
+					<span class="col-right no-cellphone">|</span>
+					<a id="registro" class="col-right normal no-cellphone" href="registro.html"><label id="titregistro">Registro</label></a>
+					<span id="nombreusuario" class="col-right">Usuario | </span>
+					<span class="col-right no-cellphone">|</span>
+					<a id="ayuda" class="col-right normal no-cellphone" href="http://wiki.gtienda.com"><label id="titayuda">Ayuda</label></a>
+				</div>
 				</div>
 			</div>
-			<header class="section">
+			<header class="section no-cellphone">
 				<div class="container min-width fila">
 					<div class="col fila auto-width" align="left">
-						<img class="brand-logo col" id="logo" src="" />
+						<img class="brand-logo col no-cellphone" id="logo" src="" />
 						<div class="brand-name col" id="titulocuenta"> </div>	
 					</div>
 					<div class="search-bar col auto-width" align="right">
@@ -78,7 +77,7 @@
 					</div>
 				</div>
 			</header>
-		<div class="section solo-prodt">
+		<div class="section solo-prodt no-cellphone">
 		<div class="container min-width">
 			<nav id ="catalogosh" class="nav-column fila">
 			</nav>
@@ -87,9 +86,9 @@
 		</div>
 		<div class="section">
 		<div class="container min-width fila">
-				<div id="carro" class="col" align="left"> </div>
+				<div id="carro" class="col cart-shop" align="left"> </div>
 				<div id="totalcuadro" class="col pay-block" align="center">
-					<br><textarea id="formapago" style="border-style: none; width: 300px;"></textarea>
+					<br><textarea id="formapago"></textarea>
 					<br><br><label id="tittotaldelpedido">Total del Pedido</label><br><br>
 					<label id="total" style="font-weight: bold"> </label><br><br>
 					<a id="realizar" class="btn" href="#" onclick="realizarPedido(2);" style="font-weight: bold">
@@ -99,7 +98,7 @@
 						<label id="titrealizarcotizacion">Solicitar Cotizacion</label>
 					</a><br><br>
 					<a id="autenticar" class="btn" href="#" onclick="login();" style="font-weight: bold"><label id="titautenticarseparapedido">Autenticarse para Realizar el Pedido</label></a><br><br>
-					<textarea id="notas" placeholder="agregue sus notas aqui" style="border-style: solid; width: 300px; height: 200px;"></textarea>
+					<textarea id="notas" placeholder="agregue sus notas aqui" style=""></textarea>
 				</div>
 		</div>
 		<div>
