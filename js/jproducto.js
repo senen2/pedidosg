@@ -30,6 +30,7 @@ function dibujaProducto(IDproducto, datos)
 	dibujaCatalogosAbajo(datos.catalogos, $("title").html(), datos.carro.length);
 	ajustaEncabezado(gdatos.cuenta);		
 	document.cookie = "IDcuentaCat=" + datos.cuentaCat.ID;
+	$("#carro").html("(" + gdatos.carro.length + ")");
 	
 	var cad = "", tallas = "", colores = "";
 	var item = datos.producto;
