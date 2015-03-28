@@ -65,6 +65,7 @@ function dibujaTitulo(titulo, logo)
 {
 	$("#titulocuenta").html('<h2>' + titulo + '</h2>');
 	$("#logo").attr("src", imagedir + "logos/" + logo);
+	$("#nombretienda").html(titulo);
 }
 
 function dibujaTituloAbajo(titulo, logo)
