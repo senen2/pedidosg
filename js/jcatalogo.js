@@ -96,6 +96,7 @@ function dibujaCatalogo(datos)
 		$("#titfiltros").hide();
 		
 	$("#carro").html("(" + gdatos.carro.length + ")");
+	$("body").fadeIn(400);		
 	
 }
 

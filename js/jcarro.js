@@ -94,6 +94,7 @@ function dibujaCarro(datos)
 
 	//if (datos.cuenta!=null)
 	//	dibujaMenu();
+	$("body").fadeIn(400);		
 }
 
 function dibujaProcesos(IDcarro)

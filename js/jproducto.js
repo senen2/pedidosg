@@ -108,6 +108,7 @@ function dibujaProducto(IDproducto, datos)
 		$("#divproduccion").hide();	
 
 	desColapsed = true;
+	$("body").fadeIn(400);		
 }
 
 function dibujaProduccion()
