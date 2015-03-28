@@ -32,9 +32,9 @@ function dibujaCarro(datos)
 			precio = calculaPrecio(item);
 			valor = (item.precio*item.cantidad).formatMoney(gdatos.cuenta.decimales);
 			
-			tagprecio = '<label id="precio-' + item.ID + '" class="item-price">$' + precio + '</label><br>';
+			tagprecio = '<label id="precio-' + item.ID + '" class="item-price2">$' + precio + '</label>';
 			if (modo==1)
-				tagprecio = '<label class="item-price">$ </label><input class="item-price" id="precio-' + item.ID + '" value="' + item.precio + '"/><br><br>';
+				tagprecio = '<label class="item-price">$ </label><input class="item-price" id="precio-' + item.ID + '" value="' + item.precio + '"/>';
 							
 			prop="";
 			if (item.talla!="")
@@ -46,32 +46,34 @@ function dibujaCarro(datos)
 				prop = prop + '<label class="item-ref">Color: ' + item.color+ '</label>';				
 			}
 
-			cad = cad + '<div class="hor-item">'
-					  		+ '<a href="producto.html?ID='+ item.IDproducto + '">'
+			cad = cad + '<div class="hor-item fila" style="width: 100%;">'
+					  		+ '<div class="col"><a href="producto.html?ID='+ item.IDproducto + '">'
 					  			+ '<img src="' + item.imagen + '" height="70" class="col" />'
-					  		+ '</a>'
-					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
-				  			+ '<div class="col" style="width:100px">'
-						  		+ '<label class="item-name">' + item.nombre + '</label><br>'
-						  		+ '<label class="item-ref">' + item.referencia + '</label><br>'
-						  		+ prop + '<br>'
+					  		+ '</a></div>'
+					  		+ '<div class="col-right yes-cellphone" style="margin-top:30px;margin-bottom:30px;">'
+					  			+ '<a class="btn" href="#" onclick="quitarDelCarro('+ item.ID + ');" style="font-weight: bold">' + l.quitar + '</a>'
 					  		+ '</div>'
-					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
-					  		+ '<div class="col">'
-						  		+ tagprecio
-					  		+ '</div>'
-					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
-					  		+ '<div class="col">'
-					  	  		+ '<label class="item-price">' + l.cantidad + ': </label>'
-					  	  		+ '<input class="item-price" id="cantidad'+ item.ID + '" value="' + item.cantidad + '"/><br><br>'
+				  			+ '<div class="col">'
+					  			+ '<div class="col" style="padding-left:10px">'
+							  		+ '<label class="item-name">' + item.nombre + '</label><br>'
+							  		+ '<label class="item-ref">' + item.referencia + '</label><br>'
+							  		+ prop + '<br>'
+						  		+ '</div>'
+						  		+ '<div class="col" style="padding-left:10px">'
+						  			
+						  	  		+ '<label class="item-cantidad">' + l.cantidad + ': </label>'
+						  	  		+ '<input class="item-cantidad" id="cantidad'+ item.ID + '" value="' + item.cantidad + '" onkeyup="actualizarPedido();"/><br><br>'
+						  	  		 + tagprecio
+						  		+ '</div>'
 					  		+ '</div>'
 					  		+ '<div class="col" style="padding-left:10px">'
-					  	  		+ '<a class="btn" href="#" onclick="actualizarPedido();" style="font-weight: bold">' + l.actualizar + '</a>'
-					  	  		+ dibujaProcesos(item.ID)
-					  	  		+ '<br><a class="btn" href="#" onclick="quitarDelCarro('+ item.ID + ');" style="font-weight: bold">' + l.quitar + '</a>'
-					  		+ '</div><br>'
-					  		+ '<div class="col" style="width:30px">&nbsp;</div>'
-					  + '</div><hr><br>';
+					  			+ dibujaProcesos(item.ID)
+					  		+ '</div>'
+					  		+ '<div class="col-right no-cellphone">'
+					  			+ '<a class="a-x" href="#" onclick="quitarDelCarro('+ item.ID + ');">X</a>'
+					  		+ '</div>'
+					  		
+					  + '</div>';
 		} );
 		$("#totalcuadro").show();
 		$("#carro").html(cad);
@@ -99,7 +101,7 @@ function dibujaProcesos(IDcarro)
 	var cad="";
 	$.each(gdatos.produccion, function(i,item) {
 		if (item.IDcarro==IDcarro)
-			cad += '<div><input id="proceso-' + i + '" type="checkbox"' + (item.activo=="1" ? " checked": "") 
+			cad += '<div class="proces"><input id="proceso-' + i + '" type="checkbox"' + (item.activo=="1" ? " checked": "") 
 					+ ' onclick="activaProceso(' + i + ')">' 
 					+ item.nombre + ' $' + item.precio + '</input></div>';
 	} );	

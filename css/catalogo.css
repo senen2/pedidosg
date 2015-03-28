@@ -24,6 +24,20 @@ hr {
 footer {
 	display: block;
 }
+a.a-x {
+	padding-left: 20px;
+	color: #808080;
+	font-weight: bold;
+}
+a.a-x:hover {
+	color: #333333;
+}
+.cart-shop {
+	width: 550px;
+}
+.proces {
+	font: 12px sans-serif;
+}
 .yes-cellphone {
 	display: none;
 }
@@ -534,6 +548,9 @@ input.file {
 .item-price {
 	font-size: 10px;
 }
+.item-cantidad {
+	font-size: 10px;
+}
 .item-name2 {
 	font-weight: bold;
 	font-size: 28px;
@@ -574,7 +591,15 @@ input.file {
 .hor-item {
 	display: inline-block;
 	display: table;
-	margin: 5px;
+	padding: 5px;
+	border-bottom: dotted 1px gray;
+	background-color: white;
+	-webkit-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.hor-item:hover {
+	background-color:#F3F3F3;
 }
 .hor.item.blue {
 	background-color: #99E6E6;
@@ -802,6 +827,18 @@ tr.seleccionada:hover {
 input#cantidad {
 	width: 100px;
 }
+input.item-cantidad {
+	width: 30px;
+}
+#notas {
+	border-style: solid;
+	width: 300px;
+	height: 200px;
+}
+#formapago {
+	border-style: none;
+	width: 300px;
+}
 #div-description label {
 	display: none;
 }
@@ -977,6 +1014,12 @@ input#cantidad {
 	h2 {
 		font-size: 1.2em;
 	}
+	.hor-item:hover {
+		background-color: white;
+	}
+	.cart-shop {
+		width: 100%;
+	}
 	.yes-cellphone {
 		display: inherit;
 	}
@@ -1080,6 +1123,16 @@ input#cantidad {
 	}
 	.btn-on-cellphone {
 		width: 90%;
+	}
+	.pay-block {
+		margin-left: 0;
+	}
+	#notas {
+		width: 100%;
+	}
+	#formapago {
+		width: 100%;
+		height: 70px;
 	}
 	#div-description {
 		border-top: 2px solid #F58427;
