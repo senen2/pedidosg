@@ -99,9 +99,10 @@ function dibujaProcesos(IDcarro)
 	var cad="";
 	$.each(gdatos.produccion, function(i,item) {
 		if (item.IDcarro==IDcarro)
-			cad += '<div><input id="proceso-' + i + '" type="checkbox"' + (item.activo=="1" ? " checked": "") 
-					+ ' onclick="activaProceso(' + i + ')">' 
-					+ item.nombre + ' $' + item.precio + '</input></div>';
+			if (item.opcional==1)
+				cad += '<div><input id="proceso-' + i + '" type="checkbox"' + (item.activo=="1" ? " checked": "") 
+						+ ' onclick="activaProceso(' + i + ')">' 
+						+ item.nombre + ' $' + item.precio + '</input></div>';
 	} );	
 	return cad;
 }

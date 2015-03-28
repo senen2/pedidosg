@@ -23,7 +23,6 @@ function inicioProd()
 function dibujaProducto(IDproducto, datos)
 {
 	gdatos = datos;
-	$("#nombretienda").html(gdatos.cuentaCat.empresa);
 	dibujaTitulos(datos.cuenta.lenguaje);
 	dibujaLogin(datos.cuenta);
 	dibujaCatalogos(datos.catalogos, $("title").html(), datos.carro.length);
