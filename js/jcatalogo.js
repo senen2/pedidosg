@@ -288,3 +288,4 @@ function dibujaLeccion(datos)
 	$("#leccionImagen").attr("src","lecciones/" + datos.imagen);
 	$("#leccionTexto").html(datos.texto);
 }
+
