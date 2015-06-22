@@ -23,16 +23,19 @@
 
 	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 	<link rel="stylesheet" type="text/css" href="css/catalogo.css">
-	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="js/jquery-ui_smoothness.js">
 	<link rel="shortcut icon" href="/favicon.ico" />
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
 	<!--script src="js/jquery.ui.touch-punch.min.js"></script-->
 	<script type="text/javascript" src="js/jcatalogo.js"></script>
 	<script type="text/javascript" src="js/japiPedidos.js"></script>
 	<script type="text/javascript" src="js/jcomunp.js"></script>
+	<script type="text/javascript" src="js/jimage.js"></script>
+	<script type="text/javascript" src="js/canvastoblob.js"></script>
+	<script type="text/javascript" src="js/exif.js"></script>
 	<script type="text/javascript" src="js/jtit.js"></script>
 	<script type="text/javascript" src="js/jpag.js"></script>
 	<script type="text/javascript" src="js/jgoogle.js"></script>
@@ -68,7 +71,7 @@
 				</div>
 			</div>
 		</div>
-		<header class="section">
+		<header class="section no-cellphone">
 			<div class="container min-width fila">
 				<div class="col fila auto-width" align="left">
 					<img class="brand-logo col no-cellphone" id="logo" src="" />
@@ -81,11 +84,11 @@
 			</div>
 		</header>
 		<div class="section no-cellphone">
-		<div class="container">
-			<nav id ="catalogosh" class="nav-column fila">
-			</nav>
-			<hr />
-		</div>
+			<div class="container">
+				<nav id ="catalogosh" class="nav-column fila">
+				</nav>
+				<hr />
+			</div>
 		</div>
 		<div class="section no-cellphone" align="center">
 			<div class="container min-width fila">
@@ -120,6 +123,9 @@
 						</div>
 					</dl>
 				</div>
+				<div class="DN" id="busy">
+					<img src="images/busy.gif" /><br>
+				</div>
 				<div id="catalogo" class="col fila auto-width-catag"> </div>
 			</div>
 			<br><br>
@@ -146,13 +152,24 @@
 				</div>
 			</div>
 		</div>
-		<div class="config-menu fila" id="zonaMenu">
+		<div class="config-menu fila no-cellphone" id="zonaMenu">
 			<div class="col menu-left" id="menu">
 			</div>
 			<div class="col">
 				<img src="images/menu-configura-2-1.png" height="230px" onclick="ocultaMenu();" />
 			</div>
 		</div>
+		<div class="menu-bar-bottom">
+			<div> 
+				<label onclick="tomaFoto();">Subir Foto</label> 
+			</div> 
+			<input type="file" id="capture" accept="image/*; capture=camera" multiple style="visibility:hidden;"  onchange="upload();" />
+		</div>
+	</div>
+	<div id="leccion" class="DN" style="z-index: 999">
+		<label id="leccionNombre"> </label>
+		<br><img id="leccionImagen">
+		<br><textarea id="leccionTexto"> </textarea>
 	</div>
 </body>
 </html>

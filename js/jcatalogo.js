@@ -1,6 +1,8 @@
 /**
  * @author botpi
  */
+var pagina, ayuda, encabezado, gdatos;
+var gdatosleccion, itemini, itemsxpag, nitems, editando, filtrosact, empresa, IDcatalogo, itemdefault;
 
 function inicioCat()
 {
@@ -105,9 +107,9 @@ function dibujaCuadro(datos)
 	var borrar, nombre, precio, pvm, pag, cad="";
 	pag = "producto.html";
 	if (editando) {
-		cad = '<div class="col item"><a href="subeprod.html">'
+/*		cad = '<div class="col item"><a href="subeprod.html">'
 				  + '<img src="'+ imagedir + 'imgcat/' + gdatos.cuenta.lenguaje.agregarProductos + '.jpg"/>'
-				  + '</a></div>';
+				  + '</a></div>'; */
 		pag="editorproducto.html";
 
 		$(function() {
@@ -119,6 +121,10 @@ function dibujaCuadro(datos)
 			});
 		});
 	
+		$(".menu-bar-bottom").show();
+	}
+	else {
+		$(".menu-bar-bottom").hide();		
 	}
 	$.each(datos.catalogo.productos, function(i,item) {
 		if (editando | item.tipo>1) {
@@ -195,7 +201,7 @@ function borraProducto(ID, response)
 
 function grabarOrden()
 {
-	datos={};
+	var datos={};
 	datos.lista=[];
 	$.each($("#catalogo").children(), function(i,item) {
 		if (i>0)
@@ -238,4 +244,47 @@ function verBusca(datos)
 		else 
 			window.location.assign("producto.html?ID=" + datos.datos);
 	}
+}
+
+// ---------------------------- subir Imagenes
+
+function tomaFoto()
+{
+	$("#capture").trigger( "click" );
+}
+
+function upload() {
+	$("#busy").show();
+	itemdefault=getCookie("itemdefault");
+	if (typeof itemdefault=='undefined' || itemdefault==null) {
+		itemdefault={};
+		itemdefault.nombre="";
+		itemdefault.precio=0;
+		itemdefault.pvm=0;
+		itemdefault.referencia="";
+		itemdefault.barcode="";
+		itemdefault.descripcion="";
+		itemdefault.tallas="";
+		itemdefault.colores="";
+		itemdefault.tags=[];
+	}
+	else
+		itemdefault = JSON.parse(itemdefault);
+		
+	uploadImages("capture", itemdefault, gdatos.catalogoCab.ID, finalUpload);
+}
+
+function finalUpload()
+{
+	$("#busy").hide();
+	refrescar(); 	
+}
+
+function dibujaLeccion(datos)
+{
+	gdatosleccion = datos;
+	$("#leccion").show();
+	$("#leccionNombre").html(datos.nombre);
+	$("#leccionImagen").attr("src","lecciones/" + datos.imagen);
+	$("#leccionTexto").html(datos.texto);
 }

@@ -25,7 +25,7 @@ function dibujaProv(response)
 		cuenta = response;
 		$("#formaLogo").attr("action", "http://" + servidor + "/uploadped");
 		$("#usuario").html(cuenta.empresa + " / " + cuenta.usuario);
-		$("#logoedita").attr("src",'logos/' + gdatos.ID + '.jpg')
+		$("#logoedita").attr("src",'logos/' + gdatos.ID + '.jpg');
 		$("#IDimagen").val(gdatos.ID);
 
 /*		$("#quierovender").hide();
@@ -58,7 +58,7 @@ function ingresaListaProductos()
 {
 	apagaTodo();
 	$("#ingresaProductos").show();
-	$("#listaProductosCrear").attr("placeholder","referencia, nombre, precio, descripcion\nreferencia, nombre, precio, descripcion\n  .\n  . \n  . ")
+	$("#listaProductosCrear").attr("placeholder","referencia, nombre, precio, descripcion\nreferencia, nombre, precio, descripcion\n  .\n  . \n  . ");
 	$("#listaProductosSubir").hide();
 	$("#crearProductos").hide();
 }
@@ -106,7 +106,7 @@ function creaProducto()
 
 function vaEditarProducto(referencia, IDproducto)
 {
-	window.relocation("editorProducto.html?ID=" + IDproducto)	
+	window.relocation("editorProducto.html?ID=" + IDproducto);
 }
 
 function convertirProductos()
