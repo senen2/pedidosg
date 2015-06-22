@@ -51,25 +51,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="section" align="center">
-			<div class="container min-width fila">
-				<div id="titaccesoamiembros" class="col auto-width v3 titulocatalogo1"><h1>Acceso a miembros</h1></div>
-			</div>
-		</div>
 		<div class="section">
 			<div class="container fila">
 				<div class="col2 auto-width v3" align="center">
-					<h2 id="titiniciasesion">Inicia sesión</h2>
-					<form class="login-from">
-			              <label id="aviso" class="DN error">Usuario o clave incorretos</label>            
-			              <input class="cat-input" id="emaillogin" type="email" placeholder="Dirección de email" name="email" required="required" autofocus="autofocus">
-			              <input class="cat-input" id="passwdlogin" type="password" placeholder="Contraseña" name="pass" required="required" onkeydown="if (event.keyCode == 13) login();">
-<!--			              <br><input id="comovendedor" type="checkbox"/>Ingresar como vendedor -->
-			            <div class="login-btn"><a id="titiniciarsesion" class="btn v3" href="#" onclick="login();">Iniciar sesión</a>
-			            </div>
-			       </form>
-				</div>
-				<div class="col2 auto-width v3 border-left" align="center">
 					 <a style="text-decoration: none;color: black;" href="#nombrenuevo"><h2 id="titcreacuenta">Crea tu cuenta</h2></a>
 					<form class="login-from">
 						<label id="error" class="DN error">Usuario o clave incorretos</label>
@@ -82,6 +66,17 @@
 			            <div class="login-btn"><a id="titregistrarse" class="btn v3" href="#" onclick="registro();">Registrarse</a>
 			            </div>
 			        </form>
+				</div>
+				<div class="col2 auto-width v3 border-left" align="center">
+					<h2 id="titiniciasesion">Inicia sesión</h2>
+					<form class="login-from">
+			              <label id="aviso" class="DN error">Usuario o clave incorretos</label>            
+			              <input class="cat-input" id="emaillogin" type="email" placeholder="email" name="email" required="required" autofocus="autofocus">
+			              <input class="cat-input" id="passwdlogin" type="password" placeholder="Contraseña" name="pass" required="required" onkeydown="if (event.keyCode == 13) login();">
+<!--			              <br><input id="comovendedor" type="checkbox"/>Ingresar como vendedor -->
+			            <div class="login-btn"><a id="titiniciarsesion" class="btn v3" href="#" onclick="login();">Iniciar sesión</a>
+			            </div>
+			       </form>
 				</div>
 			</div>
 		</div>

@@ -32,6 +32,9 @@ a.a-x {
 a.a-x:hover {
 	color: #333333;
 }
+.menu-bar-bottom {
+	display: none;
+}
 .cart-shop {
 	width: 550px;
 }
@@ -1017,6 +1020,23 @@ input.item-cantidad {
 	.hor-item:hover {
 		background-color: white;
 	}
+	.menu-bar-bottom {
+		display: inherit;
+		position: fixed;
+		bottom: 0%;
+		left: 0%;
+		background-color: white;
+		height: 30px;
+		width: 100%;
+		font-size: 24px;
+		font-weight: 700;
+		padding: 10px;
+		background-color: #3a5795;
+		z-index: 10;
+	}
+	.menu-bar-bottom a {
+		color: white;
+	}
 	.cart-shop {
 		width: 100%;
 	}
@@ -1044,7 +1064,10 @@ input.item-cantidad {
 		padding-right: 10px;
 	}
 	.container.min-width {
-		min-width: 98%;
+		min-width: 460px;
+	}
+	.container.max-width {
+		min-width: 480px;
 	}
 	.black-back {
 		font-size: 14px;
@@ -1127,6 +1150,12 @@ input.item-cantidad {
 	.pay-block {
 		margin-left: 0;
 	}
+	.auto-width-gtienda {
+		width: 144px;
+	}
+	.auto-width-grest {
+		width: 336px;
+	}
 	#notas {
 		width: 100%;
 	}
@@ -1166,6 +1195,21 @@ input.item-cantidad {
 		padding-bottom: 79px;
 		background-size: 187%;
 	}
+	.auto-width-gtienda {
+		width: 100px;
+	}
+	.auto-width-grest {
+		width: 220px;
+	}
+	.auto-width {
+		width: 140px;	
+	}
+	.container.max-width {
+		min-width: 320px;
+	}
+	.container.min-width {
+		min-width: 300px;
+	}
 	.img-solo-text {
 		font-size: 20px;
 	}
@@ -1186,6 +1230,15 @@ input.item-cantidad {
 	}
 }
 @media (max-width: 220px) {
+	.container.max-width {
+		min-width: 213px;
+	}
+	.auto-width-gtienda {
+		width: 63px;
+	}
+	.auto-width-grest {
+		width: 149px;
+	}
 	.item img {
 		max-height: 256px;
 		max-width: 192px;

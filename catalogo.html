@@ -33,6 +33,9 @@
 	<script type="text/javascript" src="js/jcatalogo.js"></script>
 	<script type="text/javascript" src="js/japiPedidos.js"></script>
 	<script type="text/javascript" src="js/jcomunp.js"></script>
+	<script type="text/javascript" src="js/jimage.js"></script>
+	<script type="text/javascript" src="js/canvastoblob.js"></script>
+	<script type="text/javascript" src="js/exif.js"></script>
 	<script type="text/javascript" src="js/jtit.js"></script>
 	<script type="text/javascript" src="js/jpag.js"></script>
 	<script type="text/javascript" src="js/jgoogle.js"></script>
@@ -68,7 +71,7 @@
 				</div>
 			</div>
 		</div>
-		<header class="section">
+		<header class="section no-cellphone">
 			<div class="container min-width fila">
 				<div class="col fila auto-width" align="left">
 					<img class="brand-logo col no-cellphone" id="logo" src="" />
@@ -120,6 +123,9 @@
 						</div>
 					</dl>
 				</div>
+				<div class="DN" id="busy">
+					<img src="images/busy.gif" /><br>
+				</div>
 				<div id="catalogo" class="col fila auto-width-catag"> </div>
 			</div>
 			<br><br>
@@ -146,13 +152,18 @@
 				</div>
 			</div>
 		</div>
-		<div class="config-menu fila" id="zonaMenu">
+		<div class="config-menu fila no-cellphone" id="zonaMenu">
 			<div class="col menu-left" id="menu">
 			</div>
 			<div class="col">
 				<img src="images/menu-configura-2-1.png" height="230px" onclick="ocultaMenu();" />
 			</div>
 		</div>
-	</div>
+		<div class="menu-bar-bottom">
+			<div> 
+				<label onclick="tomaFoto();">Subir Foto</label> 
+			</div> 
+			<input type="file" id="capture" accept="image/*; capture=camera" multiple style="visibility:hidden;"  onchange="upload();" />	</div>
+		</div>
 </body>
 </html>
