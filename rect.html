@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" /> <!-- reset css -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<style>
+    body{ background-color: ivory; }
+    canvas{border:1px solid red;}
+    #clips{border:1px solid blue; padding:5px;}
+    img{margin:3px;}        
+</style>
+<script>
+$(function(){
+
+    var canvas=document.getElementById("canvas");
+    var ctx=canvas.getContext("2d");
+    var cw,ch;        
+
+    // background definition
+    // OPTION: look at the top-left pixel and assume == background
+    //         then set these vars automatically
+    var isTransparent=false;
+    var bkColor={r:255,g:255,b:255};
+    var bkFillColor="rgb("+bkColor.r+","+bkColor.g+","+bkColor.b+")";
+
+    // load test image
+    var img=new Image();
+    img.crossOrigin="anonymous";
+    img.onload=start;
+    img.src="https://dl.dropboxusercontent.com/u/139992952/multple/temp2a.png";        
+
+    function start(){
+        // draw the test image on the canvas
+        cw=canvas.width=img.width/2;
+        ch=canvas.height=img.width/2;
+        ctx.drawImage(img,0,0,cw,ch);
+    }
+
+
+    function clipBox(data){
+        var pos=findEdge(data);
+        if(!pos.valid){return;}
+        var bb=findBoundary(pos,data);
+        clipToImage(bb.x,bb.y,bb.width,bb.height);
+        if(isTransparent){
+            // clear the clipped area
+            // plus a few pixels to clear any anti-aliasing
+            ctx.clearRect(bb.x-2,bb.y-2,bb.width+4,bb.height+4);
+        }else{
+            // fill the clipped area with the bkColor
+            // plus a few pixels to clear any anti-aliasing
+            ctx.fillStyle=bkFillColor;
+            ctx.fillRect(bb.x-2,bb.y-2,bb.width+4,bb.height+4);
+        }
+    }
+
+    function xyIsInImage(data,x,y){
+        // find the starting index of the r,g,b,a of pixel x,y
+        var start=(y*cw+x)*4;
+        if(isTransparent){
+            return(data[start+3]>25);
+        }else{
+            var r=data[start+0];
+            var g=data[start+1];
+            var b=data[start+2];
+            var a=data[start+3];  // pixel alpha (opacity)
+            var deltaR=Math.abs(bkColor.r-r);
+            var deltaG=Math.abs(bkColor.g-g);
+            var deltaB=Math.abs(bkColor.b-b);
+            return(!(deltaR<5 && deltaG<5 && deltaB<5 && a>25));
+        }
+    }
+
+    function findEdge(data){
+        for(var y=0;y<ch;y++){
+        for(var x=0;x<cw;x++){
+            if(xyIsInImage(data,x,y)){
+                return({x:x,y:y,valid:true});
+            }
+        }}
+        return({x:-100,y:-100,valid:false});
+    }
+
+    function findBoundary(pos,data){
+        var x0=x1=pos.x;
+        var y0=y1=pos.y;
+        while(y1<=ch && xyIsInImage(data,x1,y1)){y1++;}
+        var x2=x1;
+        var y2=y1-1;
+        while(x2<=cw && xyIsInImage(data,x2,y2)){x2++;}
+        return({x:x0,y:y0,width:x2-x0,height:y2-y0+1});
+    }
+
+    function drawLine(x1,y1,x2,y2){
+        ctx.beginPath();
+        ctx.moveTo(x1,y1);
+        ctx.lineTo(x2,y2);
+        ctx.strokeStyle="red";
+        ctx.lineWidth=0.50;
+        ctx.stroke();
+    }
+
+    function clipToImage(x,y,w,h){
+        // don't save anti-alias slivers
+        if(w<3 || h<3){ return; }
+        // save clipped area to an img element
+        var tempCanvas=document.createElement("canvas");
+        var tempCtx=tempCanvas.getContext("2d");
+        tempCanvas.width=w;
+        tempCanvas.height=h;
+        tempCtx.drawImage(canvas,x,y,w,h,0,0,w,h);
+        var image=new Image();
+        image.width=w;
+        image.height=h;
+        image.src=tempCanvas.toDataURL();
+        $("#clips").append(image);
+    }
+
+    $("#unbox").click(function(){
+        var imgData=ctx.getImageData(0,0,cw,ch);
+        var data=imgData.data;
+        clipBox(data);
+    });
+
+}); // end $(function(){});
+</script>
+</head>
+<body>
+    <button id="unbox">Clip next sub-image</button><br>
+    <canvas id="canvas" width=300 height=150></canvas><br>
+    <h4>Below are images clipped from the canvas above.</h4><br>
+    <div id="clips"></div>
+</body>
+</html>

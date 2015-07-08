@@ -869,3 +869,22 @@ function TraeTiendasP(funcion)
 		}
 	});	
 }
+
+// ----------------------- fotogrametria
+
+function GrabaLineasFG(datos)
+{
+	$.post( 'http://' + servidor + '/functiond/GrabaLineasFG(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos));	
+}
+
+function LeeLineasFG(funcion)
+{
+	$.ajax({
+		url: "http://" + servidor + "/function/LeeLineasFG(" + encabezado + ")?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			funcion(response);
+		}
+	});	
+}

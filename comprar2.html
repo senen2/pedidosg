@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>GTienda es tu tienda | Ventas por internet | Mi sitio en internet</title>
+	<meta name="description" content="La forma mas facil de poner tu tienda en internet con los mejores precios y sin cobro de comision, todo lo que vendas con gtienda sera 100% tuyo" />
+	<meta name="author" content="Andres Botello" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	<link rel="stylesheet" type="text/css" href="css/catalogo.css">
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jcomprar1.js"></script>
+	<script type="text/javascript" src="js/japiPedidos.js"></script>
+	<script type="text/javascript" src="js/jcomunp.js"></script>
+	<script type="text/javascript" src="js/jtit.js"></script>
+	<script type="text/javascript" src="js/jgoogle.js"></script>
+		
+	<script>
+		$( document ).ready(function() {
+			pagina = "pdcomprar1";
+			titulo = "GTienda es tu tienda | Ventas por internet | Mi sitio en internet";
+			ayuda = "http://gtienda.com/wiki/mediawiki-1.23.5/index.php?title=GTienda:Acerca_de";
+			//inicioComprar1();
+		});
+	</script>
+</head>
+<body>
+<div align="center">
+	<div class="section header">
+	<div class="container max-width fila black-back">
+		<div class="col auto-width-gtienda" align="left">
+			<a class="brand-gtienda normal" href="#">G<span>ran</span>Tienda</a>
+		</div>
+		<div class="col fila auto-width-grest" align="right">
+			<a id="login" class="col-right normal" href="registro.html"><label id="titlogin">Iniciar sesion</label></a>
+			<!--a id="logout" class="col-right normal" href="#" onclick="logout();"><label id="titlogout">Cerrar Sesion</label></a-->
+			<span class="col-right">|</span>
+			<a id="registro" class="col-right normal" href="registro.html"><label id="titregistro">Crear Cuenta</label></a>
+			<span class="col-right">|</span>
+			<a id="quierovender" class="col-right normal" href="precio.html"><label id="titquierovender">Quiero vender</label></a>
+			<span id="nombreusuario" class="col-right">Usuario | </span>
+			<span class="col-right">|</span>
+			<a id="ayuda" class="col-right normal" href="http://wiki.gtienda.com" target="_blank"><label id="titayuda">Ayuda</label></a>
+			<span class="col-right">|</span>
+			<select id="idioma" class="col-right" onchange="cambiarIdioma();">
+				<option>English</option>
+				<option>Español</option>
+			</select>
+		</div>
+	</div>
+	</div>
+	<div class="section">
+	<div class="container" align="right">
+		<nav class="nav-column fila">
+			<a class="nav-link" href="registro.html"><div class="nav-col col"><span id="titprueba">Como Vender</span></div></a>
+		</nav>
+	</div>
+	</div>
+	<div class="section DN">
+		<div class="container">
+			<input class="bus-input" placeholder="Busca entre miles de proveedores"/>
+			<a class="btn" onclick="buscaTag(dibujaCatalogo);"><span class="icon-search"> </span><i id="titbuscar">Buscar</i></a>
+		</div>
+	</div>
+	<hr>
+	<div align="left" style="padding-left: 20px">
+		<h2>GTienda Centro Comercial Virtual</h2> 
+		
+		GTienda le ayuda en el proceso de compra para que observe productos y precios antes de decidirse.
+			
+		<ul>
+			<li>
+				En los <a href="comprar1.html">salones o pasillos</a> puede observar las vitrinas de las tiendas. 
+				Si le interesa alguna puede dar clic para entrar a la tienda y ver todos sus productos</li><br>
+			<li>
+				Cuando encuentre algo que le interese puede llevarlo a su lista de deseos (me gusta) o al carrito de compras.<br>
+				<b>Para conservar sus listas debe tener una <a href="registro.html">cuenta en GTienda</a></b>
+			</li>
+			<li>
+				Desde el carrito puede enviar su pedido. 
+			    Cada tienda tiene sus condiciones de pago y envío, consultelas antes de realizar el pedido.
+				Para crear un pedido debe tener una <a href="registro.html">cuenta en GTienda.</a>    
+		    </li>
+		</ul>
+	    <h5>GTienda solo renta espacio a las tiendas y no se hace responsable por ellas</h5>
+		
+	</div>
+	<footer>
+		<!--p>
+			&copy; Copyright  by GTienda
+		</p-->
+	</footer>
+</div>
+</body>
+</html>

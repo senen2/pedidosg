@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+ 
+<html>
+<head>
+    <title>Editor de Imagenes - GTienda</title>
+    <meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="css/catalogo.css">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+ 
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jimagedit.js"></script>
+    <script src="js/jcomunp.js"></script>
+    <script src="js/jgoogle.js"></script>
+	<script type="text/javascript" src="js/canvastoblob.js"></script>
+
+    <script>
+		$(function() {
+			$("#margen").slider({
+				orientation: "horizontal",
+				range: "min",
+				max: 255,
+				slide: defineUmbrales,
+				change: defineUmbrales
+			});
+			$("#margen").slider( "value", 10 );
+			inicioEditorImagen();
+		});
+    </script>
+</head>
+ 
+<body>
+	<br>
+    <div class="seccion">    
+        <div class="container fila">    
+	        <div class="col">    
+		        <canvas id="myCanvas" width="448" height="600"> </canvas>
+		        <canvas id="backCanvas" class="DN"> </canvas>
+	        </div>
+	        <div class="col" style="padding: 20px;margin-left:20px; border-style: solid; border-width: 1px;">    
+		        <div>
+		        	imagen <input id="imagen" style="width:100px;" value="1887" onkeydown="if (event.keyCode == 13) recargar();">
+		        	<button onclick="recargar();">Recargar</button>
+		        	<button onclick="guardar();">Guardar</button>
+		        </div>
+	        	<br>    
+		        <div>
+		        	Margen
+					<div id="margen"> </div>        
+		        </div>
+	        	<br>    
+		        <div>
+		        	Color Seleccionado<br>
+		        	<svg width="200" height="30">
+					  <rect id="colorSel1" width="50" height="20" style="fill:rgb(255,255,255);" />
+					  <rect id="colorSel" x="60" width="50" height="20" style="fill:rgb(255,255,255);" />
+					  <rect id="colorSel2" x="120" width="50" height="20" style="fill:rgb(255,255,255);" />
+					</svg>
+		        </div>
+		        <div>
+		        	<button id="seleccionaColor" style="color:red" onclick="defineColor();">Selecciona Color</button>
+		        	<button onclick="quitaColor();">Borrar</button>
+		        	<button onclick="conservaColor();">Conservar</button>
+		        	<button onclick="deshacer();">Deshacer</button>
+		        </div>
+	        	<br>    
+		        <div>
+		        	<button id="seleccionaRegion" onclick="seleccionaRegion();">Selecciona Region</button>
+		        </div>
+	        	<br>    
+		        <div>
+		        	<button id="bordeDer" onclick="bordeDer();">Borde Derecho</button>
+		        	<button id="bordeIzq" onclick="bordeIzq();">Borde Izquierdo</button>
+		        	<button id="bordeSup" onclick="bordeSup();">Borde Superior</button>
+		        	<button id="bordeInf" onclick="bordeInf();">Borde Inferior</button>
+		        </div>
+		        <br>
+		        
+	        </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/jdibujar.js"></script>
+<style>
+    body{ background-color: ivory; }
+    #canvas{
+        border:1px solid red;
+    }
+</style>
+<script>
+	$(function(){
+		dibujaCanvas(null, null, "canvas", 0.33, "https://dl.dropboxusercontent.com/u/139992952/multple/heart.jpg");
+	});
+</script>
+</head>
+<body>
+    <h4>Drag-draw lines.</h4>
+    <button id="save">Export Image</button><br>
+    <canvas id="canvas"></canvas>
+</body>
+</html>
