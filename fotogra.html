@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+ 
+<html>
+<head>
+    <title>Fotogrametria - Botpi</title>
+    <meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="css/catalogo.css">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+ 
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jfotogra.js"></script>
+    <script src="js/japiPedidos.js"></script>
+    <script src="js/jcomunp.js"></script>
+    <script src="js/jgoogle.js"></script>
+	<script type="text/javascript" src="js/canvastoblob.js"></script>
+
+    <script>
+		$(function() {
+			inicioFotogra();
+		});
+    </script>
+</head>
+ 
+<body>
+	<br>
+    <div class="seccion">    
+        <div class="container fila">    
+	        <div class="col">    
+		        <canvas id="myCanvas" style="cursor: none" width="851" height="691"> </canvas>
+		        <canvas id="backCanvas" class="DN"> </canvas>
+	        </div>
+	        <div class="col" style="padding: 20px;margin-left:20px; border-style: solid; border-width: 1px;">    
+		        <div>
+		        	imagen <input id="imagen" style="width:100px;" value="2413" onkeydown="if (event.keyCode == 13) recargar();">
+		        	<button onclick="guardar();">Guardar</button>
+		        </div>
+	        	<br>    
+		        <div>
+		        	Margen
+					<div id="margen"> </div>        
+		        </div>
+	        	<br>    
+		        <div>
+		        	<button onclick="izq();"><<--</button>
+		        	<button onclick="der();">-->></button>
+		        	<a id="ider">0</a>
+		        </div>
+	        	<br>    
+		        <div>
+		        	<button onclick="sube();">/\</button>
+		        	<button onclick="baja();">\/</button>
+		        	<a id="isup">0</a>
+		        </div>
+	        	<br>    
+		        <div>
+		        	<button id="activaLinea" onclick="activaLinea();">Linea</button>
+		        	<a id="isup">0</a>
+		        	<button onclick="guardarLineas();">Guardar</button>
+		        	<button onclick="leerLineas();">Leer</button>
+		        </div>
+	        	<br>    
+		        <br>
+		        
+	        </div>
+        </div>
+    </div>
+</body>
+</html>

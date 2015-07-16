@@ -66,3 +66,34 @@ function enviar(imagen, datos, next)
     client.open("post", "http://" + servidor + "/uploadprod", true);
     client.send(formData);
 }
+
+function uploadImages(tag, itemdefault, IDcuentacat, funcionfinal) {
+    var file = document.getElementById(tag);
+	var theQueue = $({});
+
+    var a = encabezado.split(',');
+    var datos = [];
+    datos.push({nombre: "email", valor: a[0].replace("'","").replace("'","")});
+    datos.push({nombre: "token", valor: a[2].replace("'","").replace("'","")});
+    datos.push({nombre: "IDcuentacat", valor: IDcuentacat });
+    datos.push({nombre: "nombre", valor: itemdefault.nombre });
+    datos.push({nombre: "referencia", valor: itemdefault.referencia });
+    datos.push({nombre: "barcode ", valor: itemdefault.barcode });
+    datos.push({nombre: "descripcion ", valor: itemdefault.descripcion });
+    datos.push({nombre: "precio", valor: itemdefault.precio });
+    datos.push({nombre: "pvm", valor: itemdefault.pvm });
+    datos.push({nombre: "tallas", valor: itemdefault.tallas });
+    datos.push({nombre: "colores", valor: itemdefault.colores });
+    datos.push({nombre: "tags", valor: JSON.stringify(itemdefault.tags) });
+
+	$.each(file.files, function(i, archivo) {
+	  theQueue.queue('uploads', function(next) {
+	  	 resizeAndUpload(archivo, datos, next, 600, 600);
+	  }); 
+	});
+	theQueue.queue('uploads', function(next) {
+		theQueue.dequeue('uploads');
+		funcionfinal(); 
+	}); 
+	theQueue.dequeue('uploads');
+}

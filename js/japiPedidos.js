@@ -829,3 +829,62 @@ function LeePuntosSI(fecha, funcion)
 		}
 	});	
 }
+
+// --------------------------- lecciones
+
+function BuscaLeccionSigP(funcion)
+{
+	$.ajax({
+		url: "http://" + servidor + "/function/BuscaLeccionSigP(" + encabezado + ")?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			funcion(response);
+		}
+	});	
+}
+  
+function BuscaLeccionP(IDleccion, funcion)
+{
+	$.ajax({
+		url: "http://" + servidor + "/function/BuscaLeccionP(" + encabezado + "," + IDleccion + ")?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			funcion(response);
+		}
+	});	
+}
+
+// ------------------------ para compradores
+
+function TraeTiendasP(funcion)
+{
+	$.ajax({
+		url: "http://" + servidor + "/function/TraeTiendasP(" + encabezado + ")?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			funcion(response);
+		}
+	});	
+}
+
+// ----------------------- fotogrametria
+
+function GrabaLineasFG(datos)
+{
+	$.post( 'http://' + servidor + '/functiond/GrabaLineasFG(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos));	
+}
+
+function LeeLineasFG(funcion)
+{
+	$.ajax({
+		url: "http://" + servidor + "/function/LeeLineasFG(" + encabezado + ")?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			funcion(response);
+		}
+	});	
+}

@@ -6,6 +6,11 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
+			<name>org.python.pydev.PyDevBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
 			<name>com.aptana.ide.core.unifiedBuilder</name>
 			<arguments>
 			</arguments>
@@ -13,8 +18,19 @@
 	</buildSpec>
 	<natures>
 		<nature>com.aptana.projects.webnature</nature>
+		<nature>org.python.pydev.pythonNature</nature>
 	</natures>
 	<linkedResources>
+		<link>
+			<name>3D</name>
+			<type>2</type>
+			<location>C:/finca/3D</location>
+		</link>
+		<link>
+			<name>imgprod</name>
+			<type>2</type>
+			<location>C:/gtienda/imgprod</location>
+		</link>
 		<link>
 			<name>pantallas</name>
 			<type>2</type>

@@ -144,7 +144,7 @@ function dibujaTitulos(l)
         $("#titregistrarse").html(l.registrarse);
         $("#titproblemacreandocuenta").html(l.problemacreandocuenta);
         
-        $("#emaillogin").attr("placeholder", l.email);
+        $("#emaillogin").attr("placeholder", "email");
         $("#passwdlogin").attr("placeholder", l.clave);
         $("#nombrenuevo").attr("placeholder", l.nombre);
         $("#empresanuevo").attr("placeholder", l.nombretienda);
