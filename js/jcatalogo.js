@@ -150,7 +150,7 @@ function dibujaCuadro(datos)
 			
 			if (pag=="producto.html" || pag=="editorproducto.html" & datos.cuentaCat.ID==item.IDcuenta)
 				cad = cad + '<div id="producto-'+ item.ID +'" class="col item" style="margin-bottom:14px;"><a href="' + pag + '?ID='+ item.ID + '">'
-						  + '<img src="' + item.imagen + "?" + gdatos.time + '" />'
+						  + '<img src="' + item.imagen + "?" + gdatos.time + '" title="' + item.nombre + '"  />'
 						  + '<div>'
 						  + nombre
 						  + referencia
@@ -204,8 +204,8 @@ function grabarOrden()
 	var datos={};
 	datos.lista=[];
 	$.each($("#catalogo").children(), function(i,item) {
-		if (i>0)
-			datos.lista.push(item.id.split("-")[1]);
+		//if (i>0)
+		datos.lista.push(item.id.split("-")[1]);
 	} );
 	datos.itemini=itemini;
 	ReordenaProductosP(datos);

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+
+	<title>Produccion - Planta - Gtienda</title>
+	<meta name="description" content="Registro de la producción en Planta" />
+	<meta name="author" content="Botpi" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+	<script>
+    	WebFont.load({
+    	  google: {
+    	    families: ["Montserrat:400,700"]
+    	  }
+    	});
+	</script>
+
+	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	<link rel="stylesheet" type="text/css" href="css/catalogo.css">
+	
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jplantapro.js"></script>
+	<script type="text/javascript" src="js/japiPlanta.js"></script>
+	<script type="text/javascript" src="js/japiPedidos.js"></script>
+	<script type="text/javascript" src="js/jcomunp.js"></script>
+	<script type="text/javascript" src="js/jtit.js"></script>
+	<script type="text/javascript" src="js/jgoogle.js"></script>
+	
+	<script>
+		$( document ).ready(function() {
+			inicioPlantaPro();
+		});
+	</script>
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 32px;" >
+	<div align="center">
+	<div class="section">
+	<div class="container">
+		<br>
+		<div align="left" style="width: 550px;">
+			<div id="divMaquina" >
+				Maquina 
+				<input id="maquina" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px" onkeydown="if (event.keyCode == 13) verMaquina();"/><br>
+				
+			</div><br>
+			<div id="divProducto">
+				Pedido 
+				<input id="pedido" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px;" 
+					value="1234" onkeydown="if (event.keyCode == 13) verOperario();"/><br><br>
+				Producto 
+				<select id="producto" class="plantaOpciones" onkeydown="if (event.keyCode == 13) verProducto();">
+					<option>Produccion</option> 
+					<option>Consumo</option> 
+					<option>Sobrante</option> 
+					<option>Recepcion</option> 
+					<option>Traslado</option> 
+					<option>Inventario</option> 
+					<option>Reimpresion</option> 
+				</select>
+			</div><br>
+			<div id="divColor" >
+				Color 
+				<select id="color" class="plantaOpciones" onkeydown="if (event.keyCode == 13) verColor();">
+					<option>Blanco</option> 
+					<option>Negro</option> 
+					<option>Azul</option> 
+				</select>
+				
+			</div><br>
+			<div id="divTamano" >
+				Tamaño 
+				<select id="tamano" class="plantaOpciones" onkeydown="if (event.keyCode == 13) verTamano();">
+					<option>2Kg</option> 
+					<option>3Kg</option> 
+					<option>5Kg</option> 
+					<option>10Kg</option> 
+					<option>25Kg</option> 
+				</select>
+				
+			</div><br>
+			<div id="divCantidad" >
+				Cantidad 
+				<input id="cantidad" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px" onkeydown="if (event.keyCode == 13) verCantidad();"/><br>
+				
+			</div><br>
+			<div id="divAceptar" >
+				<button  style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; width: 300px;" onclick="aceptar();">Aceptar</button>
+			</div>
+		</div>	
+	</div>
+	</div>
+	</div>
+</body>
+</html>

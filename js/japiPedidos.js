@@ -870,6 +870,18 @@ function TraeTiendasP(funcion)
 	});	
 }
 
+function TraeTiendaP(empresa, n, funcion)
+{
+	$.ajax({
+		url: "http://" + servidor + "/function/TraeTiendaP(" + encabezado + ",'" + empresa + "'," + n + ")?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			funcion(response);
+		}
+	});	
+}
+
 // ----------------------- fotogrametria
 
 function GrabaLineasFG(datos)

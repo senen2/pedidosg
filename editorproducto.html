@@ -178,6 +178,7 @@
 			
 					<div id="divproduccion" class="DN">
 						<div class="">
+							<div id="nombreProducto" style="font-weight: bold; padding-top: 5px;"></div>
 							<div class="mo v2 sector min-width " style="text-align: left">
 								<div id="produccion"> </div>
 							</div>
@@ -199,6 +200,20 @@
 
 	<div id="divdefmaterial" class="DN sector v2" style=" z-index:9020;position: fixed;font-size: 12px;text-align: left; background-color: #DDD">
 		<h4>Agregar Material</h4>
+		<br><label>Nombre</label>
+		<br><input type="text" id="nombremp" class="text ui-widget-content ui-corner-all" style="width: 220px">
+		<br><br><label>Formula para calcular la cantidad</label>
+		<br><input type="text" id="cantidadmp" value="pedido" class="text ui-widget-content ui-corner-all" style="width: 220px">
+		<br><br><label>Categorias (tag)</label>
+		<br><input type="text" id="tags" class="text ui-widget-content ui-corner-all" style="width: 220px">
+		<br><br>
+		<div class="col btn-padding v3"><a id="aceptamp" class="btn" onclick="aceptarmp();">Aceptar</a></div>
+		<div class="col btn-padding v3"><a id="cancelamp" class="btn" onclick="salirmp();">Cancelar</a></div>
+		<br><br><br>
+	</div>
+
+	<div id="divdefmateriale" class="DN sector v2" style=" z-index:9020;position: fixed;font-size: 12px;text-align: left; background-color: #DDD">
+		<h4>Agregar Material Especifico</h4>
 		<br><label>Nombre</label>
 		<br><input type="text" id="nombremp" class="text ui-widget-content ui-corner-all" style="width: 220px">
 		<br><br><label>Formula para calcular la cantidad</label>

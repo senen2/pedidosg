@@ -3,7 +3,7 @@
  */
 var gdatos;
 
-function inicioComprar1()
+function inicioSalon()
 {
 	leeServidor();
 	encabezado = getCookie("encabezado");
@@ -23,12 +23,12 @@ function dibujaTiendas(datos)
 	gdatos = datos;
 	$.each(gdatos.tiendas, function(i,item) {
 		cad += '<div class="section"><div class="container">'
+				+ '<label style="font-size:21px;">' + item.empresa + ' - ' + item.categoria + '</label>'
 				+ '<a href="catalogo.html?n=' + item.empresa  + '">' 
-				+ '<h2>' + item.empresa + ' - ' + item.categoria + '</h2>'
 				+ '<div class="fila">'
 					+ dibujaTienda(item.IDcuenta)
 				 + '</div>'+
-				 '</a></div></div><hr style="marging:5px">';
+				 '</a></div></div>';
 	} );
 	$("#tiendas").html(cad);
 }
@@ -38,7 +38,7 @@ function dibujaTienda(IDcuenta)
 	var cad="";
 	$.each(gdatos.productos, function(i,item) {
 		if (item.IDcuenta==IDcuenta)
-			cad += '<div class="col item" style="margin-bottom:14px;">'
+			cad += '<div class="col item">'
 				  + '<img src="' + imagedir + 'imgcat/' + item.IDproductobase + '.jpg" />'
 				+ "</div>";
 	} );
