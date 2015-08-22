@@ -16,19 +16,6 @@ function LeePlanillaMopp(funcion)
 	});	
 }
     
-function LeeEquiposPR(funcion)
-{
-	encabezado="'demo@themopp.com','demo'";
-	$.ajax({
-		url: "http://" + servidor + "/function/LeeEquiposP(" + encabezado + ")?pagina=" + pagina,
-		jsonp: "callback",
-		dataType: "jsonp",
-		success: function( response ) {
-			funcion(response);
-		}
-	});	
-}
-
 function LeeProduccionTareasP(funcion)
 {
 	$.ajax({
@@ -100,12 +87,13 @@ function EliminaProcesoProductoP(IDproceso, funcion)
 	 	});
 }
 
-function CreaMaterialP(IDproducto, IDproceso, nombre, cantidad, funcion)
+function CreaMaterialP(IDproducto, IDproceso, nombre, tags, cantidad, funcion)
 {
 	datos={};
 	datos.IDproducto=IDproducto;
 	datos.IDproceso=IDproceso;
 	datos.nombre=nombre;
+	datos.tags=tags;
 	datos.cantidad=cantidad;
 	$.post( 'http://' + servidor + '/functiond/CreaMaterialP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){
@@ -125,11 +113,31 @@ function BorraMaterialP(ID, funcion)
 	 	});
 }
 
-function CambiaTipoProductoP(IDproducto, IDplanilla, tipo, funcion)
+function ModificampP(ID, nombre, tags, cantidad)
+{
+	datos={};
+	datos.ID=ID;
+	datos.nombre=nombre;
+	datos.tags=tags;
+	datos.cantidad=cantidad;
+	$.post( 'http://' + servidor + '/functiond/ModificampP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos));
+}
+
+function ModificampeP(ID, IDmp, IDmpe, formula)
+{
+	datos={};
+	datos.ID=ID;
+	datos.IDmp=IDmp;
+	datos.IDmpe=IDmpe;
+	datos.formula=formula;
+	$.post( 'http://' + servidor + '/functiond/ModificampeP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos));
+}
+
+function CambiaTipoProductoP(IDproducto, IDplantilla, tipo, funcion)
 {
 	datos={};
 	datos.IDproducto=IDproducto;
-	datos.IDplanilla=IDplanilla;
+	datos.IDplantilla=IDplantilla;
 	datos.tipo=tipo;
 	$.post( 'http://' + servidor + '/functiond/CambiaTipoProductoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(){

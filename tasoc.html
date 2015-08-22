@@ -51,10 +51,11 @@
 				<h2 id="pagasociados" class="col auto-width">Asociados</h2>
 			</div>
 			<div class="container min-width fila" align="left">
-				<h3 id="tap-clientes" class="col tap-btn"><a id="titclientes" href="#" class="normal" onclick="refrescar('clientes');">Clientes</a></h3>
-				<h3 id="tap-proveedores" class="col tap-btn active"><a id="titproveedores" href="#" class="normal" onclick="refrescar('proveedores');">Proveedores</a></h3>
-				<h3 id="tap-distribuidores" class="col tap-btn"><a id="titdistribuidores" href="#" class="normal" onclick="refrescar('distribuidores');">Distribuidores</a></h3>
-				<h3 id="tap-vendedores" class="col tap-btn"><a id="titvendedores" href="#" class="normal" onclick="refrescar('vendedores');">Vendedores</a></h3>
+				<h3 id="tab-clientes" class="col tap-btn"><a id="titclientes" href="#" class="normal" onclick="refrescar('clientes');">Clientes</a></h3>
+				<h3 id="tab-proveedores" class="col tap-btn active"><a id="titproveedores" href="#" class="normal" onclick="refrescar('proveedores');">Proveedores</a></h3>
+				<h3 id="tab-distribuidores" class="col tap-btn"><a id="titdistribuidores" href="#" class="normal" onclick="refrescar('distribuidores');">Distribuidores</a></h3>
+				<h3 id="tab-vendedores" class="col tap-btn"><a id="titvendedores" href="#" class="normal" onclick="refrescar('vendedores');">Vendedores</a></h3>
+				<h3 id="tab-operadores" class="col tap-btn"><a id="titoperadores" href="#" class="normal" onclick="refrescar('operadores');">Operadores</a></h3>
 			</div>
 		</header>
 
@@ -69,40 +70,17 @@
 				<div class="col sector v2 mo" align="left">
 					<table>
 						<tr>
-							<th> </th>
 							<th id="tituloAgregar">Agregar Asociado</th>
 						</tr>
-						<tr>
-							<div id="aviso" style="color: red"> </div>
-						</tr>
-						<tr>
-							<td class="txt-right">Email</td>
-						</tr>
-						<tr>
-							<td><input id="email" style="width: 250px;" /></td>
-						</tr>
-						<tr>
-							<td id="titnombre" class="txt-right">Nombre</td>
-						</tr>
-						<tr>
-							<td><input id="nombre" style="width: 250px;" /></td>
-							<td>
-								<a id="botagregar" class="btn-gray" onclick="agregaAsociacion();">Agregar</a>
-							</td>
-						</tr>
-<!--						<tr>
-							<td class="txt-right">Relacion</td>
-							<td>
-								<select id="relacion">
-									<option>Proveedor</option> 
-									<option>Distribuidor</option> 
-									<option>Vendedor</option> 
-								</select>
-							</td>
-						</tr>
--->					</table>
+						<tr><div id="aviso" style="color: red"> </div></tr>
+						<tr><td><input id="nombre" style="width: 250px;" placeholder="nombre" /></td></tr>
+						<tr><td><input id="email" style="width: 250px;" placeholder="email" /></td></tr>
+						<tr><td><input id="id" style="width: 250px;" placeholder="cedula" /></td></tr>
+						<tr><td> </td></tr>
+						<tr><td><a id="botagregar" class="btn-gray" onclick="agregaAsociacion();">Agregar</a></td></tr>
+					</table>
 					<br />
-					<div id="texto-proveedores" style="width: 300px; font-family: Arial, Helvetica, sans-serif;font-size: 11px;">
+					<div id="texto-proveedores" style="width: 250px; font-family: Arial, Helvetica, sans-serif;font-size: 11px;">
 					Para vincular a un proveedor registrado en gtienda debe escribir su email. 
 					Esto le permitirá utilizar el catalogo del proveedor como si fuera suyo, 
 					hacerle pedidos y recibir entregas a traves de gtienda.<br><br>
@@ -111,13 +89,13 @@
 					puede crear un proveedor escribiendo su nombre. 
 					Los productos que cree para este proveedor aparecerán en su catalogo.
 					</div> 
-					<div id="texto-distribuidores" style="width: 300px; font-family: Arial, Helvetica, sans-serif;font-size: 11px;">
+					<div id="texto-distribuidores" style="width: 250px; font-family: Arial, Helvetica, sans-serif;font-size: 11px;">
 					Para vincular a un distribuidor registrado en gtienda debe escribir su email. 
 					Esto le permitirá al distribuidor disponer de su catalogo para ofrecer su mercancia.<br><br>
 					
 					Solo se permiten distribuidores que tengan cuenta paga en gtienda.
 					</div> 
-					<div id="texto-vendedores" style="width: 300px; font-family: Arial, Helvetica, sans-serif;font-size: 11px;">
+					<div id="texto-vendedores" style="width: 250px; font-family: Arial, Helvetica, sans-serif;font-size: 11px;">
 					Para vincular a un vendedor debe escribir su email.<br><br> 
 					Cuando un cliente compra por internet lo hace directamente.  
 					
@@ -129,7 +107,9 @@
 					
 					El vendedor puede consultar los pedidos que ha realizado.
 					</div> 
-					<div id="texto-clientes" style="width: 300px; font-family: Arial, Helvetica, sans-serif;font-size: 11px;">
+					<div id="texto-operadores" style="width: 250px; font-family: Arial, Helvetica, sans-serif;font-size: 11px;">
+					</div> 
+					<div id="texto-clientes" style="width: 250px; font-family: Arial, Helvetica, sans-serif;font-size: 11px;">
 					Para vincular a un cliente debe escribir su email.<br><br> 
 					
 					Si su tienda es privada debe inscribir a sus clientes por aquí.<br><br>

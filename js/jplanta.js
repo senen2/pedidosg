@@ -2,21 +2,19 @@
  * @author Botpi
  */
 
-var encabezado, idioma, pagina, ayuda, gdatos, IDoperario;
+var encabezado, idioma, pagina, ayuda, gdatos, gIDoperador;
 
 function inicioPlanta()
 {
-	encabezado = getCookie("encabezado");
+	encabezado = getCookie("planta");
 	if (encabezado==null || encabezado=="" || encabezado=="'',''")
-	{
-		encabezado="'salguero.antonio@salpla.com','salpla2014',''";	
-		document.cookie = "encabezado=" + encabezado;		
-	}
+		window.location.assign("index.html");
+
 	pagina = "pdplanta";
 	ayuda = "";
 	leeServidor();
 	idioma="es";
-	loginP(false, inicio);
+	LoginPlantaP(inicio);
 }
 
 function inicio()
@@ -27,8 +25,8 @@ function inicio()
 
 function verOperario()
 {
-	IDoperario = 1;
-	PlantaOpcionesP(1, muestraOpciones);
+	gIDoperador = Number( $("#operario").val());
+	PlantaOpcionesP(gIDoperador, 0, muestraOpciones);
 }
 
 function muestraOpciones(datos)
@@ -40,6 +38,7 @@ function muestraOpciones(datos)
 		$("#divMenu").show();
 		$("#menu option:eq(0)").prop('selected', true);
 		//$("#menu").val("Produccion");
+		$("#menu").attr("size", gdatos.length);
 		$("#menu").focus();
 		
 	}
@@ -51,6 +50,6 @@ function muestraOpciones(datos)
 
 function verOpcion()
 {
-	document.cookie = "IDoperario=" + IDoperario;
+	document.cookie = "IDoperador=" + gIDoperador;
 	window.location.assign(gdatos[Number($("#menu").val())-1].pagina);
 }

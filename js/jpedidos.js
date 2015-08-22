@@ -48,7 +48,8 @@ function dibujaPedidos(datos)
 	llenaTercero();
 	dibujaTitulos(gdatos.cuenta.lenguaje);
 	ajustaTabla("pedidos");
-	leePedido(gdatos.datos[0].ID);
+	if (gdatos.datos.length>0)
+		leePedido(gdatos.datos[0].ID);
 }
 
 function leePedido(IDpedido)

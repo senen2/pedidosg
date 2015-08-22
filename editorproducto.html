@@ -11,24 +11,13 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		
-		<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
-
-		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="stylesheet" type="text/css" href="css/catalogo.css">
-		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
-		<script>
-	    	WebFont.load({
-	    	  google: {
-	    	    families: ["Montserrat:400,700", "Bitter:400,700"]
-	    	  }
-	    	});
-		</script>
 	
-		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/jeditorproducto.js"></script>
 		<script type="text/javascript" src="js/japiPedidos.js"></script>
 		<script type="text/javascript" src="js/japiProduccion.js"></script>
@@ -202,10 +191,10 @@
 		<h4>Agregar Material</h4>
 		<br><label>Nombre</label>
 		<br><input type="text" id="nombremp" class="text ui-widget-content ui-corner-all" style="width: 220px">
+		<br><br><label>Categorias (tags)</label>
+		<br><input type="text" id="tagsmp" class="text ui-widget-content ui-corner-all" style="width: 220px">
 		<br><br><label>Formula para calcular la cantidad</label>
 		<br><input type="text" id="cantidadmp" value="pedido" class="text ui-widget-content ui-corner-all" style="width: 220px">
-		<br><br><label>Categorias (tag)</label>
-		<br><input type="text" id="tags" class="text ui-widget-content ui-corner-all" style="width: 220px">
 		<br><br>
 		<div class="col btn-padding v3"><a id="aceptamp" class="btn" onclick="aceptarmp();">Aceptar</a></div>
 		<div class="col btn-padding v3"><a id="cancelamp" class="btn" onclick="salirmp();">Cancelar</a></div>

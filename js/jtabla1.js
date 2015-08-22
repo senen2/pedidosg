@@ -4,7 +4,7 @@
 
 function dibujaTabla(tabla, tag, tagID, fundetalle)
 {
-	$('#' + tag).html(cadTabla(tabla, tagID, fundetalle));	
+	$('#' + tag).html(cadTabla(tabla, tagID, fundetalle));
 	ajustaTabla(tag);	
 }
 
@@ -13,7 +13,7 @@ function cadTabla(tabla, tagID, fundetalle)
 	var cad = "", tit="", tot="", estado="", f="", finput, val;
 	
 	$.each(tabla.titulos, function(i,item) {
-		tit = tit + '<th class="encabezado" style="width:'+ item.ancho +'px; text-align:' + item.alinea + '">' + item.titulo + '</th>';
+		tit = tit + '<th style="width:'+ item.ancho +'px; text-align:' + item.alinea + '">' + item.titulo + '</th>';
 	});
 
 	var f;
@@ -31,7 +31,8 @@ function cadTabla(tabla, tagID, fundetalle)
 		});
 	});
 
-	return '<tr>' + tit + '</tr>' + cad + '<tr>' + tot + '</tr>';	
+	//return '<tr>' + tit + '</tr>' + cad + '<tr>' + tot + '</tr>';
+	return '<thead><tr>' + tit + '</tr></thead><tbody>' + cad + '<tr>' + tot + '</tr></tbody>';		
 }
 
 function dibujaRenglon(item, titulos)
@@ -45,11 +46,6 @@ function dibujaRenglon(item, titulos)
 
 function dibujaCelda(item, itemtit)
 {
-	var finput="", funcion="", aviso="", cad="", datos
-		, td = '<td style="text-align:' + itemtit.alinea + '">';
-	if ("aviso" in itemtit)
-		aviso = ' title="' + itemtit.aviso + '"" ';	
-	
 	if ("link" in itemtit) {
 		val = "";
 		if (itemtit.link!="")
@@ -57,41 +53,23 @@ function dibujaCelda(item, itemtit)
 		funcion = "";
 		if (itemtit.funcion!="")
 			funcion=item[itemtit.funcion];
-		return td + '<a class="normal" style="font-weight: 700" href="'
-			  + itemtit.linktext + val + '" ' + funcion + aviso + '>' 
+		return '<td align="' + itemtit.alinea + '" style="width:'+ itemtit.ancho +'px;"><a class="normal" style="font-weight: 700" href="'
+			  + itemtit.linktext + val + '" ' + funcion + '>' 
 			  + item[itemtit.campo] + '</a></td>';								
 	}
 	else if ("funcion" in itemtit)
-		return td + '<a href="#" onclick="' + itemtit.funcion + '(' + item.ID + ');">' + itemtit.titulo + '</a></td>';
+		return '<td align="' + itemtit.alinea + '" style="width:'+ itemtit.ancho +'px;"><a href="#" onclick="' + itemtit.funcion + '(' + item.ID + ');">' + itemtit.titulo + '</a></td>';
 	else if ("input" in itemtit) {
 		finput = "";
 		if ("funcioninput" in itemtit)
-			finput = ' onchange="' + itemtit.funcioninput + '(' + item.ID + ');"';
-		
-		if (itemtit.input=="normal")
-			return td + '<input id="' + itemtit.campo + '-' + item.ID +'" ' + finput + ' value="' + item[itemtit.campo] + '"></td>';
-		else if (itemtit.input=="select") {
-			cad = td + '<select id="' + itemtit.campo + '-' + item.ID +'" ' + finput + '>';
-			
-			if (typeof itemtit.datos === "function") {
-				datos = itemtit.datos(item.ID);
-			}
-			else
-				datos = itemtit.datos;
-			
-			$.each(datos, function(i,itemsel) {
-				cad = cad + '<option value="' + itemsel.ID +'"' + (itemsel.nombre==item[itemtit.campo] ? ' selected': '') + '>' + itemsel.nombre + '</option>';
-			});
-			return cad + '</select></td>';
-		}
-		else
-			return td + '<input id="' + itemtit.campo + '-' + item.ID + '" ' 
-				+ ' type="checkbox"' + (item[itemtit.campo]==0 ? '':' checked') + finput + aviso  + '>' + '</td>';	
+			finput = itemtit.funcioninput;
+		return '<td align="' + itemtit.alinea + '" style="width:'+ itemtit.ancho +'px;"><input id="' + itemtit.campo + '-' + item.ID + '" type="checkbox" ' + (item[itemtit.campo]==0 ? '':'checked')
+			+ ' onclick="' + finput + '(' + item.ID + ');">' + '</td>';
 	}
 	else if ("img" in itemtit)
-		return '<td><a href="' + itemtit.img + item[itemtit.imgcampo] + '"><img width="' + (itemtit.ancho-4) + 'px" src="' + item[itemtit.campo] + '"/></a></td>';
+		return '<tds tyle="width:'+ itemtit.ancho +'px;"><a href="' + itemtit.img + item[itemtit.imgcampo] + '"><img width="' + (itemtit.ancho-4) + 'px" src="' + item[itemtit.campo] + '"/></a></td>';
 	else
-		return td + '<label>' + item[itemtit.campo] + '</label></td>';
+		return '<td style="width:'+ itemtit.ancho +'px;" align="' + itemtit.alinea + '">' + item[itemtit.campo] + '</td>';
 	
 	return "";
 }

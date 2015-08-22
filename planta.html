@@ -9,15 +9,6 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
-	<script>
-    	WebFont.load({
-    	  google: {
-    	    families: ["Montserrat:400,700"]
-    	  }
-    	});
-	</script>
-
 	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 	<link rel="shortcut icon" href="/favicon.ico" />
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -48,7 +39,7 @@
 			</div>
 			<div id="divMenu">
 				Seleccione Opcion<br><br>
-				<select id="menu" size="7" class="plantaOpciones" onkeydown="if (event.keyCode == 13) verOpcion();">
+				<select id="menu" class="plantaOpciones" onkeydown="if (event.keyCode == 13) verOpcion();">
 					<option value="Produccion">Produccion</option> 
 					<option>Consumo</option> 
 					<option>Sobrante</option> 

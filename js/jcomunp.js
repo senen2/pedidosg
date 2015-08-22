@@ -56,7 +56,7 @@ function armaCadCatalogos(datos, carro)
 	var cad = "";
 	$.each(datos, function(i,item) {
 		if (editando | item.venta==1)
-			cad = cad + '<a class="nav-link" href="catalogo.html?ID='+ item.ID +'"><div class="nav-col col"><span>' + item.nombre + '</span></div></a>';
+			cad = cad + '<a class="nav-link" href="catalogo.html?ID='+ item.ID +'"><div class="nav-col col"><span>' + item.titulo + '</span></div></a>';
 	} );
 	cad = cad + '<a class="nav-link" href="contacto.html"><div class="nav-col col"><span>' + gdatos.cuenta.lenguaje.contacto + '</span></div></a>';
 	if (carro>=0)

@@ -729,7 +729,7 @@ input.file {
 	margin: 3px 0 0 3px;
 	cursor: pointer;
 	display: inline-block;
-	background: url('//s.ytimg.com/yts/imgbin/www-videomanager-vflYb1zko.png') no-repeat scroll 0px -1256px transparent;
+	background: url('../images/iconos.png') no-repeat scroll 0px -1256px transparent;
 	background-size: auto;
 	width: 15px;
 	height: 15px;
@@ -751,6 +751,22 @@ input.file {
 	border:1px dotted #E8E8E8;
 	border-right: none;
 	border-collapse:collapse;
+}
+.mo input {
+	border: 0px;
+	margin: 0px;
+	padding: 1px 1px;
+	width: 92.7%;
+	background: transparent;
+}
+.mo select {
+	border: 0px;
+	margin: 0px;
+
+	background: transparent;
+}
+.mo label {
+	padding: 1px 1px;
 }
 .mo th {
 	padding: 1px 10px;
@@ -1251,7 +1267,7 @@ input.item-cantidad {
 }
 
 .plantaOpciones {
-	width: 200px; 
+	width: 300px; 
 	font-family: Arial, Helvetica, sans-serif; 
 	font-size: 24px; 
 	padding: 10px; 

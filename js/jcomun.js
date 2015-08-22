@@ -169,12 +169,14 @@ function buscaValor(lista, valor, campo)
 
 function quitaValor(lista, valor, campo)
 {
-	var a = "";
+	var pos;
 	$.each(lista, function(i, item) {
-		if (item[campo]==valor)
-			lista.splice(i,1);
+		if (item[campo]==valor) {
+			pos = i;
+			return;			
+		}
 	});	
-	return a;
+	lista.splice(pos,1);
 }
 
 function enviaMensaje()

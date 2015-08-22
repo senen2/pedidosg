@@ -9,15 +9,6 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
-	<script>
-    	WebFont.load({
-    	  google: {
-    	    families: ["Montserrat:400,700"]
-    	  }
-    	});
-	</script>
-
 	<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 	<link rel="shortcut icon" href="/favicon.ico" />
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -27,6 +18,7 @@
 	<script src="js/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/jplantapro.js"></script>
 	<script type="text/javascript" src="js/japiPlanta.js"></script>
+	<script type="text/javascript" src="js/japiProduccion.js"></script>
 	<script type="text/javascript" src="js/japiPedidos.js"></script>
 	<script type="text/javascript" src="js/jcomunp.js"></script>
 	<script type="text/javascript" src="js/jtit.js"></script>
@@ -38,63 +30,42 @@
 		});
 	</script>
 </head>
-<body style="font-family: Arial, Helvetica, sans-serif; font-size: 32px;" >
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; line-height: 2;" >
+    <div id="mask2" class="mask DN" onclick="destapar();"> </div>
+
 	<div align="center">
+	PRODUCCION
 	<div class="section">
-	<div class="container">
-		<br>
-		<div align="left" style="width: 550px;">
-			<div id="divMaquina" >
-				Maquina 
-				<input id="maquina" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px" onkeydown="if (event.keyCode == 13) verMaquina();"/><br>
-				
-			</div><br>
-			<div id="divProducto">
-				Pedido 
-				<input id="pedido" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px;" 
-					value="1234" onkeydown="if (event.keyCode == 13) verOperario();"/><br><br>
-				Producto 
-				<select id="producto" class="plantaOpciones" onkeydown="if (event.keyCode == 13) verProducto();">
-					<option>Produccion</option> 
-					<option>Consumo</option> 
-					<option>Sobrante</option> 
-					<option>Recepcion</option> 
-					<option>Traslado</option> 
-					<option>Inventario</option> 
-					<option>Reimpresion</option> 
-				</select>
-			</div><br>
-			<div id="divColor" >
-				Color 
-				<select id="color" class="plantaOpciones" onkeydown="if (event.keyCode == 13) verColor();">
-					<option>Blanco</option> 
-					<option>Negro</option> 
-					<option>Azul</option> 
-				</select>
-				
-			</div><br>
-			<div id="divTamano" >
-				Tamaño 
-				<select id="tamano" class="plantaOpciones" onkeydown="if (event.keyCode == 13) verTamano();">
-					<option>2Kg</option> 
-					<option>3Kg</option> 
-					<option>5Kg</option> 
-					<option>10Kg</option> 
-					<option>25Kg</option> 
-				</select>
-				
-			</div><br>
-			<div id="divCantidad" >
-				Cantidad 
-				<input id="cantidad" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px" onkeydown="if (event.keyCode == 13) verCantidad();"/><br>
-				
-			</div><br>
-			<div id="divAceptar" >
-				<button  style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; width: 300px;" onclick="aceptar();">Aceptar</button>
-			</div>
+	<div class="container" style="" onkeydown="if (event.keyCode == 27) iraPlanta();">
+		<div align="left" style="width: 800px;overflow: auto">
+		    <div style="float:left; width: 200px;">
+				Maquina<br>
+				Cliente<br>
+				Producto<br>
+				Producido<br>
+				Unidades<br>
+				Peso<br> 
+				Etiqueta<br> 
+		    </div>
+		    <div style="float:left;">
+		    </div>
+				<input id="equipo" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px" onkeydown="if (event.keyCode == 13) verEquipo();"/><br>
+				<input id="cliente" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; width: 500px;" disabled=""/><br>
+				<input id="producto" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; width: 500px;" disabled=""/><br>
+				<input id="producido" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; width: 500px;" disabled=""/><br>
+				<input id="unidades" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px" onkeydown="if (event.keyCode == 13) verUnidades();"/><br>
+				<input id="peso" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px" onkeydown="if (event.keyCode == 13) verPeso();"/><br>
+				<input id="IDetiqueta" class="DN" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; font-weight: bold;" onkeydown="iraPlanta();"/><br>
 		</div>	
+				
+			<div id="divAceptar" >
+				<button id="aceptar" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; width: 300px;"
+				 onkeydown="if (event.keyCode == 13) aceptar();" disabled>Aceptar</button>
+			</div>
 	</div>
 	</div>
 	</div>
+	
+	<div id="modal" class="DN"> </div>
 </body>
 </html>

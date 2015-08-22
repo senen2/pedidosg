@@ -121,6 +121,7 @@ function dibujaTitulos(l)
 		$("#titproveedores").html(l.proveedores);
 		$("#titdistribuidores").html(l.distribuidores);
 		$("#titvendedores").html(l.vendedores);
+		$("#titoperadores").html(l.operadores);
 		$("#botmodificar").html(l.modificar);
 		$("#botagregar").html(l.agregar);
 

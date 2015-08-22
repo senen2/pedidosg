@@ -141,8 +141,8 @@ function dibujaCuadro(datos)
 				precio = '<label class="item-price">$ ' + item.precio.formatMoney(gdatos.cuenta.decimales)+ '</label>';
 			
 			pvm = "";
-			if (item.pvm>0)
-				pvm = '<label class="item-price">Al Mayor $ ' + item.pvm.formatMoney(gdatos.cuenta.decimales) + '</label>';
+//			if (item.pvm>0)
+//				pvm = '<label class="item-price">Al Mayor $ ' + item.pvm.formatMoney(gdatos.cuenta.decimales) + '</label>';
 	
 			borrar = "";
 			if (editando)

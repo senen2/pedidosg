@@ -90,3 +90,18 @@ function guardarFormaPago()
 	GuardarFormaPagoP($("#formapago").val());
 	
 }
+
+function creaPlanta()
+{
+    CreaPlantaP(iraPlanta);
+}
+
+function iraPlanta(datos)
+{
+    var d = new Date();
+    d.setTime(d.getTime() + (120*24*60*60*1000)); // 120 dias
+    var expires = "expires="+d.toUTCString();
+
+    document.cookie = "planta=" + datos + "; expires=" + expires;
+	window.open("planta.html");
+}

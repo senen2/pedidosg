@@ -19,11 +19,15 @@ function inicioAsociados()
 
 function refrescar(modop)
 {
-	modo = modop;
-	LeeAsociadosP(modo, dibujaAsociados);
+	if (modop!="null")
+		modo = modop;
 	desactivaTodo();
-	$("#tap-" + modo).addClass("active");
+	$("#email").val("");
+	$("#nombre").val("");		
+	$("#id").val("");		
+	$("#tab-" + modo).addClass("active");
 	$("#texto-" + modo).show();
+	LeeAsociadosP(modo, dibujaAsociados);
 }
 
 function dibujaAsociados(datos)
@@ -31,6 +35,7 @@ function dibujaAsociados(datos)
 	$("#usuario").html(datos.cuenta.empresa + " / " + datos.cuenta.usuario);
 	gdatos = datos;
 	dibujaTabla(datos, "asociados", "asociados","");
+	
 	if (modo=="distribuidores") {
 		$("#titnombre").hide();
 		$("#nombre").hide();
@@ -38,6 +43,17 @@ function dibujaAsociados(datos)
 	else {
 		$("#titnombre").show();
 		$("#nombre").show();
+	}
+			
+	if (modo=="operadores") {
+		$("#titemail").hide();
+		$("#email").hide();
+		$("#titid").show();
+		$("#id").show();
+	}
+	else {
+		$("#titid").hide();
+		$("#id").hide();
 	}		
 		
 	dibujaLogin(gdatos.cuenta);
@@ -57,39 +73,49 @@ function dibujaAsociados(datos)
 		case "vendedores":
 			tercero = gdatos.cuenta.lenguaje.vendedor;
 			break;
+		case "operadores":
+			tercero = gdatos.cuenta.lenguaje.operador;
+			break;
 	}
 	$("#tituloAgregar").html(gdatos.cuenta.lenguaje.nuevo + " " + tercero);
 }
 
 function desactivaTodo()
 {
-	$("#tap-proveedores").removeClass("active");
-	$("#tap-distribuidores").removeClass("active");
-	$("#tap-vendedores").removeClass("active");
-	$("#tap-clientes").removeClass("active");
+	$("#tab-proveedores").removeClass("active");
+	$("#tab-distribuidores").removeClass("active");
+	$("#tab-vendedores").removeClass("active");
+	$("#tab-clientes").removeClass("active");
+	$("#tab-operadores").removeClass("active");
 	$("#texto-proveedores").hide();
 	$("#texto-distribuidores").hide();
 	$("#texto-vendedores").hide();
 	$("#texto-clientes").hide();
+	$("#texto-operadores").hide();
 }
 
 function activaAsociado(ID)
 {	
-	ActivaAsociadoP(ID);
+	if (modo=="operador")
+		ActivaOperador(ID);
+	else
+		ActivaAsociadoP(ID);
 }
 
 function agregaAsociacion()
 {
-	if (modo != "proveedores" & !IsEmail($("#email").val())) {
+	if (modo != "proveedores" & modo != "operadores" & !IsEmail($("#email").val())) {
 		$("#aviso").html("se requiere un email valido");
 		$("#aviso").show();
 	}
-	else {
-		$("#aviso").hide();
-		AgregaAsociacionP($("#email").val(), $("#nombre").val(), modo, refrescar);
-		$("#email").val("");
-		$("#nombre").val("");		
-	}
+		if (modo == "operadores" & $("#id").val()=="") {
+			$("#aviso").html("se requiere una identificacion");
+			$("#aviso").show();
+		}		
+		else {
+			$("#aviso").hide();
+			AgregaAsociacionP($("#email").val(), $("#nombre").val(), $("#id").val(), modo, refrescar);
+		}
 }
 
 function compraxCliente(IDcuentacli)

@@ -620,23 +620,36 @@ function ActivaAsociadoP(ID, funcion)
 		jsonp: "callback",
 		dataType: "jsonp",
 		success: function( response ) {
-			if (funcion!="")
+			if (funcion)
+				funcion(response);
+		}
+	});	
+}
+    
+function ActivaOperadorP(ID, funcion)
+{
+	$.ajax({
+		url: "http://" + servidor + "/function/ActivaOperadorP(" + encabezado + ',' + ID + ")?pagina=" + pagina,
+		jsonp: "callback",
+		dataType: "jsonp",
+		success: function( response ) {
+			if (funcion)
 				funcion(response);
 		}
 	});	
 }
 
-function AgregaAsociacionP(email, nombre, relacion, funcion)
+function AgregaAsociacionP(email, nombre, id, relacion, funcion)
 {
-	$.ajax({
-		url: "http://" + servidor + "/function/AgregaAsociacionP(" + encabezado + ",'" + email + "','" + nombre + "','" + relacion + "')?pagina=" + pagina,
-		jsonp: "callback",
-		dataType: "jsonp",
-		success: function( response ) {
-			if (funcion!="")
-				funcion(response);
-		}
-	});	
+	datos={};
+	datos.nombre=nombre;
+	datos.email=email;
+	datos.id=id;
+	datos.relacion=relacion;
+	$.post( 'http://' + servidor + '/functiond/AgregaAsociacionP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
+	 	.always(function(response){
+	 		funcion(response);
+	 	});
 }
 
 // --------------------------------- Catalogos
@@ -796,7 +809,7 @@ function CambiaUrlFotoP(IDproductobase, urlfoto, funcion)
 	$.post( 'http://' + servidor + '/functiond/CambiaUrlFotoP(' + encabezado + ')?pagina=' + pagina, JSON.stringify(datos))
 	 	.always(function(response){
 	 		if (funcion)
-	 			funcion(response);
+	 			funcion(JSON.parse(response));
 	 	});
 } 
 
@@ -896,7 +909,7 @@ function LeeLineasFG(funcion)
 		jsonp: "callback",
 		dataType: "jsonp",
 		success: function( response ) {
-			funcion(response);
+			funcion(JSON.parse(response));
 		}
 	});	
 }
