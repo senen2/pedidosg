@@ -46,6 +46,7 @@ function dibujaProducto(IDproducto, datos)
 	if (item.pvm>0) {
 		$("#pvm").html("$ " + item.pvm.formatMoney(datos.cuentaCat.decimales));
 		$("#divpvm").show();		
+		$("#divpvm").hide();
 	}
 	else
 		$("#divpvm").hide();

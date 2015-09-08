@@ -69,7 +69,8 @@ function verEquipo()
 			$("#equipo").val(gequipo.nombre);
 			$("#cliente").val(gproceso.cliente);
 			$("#producto").val(gproceso.producto);
-			$("#producido").val(gproducido.unidades + "/" + gproceso.cantidad + " un - " + gproducido.peso + "/" + gproceso.peso + " g");
+			if (typeof gproducido.unidades!='undefined')
+				$("#producido").val(gproducido.unidades + "/" + gproceso.cantidad + " un - " + gproducido.peso + "/" + gproceso.peso + " g");
 			$("#unidades").focus();				
 		}
 		else {

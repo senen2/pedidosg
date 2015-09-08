@@ -133,12 +133,12 @@ function dibujaProduccion()
 	$("#tab-produccion").addClass("active");
 
 	var cad = "", cadmp, boton;
-	if (typeof gdatos.produccion!='undefined' & gdatos.producto.tipo>0 & gdatos.produccion.procesos.length>0) {
+	if (typeof gdatos.produccion!='undefined' && gdatos.produccion!=null  && gdatos.producto.tipo>0 && gdatos.produccion.procesos.length>0) {
 		$.each(gdatos.produccion.procesos, function(i,item) {
 			cadmp="";
 			$.each(gdatos.produccion.mp, function(j, mp) {
 				if (mp.IDproceso==item.ID)
-					cadmp += '<div style="font-size:8px">' + (mp.mpe>"" ? mp.mpe : mp.nombremp) + ", " + mp.formula + '</div>'; 
+					cadmp += '<div style="font-size:8px">' + (mp.mpe>"" ? mp.mpe : mp.nombremp) + ", " + mp.cantidad + '</div>'; 
 			} );
 			
 			boton = '';
@@ -158,9 +158,10 @@ function dibujaProduccion()
 				   + '</div>';
 		
 		} );
-		if (gdatos.producto.tipo==1)
-			cad += '<button onclick="agregaProceso();">Agregar Proceso</button>';		
 	} 
+	if (gdatos.producto.tipo==1)
+		cad += '<button onclick="agregaProceso();">Agregar Proceso</button>';		
+
 	$("#nombreProducto").html(gdatos.producto.nombre);
 	$("#produccion").html(
 		'<div>Tipo de Producto: <select id="tipo" onchange="cambiaTipo();">'
@@ -507,7 +508,7 @@ function cambiaTipo()
 	}	
 	
 	var IDplantilla=0;
-	if (typeof gdatos.produccion!='undefined')
+	if (typeof gdatos.produccion!='undefined' && gdatos.produccion!=null)
 		IDplantilla = gdatos.produccion.IDplantilla;
 
 	CambiaTipoProductoP(gdatos.producto.ID, IDplantilla, tipo, refrescaProducto);
@@ -530,7 +531,7 @@ function dibujaCuadroMP()
 	var titulos = [];
     titulos.push({"titulo":"Grupo", "ancho":100, "alinea":"left", "campo":"nombre", "input":"normal", "funcioninput":"modificaMP"});
     titulos.push({"titulo":"Categorias (tags)", "ancho":100, "alinea":"left", "campo":"tags", "input":"normal", "funcioninput":"modificaMP"});
-    titulos.push({"titulo":"Cantidad", "ancho":100, "alinea":"left", "campo":"formula", "input":"normal", "funcioninput":"modificaMP"});
+    titulos.push({"titulo":"Cantidad", "ancho":100, "alinea":"left", "campo":"cantidad", "input":"normal", "funcioninput":"modificaMP"});
     titulos.push({"titulo":"", "ancho":10, "alinea":"left", "campo":"eliminar", "linktext": "#", "link": "", "funcion":"funcion", "aviso": "eliminar"});
 	
 	var datos = {};
@@ -584,7 +585,7 @@ function datosMPE(ID)
 
 function modificaMP(ID)
 {
-	ModificampP(ID, $("#nombre-" + ID).val(), $("#tags-" + ID).val(), $("#formula-" + ID).val());
+	ModificampP(ID, $("#nombre-" + ID).val(), $("#tags-" + ID).val(), $("#cantidad-" + ID).val());
 }
 
 function modificaMPE(ID)

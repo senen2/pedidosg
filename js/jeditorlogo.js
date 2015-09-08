@@ -103,5 +103,5 @@ function iraPlanta(datos)
     var expires = "expires="+d.toUTCString();
 
     document.cookie = "planta=" + datos + "; expires=" + expires;
-	window.open("planta.html");
+	window.location.assign("planta.html");
 }
